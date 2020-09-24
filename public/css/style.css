@@ -1,0 +1,142 @@
+.nav-style {
+  padding: 0 4.5em;
+  animation: 1s ease 0s normal both 1 running fixedmenu;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-image {
+  width: 140px;
+}
+
+.nav-link {
+  background: rgba(0, 0, 0, 0);
+  color: #111;
+  font: 600 16px/30px "Oswald", Helvetica, sans-serif;
+  padding: 10px 12px;
+  position: relative;
+  text-transform: uppercase;
+  margin-right: 10px;
+  border-radius: 25px;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -khtml-border-radius: 25px;
+  transition: 0.5s;
+}
+
+a.nav-link:after {
+  font-family: FontAwesome;
+  content: "\f107 ";
+  margin-left: 5px;
+  vertical-align: top;
+  padding-right: 3px;
+}
+
+a.nav-link:hover:after {
+  font-family: FontAwesome;
+  content: "\f106 ";
+  margin-left: 5px;
+
+  padding-right: 3px;
+}
+
+.nav-link:hover {
+  background-color: #00706d;
+  color: white;
+}
+
+.navbar-text i {
+  z-index: 1;
+  cursor: pointer;
+  font-size: 25px;
+  margin-right: 1em;
+  transition: 0.5s;
+}
+
+.navbar-text.small.text-truncate.w-50.text-right.order-1.order-md-last i:hover {
+  color: #00706d;
+  transform: scale(1.2);
+  transform: rotateY(180deg);
+}
+
+#lblCartCount {
+  font-weight: lighter;
+  font-size: 12px;
+  background: #00706d;
+  color: #fff;
+  padding: 1px 4px;
+  vertical-align: top;
+  margin-left: -33px;
+  margin-top: -4px;
+}
+
+.badge {
+  padding-left: 19px;
+  padding-right: 19px;
+  -webkit-border-radius: 19px;
+  -moz-border-radius: 19px;
+  border-radius: 19px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+
+
+
+.navbar .nav-item .dropdown-menu {
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  margin-top: 0;
+}
+
+.navbar .nav-item:hover .nav-link {
+  color: #000;
+}
+
+.navbar .dropdown-menu.fade-down {
+  top: 80%;
+  transform: rotateX(-75deg);
+}
+
+.navbar .dropdown-menu.fade-up {
+  top: 180%;
+}
+
+.navbar .nav-item:hover .dropdown-menu {
+  transition: 0.3s;
+  opacity: 1;
+  visibility: visible;
+  top: 100%;
+  transform: rotateX(0deg);
+}
+
+.dropdown-menu {
+  margin-top: 22px !important;
+  min-width: 200px;
+  padding: 15px 0;
+  border-top: 3px solid #00706d;
+}
+
+.dropdown-menu .row .col-12 .list-unstyled li {
+  width: 100%;
+  float: left;
+  padding: 0 4px;
+  margin: 0 20px;
+}
+
+.dropdown-menu .row .col-12 .list-unstyled li a {
+  color: black;
+  text-decoration: none;
+  font: 400 13px/18px "Muli", Helvetica, sans-serif;
+}
+
+@media only screen and (max-width: 1107px) {
+  .d-flex.w-50.order-0 {
+    display: block !important;
+    width: 100% !important;
+    text-align: center;
+  }
+}
