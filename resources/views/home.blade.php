@@ -339,15 +339,15 @@
 </div>
 <div class="promotion-container">
     <div>
-        <figure><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}" alt=""></figure>
+        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}" alt=""></figure>
         <div class="show-off"></div>
     </div>
     <div>
-        <figure><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}" alt=""></figure>
+        <figure class="figure2"><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}" alt=""></figure>
         <div class="show-off"></div>
     </div>
     <div>
-        <figure><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}" alt=""></figure>
+        <figure class="figure3"><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}" alt=""></figure>
         <div class="show-off"></div>
     </div>
 
