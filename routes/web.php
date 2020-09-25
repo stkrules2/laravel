@@ -13,4 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*User Routes */
+
 Route::get('/', 'HomeController@index');
+
+/*Admin Routes */
+
+Route::get('/admin', 'AdminController@index');
+Route::get('/admin/menu', 'AdminController@menu');

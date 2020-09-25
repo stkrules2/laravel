@@ -22,114 +22,134 @@
 <body>
     <div class="page">
 
-    <header>
-    <nav class="navbar">
-        <div class="logo-div">
-            <a href="#"><img src="{{ URL::to('img/logo/kabab-house-logo-org.png') }}" alt="Kabab House" class="logo"></a>
-        </div>
-        <div class="menu-icons">
+        <header>
+            <nav class="navbar">
+                <div class="logo-div">
+                    <a href="#"><img src="{{ URL::to('img/logo/kabab-house-logo-org.png') }}" alt="Kabab House"
+                            class="logo"></a>
+                </div>
+                <div class="menu-icons">
 
-            <a class="btn collapse-btn" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
-                aria-controls="collapseExample" style="float:left;font-size:23px">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </a>
+                    <a class="btn collapse-btn" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample" style="float:left;font-size:23px">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </a>
 
-            <ul class="menu-list collapse" id="collapseExample">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button"
-                        aria-haspopup="true" aria-expanded="false"> Appetizers </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                    <ul class="menu-list collapse" id="collapseExample">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2"
+                                role="button" aria-haspopup="true" aria-expanded="false"> Bahraini&nbsp;Grills </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
 
-                        <a href="#" class="dropdown-item">Hummus</a>
-                        <a href="#" class="dropdown-item">Mutabbel</a>
-                        <a href="#" class="dropdown-item">Taboulah</a>
-                        <a href="#" class="dropdown-item">Yogurt with Cucumber</a>
-                        <a href="#" class="dropdown-item">Mix Appetizers</a>
+                                <a href="#" class="dropdown-item">Bahraini Meat Kabab</a>
+                                <a href="#" class="dropdown-item">Bahraini Chicken Kabab</a>
+                                <a href="#" class="dropdown-item">Bahraini Meat Tikka</a>
+                                <a href="#" class="dropdown-item">Bahraini Chicken Tikka</a>
+                                <a href="#" class="dropdown-item">Bahraini Meat Yogurt Tikka</a>
+                                <a href="#" class="dropdown-item">Chicken Tikka Breast</a>
+                                <a href="#" class="dropdown-item">Chicken Tikka Leg</a>
+                                <a href="#" class="dropdown-item">Mixed Grill</a>
+                                <a href="#" class="dropdown-item">Liver Fry</a>
+
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2"
+                                role="button" aria-haspopup="true" aria-expanded="false"> Turkish & Persian Grills </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+
+                                <a href="#" class="dropdown-item">Shish Taouk</a>
+                                <a href="#" class="dropdown-item">Chicken Adana Kabab</a>
+                                <a href="#" class="dropdown-item">Mutton Adana Kabab</a>
+                                <a href="#" class="dropdown-item">Lamb Chops</a>
+                                <a href="#" class="dropdown-item">JoJo Kabab Mutton</a>
+                                <a href="#" class="dropdown-item">JoJo Kabab Chicken</a>
+                                <a href="#" class="dropdown-item">Arayes Mutton</a>
+                                <a href="#" class="dropdown-item">Arayes Chicken</a>
+                                <a href="#" class="dropdown-item">Chullu Kabab Mutton</a>
+                                <a href="#" class="dropdown-item">Chullu Kabab Chicken</a>
+                                <a href="#" class="dropdown-item">Chicken Wings Grill</a>
+                                <a href="#" class="dropdown-item">Hamour Fish Grill</a>
+                                <a href="#" class="dropdown-item">Pawn Grill</a>
+                                <a href="#" class="dropdown-item">Mix Grill</a>
+
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2"
+                                role="button" aria-haspopup="true" aria-expanded="false"> Indian & Pakistani Cuisine
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+
+                                <a href="#" class="dropdown-item">Daal Chana</a>
+                                <a href="#" class="dropdown-item">Daal Mash</a>
+                                <a href="#" class="dropdown-item">Nehari</a>
+                                <a href="#" class="dropdown-item">Chicken Korma</a>
+                                <a href="#" class="dropdown-item">Chicken Karahi</a>
+                                <a href="#" class="dropdown-item">Mutton Karahi</a>
+                                <a href="#" class="dropdown-item">Salad</a>
+                                <a href="#" class="dropdown-item">Raita</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2"
+                                role="button" aria-haspopup="true" aria-expanded="false">
+                                Appetizers </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+
+                                <a href="#" class="dropdown-item">Hummus</a>
+                                <a href="#" class="dropdown-item">Mutabbel</a>
+                                <a href="#" class="dropdown-item">Taboulah</a>
+                                <a href="#" class="dropdown-item">Yogurt with Cucumber</a>
+                                <a href="#" class="dropdown-item">Mix Appetizers</a>
+
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2"
+                                role="button" aria-haspopup="true" aria-expanded="false"> Sweets </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+
+                                <a href="#" class="dropdown-item">Careem Caramel</a>
+
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2"
+                                role="button" aria-haspopup="true" aria-expanded="false"> More </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+
+                                <a href="#" class="dropdown-item">Indian & Pakistani Grills</a>
+                                <a href="#" class="dropdown-item">Rice Dishes</a>
+                                <a href="#" class="dropdown-item">Drinks</a>
+
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="icons">
+                        <span class="icons-span">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class='badge' id='lblCartCount'>0</span>
+
+                        </span>
+
                     </div>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button"
-                        aria-haspopup="true" aria-expanded="false"> Bahraini&nbsp;Grills </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
 
-                        <a href="#" class="dropdown-item">Bahraini Meat Kabab</a>
-                        <a href="#" class="dropdown-item">Bahraini Chicken Kabab</a>
-                        <a href="#" class="dropdown-item">Bahraini Meat Tikka</a>
-                        <a href="#" class="dropdown-item">Bahraini Chicken Tikka</a>
-                        <a href="#" class="dropdown-item">Bahraini Meat Yogurt Tikka</a>
-                        <a href="#" class="dropdown-item">Chicken Tikka Breast</a>
-                        <a href="#" class="dropdown-item">Chicken Tikka Leg</a>
-                        <a href="#" class="dropdown-item">Mixed Grill</a>
-                        <a href="#" class="dropdown-item">Liver Fry</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button"
-                        aria-haspopup="true" aria-expanded="false"> Sweets </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-
-                        <a href="#" class="dropdown-item">Careem Caramel</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button"
-                        aria-haspopup="true" aria-expanded="false">
-                        Turkish&nbsp;&&nbsp;Persian&nbsp;Grills </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-
-                        <a href="#" class="dropdown-item">Shish Taouk</a>
-                        <a href="#" class="dropdown-item">Chicken Adana Kabab</a>
-                        <a href="#" class="dropdown-item">Mutton Adana Kabab</a>
-                        <a href="#" class="dropdown-item">Lamb Chops</a>
-                        <a href="#" class="dropdown-item">JoJo Kabab Mutton</a>
-                        <a href="#" class="dropdown-item">JoJo Kabab Chicken</a>
-                        <a href="#" class="dropdown-item">Arayes Mutton</a>
-                        <a href="#" class="dropdown-item">Arayes Chicken</a>
-                        <a href="#" class="dropdown-item">Chullu Kabab Mutton</a>
-                        <a href="#" class="dropdown-item">Chullu Kabab Chicken</a>
-                        <a href="#" class="dropdown-item">Chicken Wings Grill</a>
-                        <a href="#" class="dropdown-item">Hamour Fish Grill</a>
-                        <a href="#" class="dropdown-item">Pawn Grill</a>
-                        <a href="#" class="dropdown-item">Mix Grill</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button"
-                        aria-haspopup="true" aria-expanded="false"> More </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-
-                        <a href="#" class="dropdown-item">Rice Dishes</a>
-                        <a href="#" class="dropdown-item">Drinks</a>
-                        <a href="#" class="dropdown-item">Indian & Pakistani Cuisine</a>
-                        <a href="#" class="dropdown-item">Indian & Pakistani Grills</a>
-
-                    </div>
-                </li>
-            </ul>
-
-            <div class="icons">
-                <span class="icons-span">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <span class='badge' id='lblCartCount'>0</span>
-
-                </span>
-
-            </div>
-
-    </nav>
-</header>
+            </nav>
+        </header>
 
 
-<main>
+        <main>
 
-        @yield('content')
-    </main>
+            @yield('content')
+        </main>
 
 
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

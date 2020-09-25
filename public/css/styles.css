@@ -1032,11 +1032,14 @@ header.fixed .logo a {
     }
 
     .menu-list {
+        z-index: 2;
+        position: relative;
         width: 100%;
         border: 1px solid #e5e5e5;
         float: left;
         flex-direction: column;
         padding: 1em 0.5em;
+        background-color: white;
     }
 
     .menu-list .dropdown {
