@@ -53,6 +53,7 @@
     -webkit-box-shadow: 0px 5px 10px -3px rgba(68, 68, 68, 0.77);
     -moz-box-shadow: 0px 5px 10px -3px rgba(68, 68, 68, 0.77);
     box-shadow: 0px 5px 10px -3px rgba(68, 68, 68, 0.77);
+    padding-bottom: 0.5em;
 }
 
 .menu-table h3 {
@@ -60,6 +61,7 @@
     color: #444;
     padding: 0.5em;
     border-bottom: 1px solid rgb(202, 202, 202);
+    text-align: center;
 }
 
 .menu-table button {
@@ -99,7 +101,138 @@
     position: absolute !important;
 }
 
+.edit-dish-img input .new-dish-img input {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    width: 100%;
+    line-height: normal;
+    font-size: 1em;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.72);
+    background-position: center bottom, center calc(100% - 1px);
+    background-repeat: no-repeat;
+    background-size: 0 2px, 100% 1px;
+    -webkit-transition: background 0s ease-out 0s;
+    -o-transition: background 0s ease-out 0s;
+    transition: background 0s ease-out 0s;
+    background-image: -webkit-gradient(linear,
+            left top,
+            left bottom,
+            from(#2196f3),
+            to(#2196f3)),
+        -webkit-gradient(linear, left top, left bottom, from(#d9d9d9), to(#d9d9d9));
+    background-image: -webkit-linear-gradient(#2196f3, #2196f3),
+        -webkit-linear-gradient(#d9d9d9, #d9d9d9);
+    background-image: -o-linear-gradient(#2196f3, #2196f3),
+        -o-linear-gradient(#d9d9d9, #d9d9d9);
+    background-image: linear-gradient(#2196f3, #2196f3),
+        linear-gradient(#d9d9d9, #d9d9d9);
+    height: 2.4em;
+}
 
+.new-dish-img {
+    text-align: initial;
+    padding-top: 0.5rem;
+}
+
+.image-uploader .uploaded {
+    min-height: 150px;
+}
+
+.form-control {
+    margin-bottom: 0.5em;
+}
+
+.banner-table {
+    padding-bottom: 1em;
+}
+
+.banner-table h3 {
+    text-align: center;
+    border-bottom: 1px solid rgb(202, 202, 202);
+
+}
+
+.promotion-img-div {
+    cursor: pointer;
+    width: 100%;
+    border: 1px dashed rgb(202, 202, 202);
+    height: 150px;
+    margin-bottom: 1em;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.promotion-img-div p {
+    width: 100%;
+    text-align: center;
+}
+
+.promotion-img-div img {
+    width: 300px;
+    object-fit: cover;
+}
+
+.orders-table div,
+.users-table div {
+    display: inherit;
+}
+
+.orders-table div .row,
+.users-table div .row {
+    display: flex;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after {
+    opacity: 0.2;
+    font-family: FontAwesome;
+    content: "\f0dc";
+}
+
+table.dataTable thead .sorting_desc:after {
+    font-family: FontAwesome;
+    content: "\f0dc";
+}
+
+.profile-container {
+    padding-top: 0.5em;
+}
+
+.profile-image {
+    text-align: center;
+    border-right: 1px solid rgb(202, 202, 202);
+}
+
+.profile-image img {
+    border-radius: 50%;
+    max-width: 80%;
+    height: auto;
+    margin: 3em 0;
+}
+
+.profile-data {}
+
+.profile-data span {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+
+}
+
+.profile-data p {
+    margin-left: auto;
+    text-align: end;
+}
 
 @media (min-width: 768px) {
     #sidebar-wrapper {
@@ -113,5 +246,11 @@
 
     #wrapper.toggled #sidebar-wrapper {
         margin-left: -15rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-image {
+        border: none;
     }
 }

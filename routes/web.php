@@ -21,3 +21,8 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/menu', 'AdminController@menu');
+Route::get('/admin/banner', 'AdminController@banner');
+Route::get('/admin/history', 'AdminController@history');
+Route::get('/admin/promotion', 'AdminController@promotion');
+Route::get('/admin/users', 'AdminController@users');
+Route::get('/admin/profile', 'AdminController@profile');
