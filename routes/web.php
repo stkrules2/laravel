@@ -20,7 +20,10 @@ Route::get('/', 'HomeController@index');
 /*Admin Routes */
 
 Route::get('/admin', 'AdminController@index');
-Route::get('/admin/menu', 'AdminController@menu');
+Route::get('/admin/menu', 'CategoryController@index');
+Route::post('/admin/category/insert', 'CategoryController@insert');
+Route::post('/admin/category/edit', 'CategoryController@edit');
+Route::get('/admin/category/delete/{id}', 'CategoryController@delete');
 Route::get('/admin/banner', 'AdminController@banner');
 Route::get('/admin/history', 'AdminController@history');
 Route::get('/admin/promotion', 'AdminController@promotion');

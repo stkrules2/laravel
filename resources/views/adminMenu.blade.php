@@ -2,14 +2,26 @@
 
 @section('content')
 
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-centered">
             <div class="menu-table">
                 <h3>Menu Categories</h3>
+
                 <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#addNewCategory"> Add
                     New
                     Category</button>
+                @if($errors->any())
+                <div>
+                    <ul>
+                        @foreach($errors->all() as $err)
+                        <li style="border-bottom:none;color:red;padding:0;margin:0">{{$err}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <div class="modal fade" id="addNewCategory" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -19,9 +31,12 @@
 
                             </div>
                             <div class="modal-body">
-                                <form action="post">
+                                <form action="category/insert" method="post">
+                                    {{@csrf_field()}}
+                                    <input class="form-control" type="text" placeholder="Default input"
+                                        name="category-name">
+                                    <input type="submit" class="btn btn-primary" value="Submit">
 
-                                    <input class="form-control" type="text" placeholder="Default input">
 
                                 </form>
                             </div>
@@ -33,27 +48,40 @@
                     </div>
                 </div>
                 <ul>
+
+                    @if(!$category->isEmpty())
+                    @foreach ($category as $category)
                     <li>
-                        <span>Appetizers</span>
+                        <span>{{$category->title}}</span>
                         <span>
+
                             <button type="button" class="btn btn-light" data-toggle="modal"
-                                data-target="#editCategory"><i class="fa fa-pencil-square-o"
+                                data-target="#editCategory{{$category->id}}"><i class="fa fa-pencil-square-o"
                                     aria-hidden="true"></i></button>
 
-                            <div class="modal fade" id="editCategory" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="editCategory{{$category->id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalCenterTitle">Enter new name of this
                                                 category</h5>
-
                                         </div>
                                         <div class="modal-body">
-                                            <form action="post">
 
-                                                <input class="form-control" type="text" placeholder="Default input">
+
+                                            <form action="category/edit" method="post">
+                                                {{@csrf_field()}}
+
+                                                <input type="hidden" name="id" value="{{$category->id}}">
+                                                <input name="category-name" class="form-control" type="text"
+                                                    placeholder="{{$category->title}}">
+                                                <input type="submit" class="btn btn-primary" value="Submit">
                                             </form>
+
+
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -63,23 +91,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                            <a href="category/delete/{{$category->id}}"><button class="btn btn-danger"><i
+                                        class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                         </span>
                     </li>
 
+                    @endforeach
+                    @else
                     <li>No Data Available</li>
+                    @endif
                 </ul>
             </div>
         </div>
         <div class="col-sm-12 col-md-6 col-centered">
             <div class="menu-table">
-                <h3>Menu Dishes</h3>
+                <h3>Add Dishes</h3>
                 <select class="form-control">
-                    <option>Select a category to view its dishes</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+
+
+                    <option>Select a category to view its dishes </option>
+                    @foreach ($category1 as $category)
+                    <option>{{$category->title}}</option>
+                    @endforeach
                 </select>
                 <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#addNewDish"> Add New
                     Dish</button>
