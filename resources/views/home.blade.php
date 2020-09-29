@@ -6,10 +6,10 @@
     <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
             <div class="view">
-                <!-- @foreach($banner as $banner) -->
-                <img class="d-block w-100" src="{{ URL::to('img\bannner\333.png') }}" alt="First slide">
+                @foreach($banner as $banner)
+                <img class="d-block w-100" src="{{$banner->path}}" alt="First slide">
                 <div class="mask rgba-black-light"></div>
-                <!-- @endforeach -->
+                @endforeach
             </div>
 
         </div>

@@ -1,57 +1,61 @@
-$("#menu-toggle").click(function (e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-});
-
 $(document).ready(function () {
     $('#example').DataTable();
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $(".category-list").change(function () {
+        var selectedCategory = $(this).children("option:selected").val();
+        $(".new-dish-category   ").val(selectedCategory);
+        if (selectedCategory == 0) {
+            $(".addNewDish").css('display', 'none');
+        } else {
+            $(".addNewDish").css('display', 'inline-block');
+        }
+    });
+
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var htmlPreview =
+                    '<img src="' + e.target.result + '" />';
+                $(input).parent().append(htmlPreview);
+                $(input).parent().prepend('<button type="button" id="delete-img-btn"><i class="fa fa-times" aria-hidden="true"></i></button>');
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('.dropzone-wrapper').on('click', '#delete-img-btn', function (e) {
+        $(this).siblings(":last").remove();
+        $(this).siblings(":last").val('');
+        $(this).remove();
+    });
+
+    $(".dropzone").change(function () {
+        readFile(this);
+    });
+
+    $('.dropzone-wrapper').on('dragover', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).addClass('dragover');
+    });
+
+    $('.dropzone-wrapper').on('dragleave', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).removeClass('dragover');
+    });
 });
 
 $(function () {
-
-    let preloaded = [{
-            id: 1,
-            src: "https://colorlib.com/wp/wp-content/uploads/sites/2/jquery-file-upload-scripts.png"
-        },
-        {
-            id: 2,
-            src: "https://picsum.photos/500/500?random=2"
-        },
-        {
-            id: 3,
-            src: "https://picsum.photos/500/500?random=3"
-        },
-    ];
-
-    $(".history-img, .banner-img, .edit-dish-img, .new-dish-img").imageUploader({
-        preloaded: preloaded,
+    $(".new-dish-img").imageUploader({
         imagesInputName: "photos",
-        preloadedInputName: "old",
         maxSize: 2 * 1024 * 1024,
         maxFiles: 3,
-    });
-
-    $("#history-form, #banner-images, #edit-dish-form, #new-dish-form").on("submit", function (event) {
-        // Stop propagation
-        event.preventDefault();
-        event.stopPropagation();
-
-        // Get the input file
-        let $inputImages = $form.find('input[name^="images"]');
-        if (!$inputImages.length) {
-            $inputImages = $form.find('input[name^="photos"]');
-        }
-
-        // Get the preloaded inputs
-        let $inputPreloaded = $form.find('input[name^="old"]');
-        if ($inputPreloaded.length) {
-            // Get the ids
-            let $preloadedIds = $("<ul>");
-            for (let iP of $inputPreloaded) {
-                $("<li>", {
-                    text: "#" + iP.value
-                }).appendTo($preloadedIds);
-            }
-        }
     });
 });

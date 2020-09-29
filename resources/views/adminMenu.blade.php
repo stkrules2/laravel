@@ -35,14 +35,15 @@
                                     {{@csrf_field()}}
                                     <input class="form-control" type="text" placeholder="Default input"
                                         name="category-name">
-                                    <input type="submit" class="btn btn-primary" value="Submit">
 
 
-                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <input type="submit" class="btn btn-primary" value="Submit" style="    width: 50%;
+    font-size: 15px;
+    margin-top: 0.5em;">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -77,8 +78,7 @@
                                                 <input type="hidden" name="id" value="{{$category->id}}">
                                                 <input name="category-name" class="form-control" type="text"
                                                     placeholder="{{$category->title}}">
-                                                <input type="submit" class="btn btn-primary" value="Submit">
-                                            </form>
+
 
 
 
@@ -86,7 +86,10 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                            <input type="submit" class="btn btn-primary" value="Submit" style="    width: 50%;
+    font-size: 15px;
+    margin-top: 0.5em;">
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -106,15 +109,14 @@
         <div class="col-sm-12 col-md-6 col-centered">
             <div class="menu-table">
                 <h3>Add Dishes</h3>
-                <select class="form-control">
-
-
-                    <option>Select a category to view its dishes </option>
+                <select class="form-control category-list">
+                    <option value="0"></option>
                     @foreach ($category1 as $category)
-                    <option>{{$category->title}}</option>
+                    <option value="{{$category->id}}">{{$category->title}}</option>
                     @endforeach
                 </select>
-                <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#addNewDish"> Add New
+                <button type="button" class="btn btn-dark btn-lg addNewDish" data-toggle="modal"
+                    data-target="#addNewDish"> Add New
                     Dish</button>
                 <div class="modal fade" id="addNewDish" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -125,32 +127,40 @@
 
                             </div>
                             <div class="modal-body">
-                                <form method="POST" name="new-dish-form" id="new-dish-form"
+                                <form action="dish/insert" method="POST" name="new-dish-form" id="new-dish-form"
                                     enctype="multipart/form-data">
-                                    <input class="form-control" type="text" placeholder="Name">
-                                    <select class="form-control">
+                                    {{@csrf_field()}}
+                                    <input class="form-control" type="text" placeholder="Name" name="new-dish-name">
+                                    <select class="form-control" name="new-dish-availability">
                                         <option>Available</option>
                                         <option>Not Available</option>
                                     </select>
-                                    <select class="form-control">
+                                    <select class="form-control" name="new-dish-sale">
                                         <option>Not Sale</option>
                                         <option>Sale</option>
                                     </select>
-                                    <select class="form-control">
+                                    <select class="form-control" name="new-dish-special">
                                         <option>Not a Special Product</option>
                                         <option>Special Product</option>
                                     </select>
-                                    <input type="number" class="form-control" placeholder="Price">
-                                    <input type="number" class="form-control" placeholder="Before Discount Price">
-                                    <textarea class="form-control" placeholder="Description"></textarea>
+                                    <input type="number" class="form-control" placeholder="Price" name="new-dish-price">
+                                    <input type="number" class="form-control" placeholder="Before Discount Price"
+                                        name="new-dish-discount">
+                                    <textarea class="form-control" placeholder="Description"
+                                        name="new-dish-description"></textarea>
                                     <div class="input-field">
                                         <div class="new-dish-img"></div>
                                     </div>
-                                </form>
+                                    <input type="hidden" name="new-dish-category" class="new-dish-category" value="">
+
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <input type="submit" class="btn btn-primary" value="Submit" style="    width: 50%;
+    font-size: 15px;
+    margin-top: 0.5em;">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -173,6 +183,7 @@
                                         <div class="modal-body">
                                             <form method="POST" name="edit-dish-form" id="edit-dish-form"
                                                 enctype="multipart/form-data">
+                                                {{@csrf_field()}}
                                                 <input class="form-control" type="text" placeholder="Name">
                                                 <select class="form-control">
                                                     <option>Available</option>
@@ -186,16 +197,38 @@
                                                 <input type="number" class="form-control"
                                                     placeholder="Before Discount Price">
                                                 <textarea class="form-control" placeholder="Description"></textarea>
-                                                <div class="input-field">
-                                                    <div class="edit-dish-img"></div>
+
+                                                <div class="image-box">
+                                                    <div class="dropzone-wrapper">
+                                                        <div class="dropzone-desc">
+                                                            <i class="fa fa-cloud-upload"></i>
+                                                            <p>Choose an image file or drag it here.</p>
+                                                        </div>
+                                                        <input type="file" name="img_logo" class="dropzone" value="">
+                                                    </div>
+                                                    <div class="dropzone-wrapper">
+                                                        <div class="dropzone-desc">
+                                                            <i class="fa fa-cloud-upload"></i>
+                                                            <p>Choose an image file or drag it here.</p>
+                                                        </div>
+                                                        <input type="file" name="img_logo" class="dropzone" value="">
+                                                    </div>
+                                                    <div class="dropzone-wrapper">
+                                                        <div class="dropzone-desc">
+                                                            <i class="fa fa-cloud-upload"></i>
+                                                            <p>Choose an image file or drag it here.</p>
+                                                        </div>
+                                                        <input type="file" name="img_logo" class="dropzone" value="">
+                                                    </div>
+
+
                                                 </div>
-                                            </form>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-
+                                            <input type="submit" class="btn btn-primary" value="Submit"
+                                                style="width: 50%;font-size: 15px;margin-top: 0.5em;"> </form>
 
                                         </div>
                                     </div>
