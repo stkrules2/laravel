@@ -165,81 +165,84 @@
                         </div>
                     </div>
                 </div>
-                <ul>
-                    <li>
-                        <span>Appetizers</span>
-                        <span>
-                            <button class="btn btn-light" data-toggle="modal" data-target="#editDish"><i
-                                    class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <div class="modal fade" id="editDish" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit the form for
-                                                dish</h5>
+                <ul class="edit-dish-list">
+
+
+                    <li>Select a Category</li>
+
+                </ul>
+                <div class="modal fade" id="editDish" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Edit the form for
+                                    dish</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form action="dish/edit/form" method="POST" name="edit-dish-form" id="edit-dish-form"
+                                    enctype="multipart/form-data">
+                                    {{@csrf_field()}}
+                                    <input type="hidden" name="edit-dish-id" class="edit-dish-id" value="">
+                                    <input class="form-control" type="text" placeholder="Name" name="edit-dish-name"
+                                        class="edit-dish-name">
+                                    <select class="form-control" name="edit-dish-availablity">
+                                        <option value="available" selected>Available</option>
+                                        <option value="not-available">Not Available</option>
+                                    </select>
+                                    <select class="form-control" name="edit-dish-sale">
+                                        <option value="not-sale">Not Sale</option>
+                                        <option value="sale">Sale</option>
+                                    </select>
+                                    <select class="form-control" name="edit-dish-special">
+                                        <option value="not-special">Not Special</option>
+                                        <option value="special">Special</option>
+                                    </select>
+                                    <input type="number" class="form-control" placeholder="Price"
+                                        name="edit-dish-price">
+                                    <input type="number" class="form-control" placeholder="Before Discount Price"
+                                        name="edit-dish-discount">
+                                    <textarea class="form-control" placeholder="Description"
+                                        name="edit-dish-description"></textarea>
+
+                                    <div class="image-box">
+                                        <div class="dropzone-wrapper">
+                                            <div class="dropzone-desc">
+                                                <i class="fa fa-cloud-upload"></i>
+                                                <p>Choose an image file or drag it here.</p>
+                                            </div>
+                                            <input type="file" name="edit-dish-image1" class="dropzone edit-dish-image1"
+                                                value="">
 
                                         </div>
-                                        <div class="modal-body">
-                                            <form method="POST" name="edit-dish-form" id="edit-dish-form"
-                                                enctype="multipart/form-data">
-                                                {{@csrf_field()}}
-                                                <input class="form-control" type="text" placeholder="Name">
-                                                <select class="form-control">
-                                                    <option>Available</option>
-                                                    <option>Not Available</option>
-                                                </select>
-                                                <select class="form-control">
-                                                    <option>Not Sale</option>
-                                                    <option>Sale</option>
-                                                </select>
-                                                <input type="number" class="form-control" placeholder="Price">
-                                                <input type="number" class="form-control"
-                                                    placeholder="Before Discount Price">
-                                                <textarea class="form-control" placeholder="Description"></textarea>
-
-                                                <div class="image-box">
-                                                    <div class="dropzone-wrapper">
-                                                        <div class="dropzone-desc">
-                                                            <i class="fa fa-cloud-upload"></i>
-                                                            <p>Choose an image file or drag it here.</p>
-                                                        </div>
-                                                        <input type="file" name="img_logo" class="dropzone" value="">
-                                                    </div>
-                                                    <div class="dropzone-wrapper">
-                                                        <div class="dropzone-desc">
-                                                            <i class="fa fa-cloud-upload"></i>
-                                                            <p>Choose an image file or drag it here.</p>
-                                                        </div>
-                                                        <input type="file" name="img_logo" class="dropzone" value="">
-                                                    </div>
-                                                    <div class="dropzone-wrapper">
-                                                        <div class="dropzone-desc">
-                                                            <i class="fa fa-cloud-upload"></i>
-                                                            <p>Choose an image file or drag it here.</p>
-                                                        </div>
-                                                        <input type="file" name="img_logo" class="dropzone" value="">
-                                                    </div>
-
-
-                                                </div>
+                                        <div class="dropzone-wrapper">
+                                            <div class="dropzone-desc">
+                                                <i class="fa fa-cloud-upload"></i>
+                                                <p>Choose an image file or drag it here.</p>
+                                            </div>
+                                            <input type="file" name="edit-dish-image2" class="dropzone edit-dish-image2"
+                                                value="">
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                            <input type="submit" class="btn btn-primary" value="Submit"
-                                                style="width: 50%;font-size: 15px;margin-top: 0.5em;"> </form>
-
+                                        <div class="dropzone-wrapper">
+                                            <div class="dropzone-desc">
+                                                <i class="fa fa-cloud-upload"></i>
+                                                <p>Choose an image file or drag it here.</p>
+                                            </div>
+                                            <input type="file" name="edit-dish-image3" class="dropzone edit-dish-image3"
+                                                value="">
                                         </div>
                                     </div>
-                                </div>
                             </div>
-                            <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                        </span>
-                    </li>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Submit"
+                                    style="width: 50%;font-size: 15px;margin-top: 0.5em;">
+                                </form>
 
-                    <li>No Data Available</li>
-                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
