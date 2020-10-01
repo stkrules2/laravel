@@ -24,7 +24,7 @@ $(document).ready(function () {
                 if (response.length != 0) {
                     $('.edit-dish-list').empty();
                     $.each(response, function (key, value) {
-                        $('.edit-dish-list').append(' <li><span>' + response[key].name + '</span><span><button class="btn btn-light edit-dish-btn" id="edit-dish-btn-' + response[key].id + '" data-toggle="modal" data-target="#editDish"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></span></li>');
+                        $('.edit-dish-list').append(' <li><span>' + response[key].name + '</span><span><button class="btn btn-light edit-dish-btn" id="edit-dish-btn-' + response[key].id + '" data-toggle="modal" data-target="#editDish"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a href="dish/delete/' + response[key].id + '"><button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>');
                     });
                 } else {
                     $('.edit-dish-list').empty();
@@ -86,7 +86,7 @@ $(document).ready(function () {
                     $('.edit-dish-image2')
                         .parent()
                         .prepend(
-                            '<button type="button" id="delete-img-btn"><i class="fa fa-times" aria-hidden="true"></i></button>'
+                            '<button type="button" id="delete-img-btn" class="dish-2" name="' + response[0].id + '"><i class="fa fa-times" aria-hidden="true"></i></button>'
                         );
                 }
                 if (response[0].image3 != null) {
@@ -94,7 +94,7 @@ $(document).ready(function () {
                     $('.edit-dish-image3')
                         .parent()
                         .prepend(
-                            '<button type="button" id="delete-img-btn"><i class="fa fa-times" aria-hidden="true"></i></button>'
+                            '<button type="button" id="delete-img-btn" class="dish-3" name="' + response[0].id + '"><i class="fa fa-times" aria-hidden="true"></i></button>'
                         );
                 }
 
@@ -105,7 +105,6 @@ $(document).ready(function () {
     function readFile(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function (e) {
                 var htmlPreview = '<img src="' + e.target.result + '" />';
                 $(input).parent().append(htmlPreview);
@@ -120,9 +119,65 @@ $(document).ready(function () {
     }
 
     $(".dropzone-wrapper").on("click", "#delete-img-btn", function (e) {
-        $(this).siblings(":last").remove();
-        $(this).siblings(":last").val("");
-        $(this).remove();
+        if (confirm("This image will be deleted. Are you sure?")) {
+            $(this).siblings(":last").remove();
+            $(this).siblings(":last").val("");
+            $(this).remove();
+            var check = $(this).attr('class');
+            if (check.slice(0, 9) === 'promotion') {
+                var id = check.substr(10);
+                $.ajax({
+                    url: 'promotion/delete/' + id + '',
+                    type: "get",
+                    data: {
+                        'id': id
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+            } else if (check.slice(0, 7) === 'history') {
+                var id = check.substr(8);
+                $.ajax({
+                    url: 'history/delete/' + id + '',
+                    type: "get",
+                    data: {
+                        'id': id
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+            } else if (check.slice(0, 6) === 'banner') {
+                var id = check.substr(7);
+                $.ajax({
+                    url: 'banner/delete/' + id + '',
+                    type: "get",
+                    data: {
+                        'id': id
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+            } else if (check.slice(0, 4) === 'dish') {
+                var id = check.substr(5);
+                var id2 = $(this).attr('name');
+
+                $.ajax({
+                    url: 'dish/delete/image/' + id + '' + id2 + '',
+                    type: "get",
+                    data: {
+                        'id': id,
+                        'id2': id2
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+
+            }
+        }
     });
 
     $(".dropzone").change(function () {

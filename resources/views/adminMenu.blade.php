@@ -40,9 +40,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="Submit" style="    width: 50%;
-    font-size: 15px;
-    margin-top: 0.5em;">
+                                <input type="submit" class="btn btn-primary" value="Submit"
+                                    style="width: 50%;font-size: 15px;margin-top: 0.5em;">
                                 </form>
                             </div>
                         </div>
@@ -78,10 +77,6 @@
                                                 <input type="hidden" name="id" value="{{$category->id}}">
                                                 <input name="category-name" class="form-control" type="text"
                                                     placeholder="{{$category->title}}">
-
-
-
-
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -212,7 +207,7 @@
                                                 <p>Choose an image file or drag it here.</p>
                                             </div>
                                             <input type="file" name="edit-dish-image1" class="dropzone edit-dish-image1"
-                                                value="">
+                                                value="0">
 
                                         </div>
                                         <div class="dropzone-wrapper">
@@ -221,7 +216,7 @@
                                                 <p>Choose an image file or drag it here.</p>
                                             </div>
                                             <input type="file" name="edit-dish-image2" class="dropzone edit-dish-image2"
-                                                value="">
+                                                value="0">
                                         </div>
                                         <div class="dropzone-wrapper">
                                             <div class="dropzone-desc">
@@ -229,7 +224,7 @@
                                                 <p>Choose an image file or drag it here.</p>
                                             </div>
                                             <input type="file" name="edit-dish-image3" class="dropzone edit-dish-image3"
-                                                value="">
+                                                value="0">
                                         </div>
                                     </div>
                             </div>

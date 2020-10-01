@@ -7,7 +7,7 @@
         <div class="carousel-item active">
             <div class="view">
                 @foreach($banner as $banner)
-                <img class="d-block w-100" src="{{$banner->path}}" alt="First slide">
+                <img class="d-block w-100" src="../storage/{{$banner->path1}}" alt="First slide">
                 <div class="mask rgba-black-light"></div>
                 @endforeach
             </div>

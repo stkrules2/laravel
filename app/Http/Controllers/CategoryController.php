@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Dish;
 
 class CategoryController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $category = Category::get();
         $category1 = $category;
 
-        return view('adminMenu', ['category'=>$category, 'category1'=>$category1]);
+        return view('adminMenu', ['category' => $category, 'category1' => $category1]);
     }
-    public function insert(Request $request){
+    public function insert(Request $request)
+    {
 
-        $category = new Category();        
+        $category = new Category();
         $request->validate([
             'category-name' => 'required | min:3 | max: 30'
         ]);
@@ -24,16 +27,19 @@ class CategoryController extends Controller
         return redirect('admin/menu');
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
         $request->validate([
             'category-name' => 'required | min:3 | max: 30'
         ]);
-        Category::where('id', $request->input('id'))->update(['title' => $request->input('category-name')]); 
+        Category::where('id', $request->input('id'))->update(['title' => $request->input('category-name')]);
         return redirect('admin/menu');
     }
-    
-    public function delete($id){
+
+    public function delete($id)
+    {
         Category::where('id', $id)->delete();
+        Dish::where('category_id', $id)->delete();
         return redirect('admin/menu');
     }
 }

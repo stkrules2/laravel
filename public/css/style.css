@@ -176,6 +176,7 @@
     padding-top: 0px;
     padding: 0px 6px 2px 5px;
     z-index: 2;
+    width: 24px;
 }
 
 .dropzone-wrapper:hover button {
@@ -229,14 +230,25 @@
 .banner-table h3 {
     text-align: center;
     border-bottom: 1px solid rgb(202, 202, 202);
+}
 
+#banner-images input[type=submit],
+#history-form input[type=submit],
+#promotion-form input[type=submit] {
+    margin-top: 2em;
+    width: 100%;
+}
+
+.note-li-tag {
+    list-style: none;
+    margin-top: 2em;
+    color: #444;
 }
 
 .promotion-img-div {
     cursor: pointer;
     width: 100%;
     border: 1px dashed rgb(202, 202, 202);
-    height: 150px;
     margin-bottom: 1em;
     position: relative;
     overflow: hidden;
@@ -244,13 +256,29 @@
     align-items: center;
 }
 
+.promotion-img-div .dropzone-wrapper {
+    width: 100%;
+    height: 300px;
+}
+
+.promotion-img-div .dropzone {
+    width: 100%;
+    height: 300px;
+}
+
+
 .promotion-img-div p {
     width: 100%;
     text-align: center;
 }
 
 .promotion-img-div img {
-    width: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
     object-fit: cover;
 }
 

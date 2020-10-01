@@ -14,18 +14,6 @@ class AdminController extends Controller
     {
         return view('adminMenu');
     }
-    public function banner()
-    {
-        return view('adminBanner');
-    }
-    public function history()
-    {
-        return view('adminHistory');
-    }
-    public function promotion()
-    {
-        return view('adminPromotion');
-    }
     public function users()
     {
         return view('adminUsers');

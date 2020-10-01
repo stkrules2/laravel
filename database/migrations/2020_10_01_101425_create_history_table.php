@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBannerTable extends Migration
+class CreateHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateBannerTable extends Migration
      */
     public function up()
     {
-        Schema::create('banner', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('history', function (Blueprint $table) {
+            $table->id();
+            $table->text('description')->nullable();
             $table->string('path1')->nullable();
             $table->string('path2')->nullable();
             $table->string('path3')->nullable();
@@ -31,6 +32,6 @@ class CreateBannerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banner');
+        Schema::dropIfExists('history');
     }
 }

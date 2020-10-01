@@ -641,7 +641,7 @@ header.fixed .logo a {
     margin-left: 5%;
     margin-right: 5%;
     width: 90%;
-    background-color: #233352;
+    background-color: #00706d;
     height: 520px;
 }
 
@@ -682,6 +682,7 @@ header.fixed .logo a {
 .category-title {
     color: #ffbd0a;
     font: 400 78px/60px "Great Vibes", Helvetica, sans-serif;
+
     z-index: -1;
 }
 

@@ -95,11 +95,12 @@ class DishController extends Controller
                 echo '<div class="alert alert-warning"><strong>Warning!</strong> Sorry Only Upload png , jpg , doc</div>';
             }
         }
+
         if ($request->hasFile('edit-dish-image2')) {
             $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif'];
             $files1 = $request->file('edit-dish-image2');
-            $filename1 = $files->getClientOriginalName();
-            $extension1 = $files->getClientOriginalExtension();
+            $filename1 = $files1->getClientOriginalName();
+            $extension1 = $files1->getClientOriginalExtension();
             $check1 = in_array($extension1, $allowedfileExtension);
             if ($check1) {
                 $filename1 = $files1->store('images/dish-images', 'public');
@@ -111,8 +112,8 @@ class DishController extends Controller
         if ($request->hasFile('edit-dish-image3')) {
             $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif'];
             $files2 = $request->file('edit-dish-image3');
-            $filename2 = $files->getClientOriginalName();
-            $extension2 = $files->getClientOriginalExtension();
+            $filename2 = $files2->getClientOriginalName();
+            $extension2 = $files2->getClientOriginalExtension();
             $check2 = in_array($extension2, $allowedfileExtension);
             if ($check2) {
                 $filename2 = $files2->store('images/dish-images', 'public');
@@ -142,5 +143,24 @@ class DishController extends Controller
         $dish->description = $request->input('edit-dish-description');
         $dish->save();
         return redirect('admin/menu');
+    }
+    public function delete($id)
+    {
+        Dish::where('id', $id)->delete();
+        return redirect('admin/menu');
+    }
+    public function deleteImage($id, $id2)
+    {
+        $values = Dish::where('id', $id2)->first();
+        if ($values) {
+            if ($id == 2) {
+                $values->image2 = null;
+                $values->save();
+            } elseif ($id == 3) {
+                $values->image3 = null;
+                $values->save();
+            }
+        }
+        return 'Success';
     }
 }
