@@ -147,7 +147,8 @@
                                         <div class="new-dish-img"></div>
                                     </div>
                                     <input type="hidden" name="new-dish-category" class="new-dish-category" value="">
-
+                                    <li class="note-li-tag">Image size should: <b>295*384px</b> or in the same aspect
+                                        ratio</li>
 
                             </div>
                             <div class="modal-footer">
@@ -227,6 +228,8 @@
                                                 value="0">
                                         </div>
                                     </div>
+                                    <li class="note-li-tag">Image size should: <b>295*384px</b> or in the same aspect
+                                        ratio</li>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
