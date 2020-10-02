@@ -1,20 +1,39 @@
 @extends('layout.app')
 
 @section('content')
-<div id="carousel-example-2" class="container-fluid carousel slide carousel-fade carousel-margin" data-ride="carousel">
+<div class="container-fluid carousel-margin">
+    @if(!isset($banner->path2) || $banner->path3 != null || $banner->path4 != null || $banner->path5 != null)
 
-    <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-            <div class="view">
-                @foreach($banner as $banner)
-                <img class="d-block w-100" src="../storage/{{$banner->path1}}" alt="First slide">
-                <div class="mask rgba-black-light"></div>
-                @endforeach
-            </div>
+    <div class="owl-carousel owl-theme banner-carousel">
 
+        <div class="item">
+            <img class="d-block w-100" src="../storage/{{$banner->path1}}" alt="First slide">
         </div>
-
+        @if($banner->path2 != null)
+        <div class="item">
+            <img class="d-block w-100" src="../storage/{{$banner->path2}}" alt="First slide">
+        </div>
+        @endif
+        @if($banner->path3 != null)
+        <div class="item">
+            <img class="d-block w-100" src="../storage/{{$banner->path3}}" alt="First slide">
+        </div>
+        @endif
+        @if($banner->path4 != null)
+        <div class="item">
+            <img class="d-block w-100" src="../storage/{{$banner->path4}}" alt="First slide">
+        </div>
+        @endif
+        @if($banner->path5 != null)
+        <div class="item">
+            <img class="d-block w-100" src="../storage/{{$banner->path5}}" alt="First slide">
+        </div>
+        @endif
     </div>
+    @else
+    <img class="d-block w-100" src="../storage/{{$banner->path1}}" alt="First slide">
+    @endif
+
 
 </div>
 

@@ -230,16 +230,36 @@
 
         });
 
+
         $(window).scroll(function() {
-            var header = $(document).scrollTop();
-            var headerHeight = $(".header").outerHeight();
-            if (header > headerHeight) {
-                $(".header").addClass("fixed");
-            } else {
-                $(".header").removeClass("fixed");
+            var $win = $(window);
+            var $checkWidth = $win.width();
+            if ($checkWidth > 1160) {
+                var sticky = $('header'),
+                    scroll = $(window).scrollTop();
+                if (scroll >= 40) {
+                    sticky.addClass('fixed');
+                } else {
+                    sticky.removeClass('fixed');
+                }
             }
         });
-
+        $('.banner-carousel').owlCarousel({
+            loop: true,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
+            }
+        })
     });
     </script>
 </body>
