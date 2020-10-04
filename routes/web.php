@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 /*User Routes */
 
-Route::get('/', 'HomeController@index');
 
 /*Admin Routes */
 
@@ -41,3 +40,6 @@ Route::get('/admin/history', 'HistoryController@index');
 Route::get('/admin/promotion', 'PromotionController@index');
 Route::get('/admin/users', 'AdminController@users');
 Route::get('/admin/profile', 'AdminController@profile');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

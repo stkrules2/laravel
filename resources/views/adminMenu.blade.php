@@ -22,8 +22,7 @@
                     </ul>
                 </div>
                 @endif
-                <div class="modal fade" id="addNewCategory" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="addNewCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -33,15 +32,13 @@
                             <div class="modal-body">
                                 <form action="category/insert" method="post">
                                     {{@csrf_field()}}
-                                    <input class="form-control" type="text" placeholder="Default input"
-                                        name="category-name">
+                                    <input class="form-control" type="text" placeholder="Default input" name="category-name">
 
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="Submit"
-                                    style="width: 50%;font-size: 15px;margin-top: 0.5em;">
+                                <input type="submit" class="btn btn-primary" value="Submit" style="width: 50%;font-size: 15px;margin-top: 0.5em;">
                                 </form>
                             </div>
                         </div>
@@ -55,12 +52,9 @@
                         <span>{{$category->title}}</span>
                         <span>
 
-                            <button type="button" class="btn btn-light" data-toggle="modal"
-                                data-target="#editCategory{{$category->id}}"><i class="fa fa-pencil-square-o"
-                                    aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editCategory{{$category->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-                            <div class="modal fade" id="editCategory{{$category->id}}" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="editCategory{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -75,12 +69,10 @@
                                                 {{@csrf_field()}}
 
                                                 <input type="hidden" name="id" value="{{$category->id}}">
-                                                <input name="category-name" class="form-control" type="text"
-                                                    placeholder="{{$category->title}}">
+                                                <input name="category-name" class="form-control" type="text" placeholder="{{$category->title}}">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <input type="submit" class="btn btn-primary" value="Submit" style="    width: 50%;
     font-size: 15px;
     margin-top: 0.5em;">
@@ -89,8 +81,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="category/delete/{{$category->id}}"><button class="btn btn-danger"><i
-                                        class="fa fa-trash-o" aria-hidden="true"></i></button></a>
+                            <a href="category/delete/{{$category->id}}"><button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                         </span>
                     </li>
 
@@ -110,11 +101,9 @@
                     <option value="{{$category->id}}">{{$category->title}}</option>
                     @endforeach
                 </select>
-                <button type="button" class="btn btn-dark btn-lg addNewDish" data-toggle="modal"
-                    data-target="#addNewDish"> Add New
+                <button type="button" class="btn btn-dark btn-lg addNewDish" data-toggle="modal" data-target="#addNewDish"> Add New
                     Dish</button>
-                <div class="modal fade" id="addNewDish" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="addNewDish" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -122,8 +111,7 @@
 
                             </div>
                             <div class="modal-body">
-                                <form action="dish/insert" method="POST" name="new-dish-form" id="new-dish-form"
-                                    enctype="multipart/form-data">
+                                <form action="dish/insert" method="POST" name="new-dish-form" id="new-dish-form" enctype="multipart/form-data">
                                     {{@csrf_field()}}
                                     <input class="form-control" type="text" placeholder="Name" name="new-dish-name">
                                     <select class="form-control" name="new-dish-availability">
@@ -139,10 +127,8 @@
                                         <option>Special Product</option>
                                     </select>
                                     <input type="number" class="form-control" placeholder="Price" name="new-dish-price">
-                                    <input type="number" class="form-control" placeholder="Before Discount Price"
-                                        name="new-dish-discount">
-                                    <textarea class="form-control" placeholder="Description"
-                                        name="new-dish-description"></textarea>
+                                    <input type="number" class="form-control" placeholder="Before Discount Price" name="new-dish-discount">
+                                    <textarea class="form-control" placeholder="Description" name="new-dish-description"></textarea>
                                     <div class="input-field">
                                         <div class="new-dish-img"></div>
                                     </div>
@@ -167,8 +153,7 @@
                     <li>Select a Category</li>
 
                 </ul>
-                <div class="modal fade" id="editDish" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="editDish" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -176,12 +161,10 @@
                                     dish</h5>
                             </div>
                             <div class="modal-body">
-                                <form action="dish/edit/form" method="POST" name="edit-dish-form" id="edit-dish-form"
-                                    enctype="multipart/form-data">
+                                <form action="dish/edit/form" method="POST" name="edit-dish-form" id="edit-dish-form" enctype="multipart/form-data">
                                     {{@csrf_field()}}
                                     <input type="hidden" name="edit-dish-id" class="edit-dish-id" value="">
-                                    <input class="form-control" type="text" placeholder="Name" name="edit-dish-name"
-                                        class="edit-dish-name">
+                                    <input class="form-control" type="text" placeholder="Name" name="edit-dish-name" class="edit-dish-name">
                                     <select class="form-control" name="edit-dish-availablity">
                                         <option value="available" selected>Available</option>
                                         <option value="not-available">Not Available</option>
@@ -194,12 +177,9 @@
                                         <option value="not-special">Not Special</option>
                                         <option value="special">Special</option>
                                     </select>
-                                    <input type="number" class="form-control" placeholder="Price"
-                                        name="edit-dish-price">
-                                    <input type="number" class="form-control" placeholder="Before Discount Price"
-                                        name="edit-dish-discount">
-                                    <textarea class="form-control" placeholder="Description"
-                                        name="edit-dish-description"></textarea>
+                                    <input type="number" class="form-control" placeholder="Price" name="edit-dish-price">
+                                    <input type="number" class="form-control" placeholder="Before Discount Price" name="edit-dish-discount">
+                                    <textarea class="form-control" placeholder="Description" name="edit-dish-description"></textarea>
 
                                     <div class="image-box">
                                         <div class="dropzone-wrapper">
@@ -207,8 +187,7 @@
                                                 <i class="fa fa-cloud-upload"></i>
                                                 <p>Choose an image file or drag it here.</p>
                                             </div>
-                                            <input type="file" name="edit-dish-image1" class="dropzone edit-dish-image1"
-                                                value="0">
+                                            <input type="file" name="edit-dish-image1" class="dropzone edit-dish-image1" value="0">
 
                                         </div>
                                         <div class="dropzone-wrapper">
@@ -216,16 +195,14 @@
                                                 <i class="fa fa-cloud-upload"></i>
                                                 <p>Choose an image file or drag it here.</p>
                                             </div>
-                                            <input type="file" name="edit-dish-image2" class="dropzone edit-dish-image2"
-                                                value="0">
+                                            <input type="file" name="edit-dish-image2" class="dropzone edit-dish-image2" value="0">
                                         </div>
                                         <div class="dropzone-wrapper">
                                             <div class="dropzone-desc">
                                                 <i class="fa fa-cloud-upload"></i>
                                                 <p>Choose an image file or drag it here.</p>
                                             </div>
-                                            <input type="file" name="edit-dish-image3" class="dropzone edit-dish-image3"
-                                                value="0">
+                                            <input type="file" name="edit-dish-image3" class="dropzone edit-dish-image3" value="0">
                                         </div>
                                     </div>
                                     <li class="note-li-tag">Image size should: <b>295*384px</b> or in the same aspect
@@ -233,8 +210,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="Submit"
-                                    style="width: 50%;font-size: 15px;margin-top: 0.5em;">
+                                <input type="submit" class="btn btn-primary" value="Submit" style="width: 50%;font-size: 15px;margin-top: 0.5em;">
                                 </form>
 
                             </div>

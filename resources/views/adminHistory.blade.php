@@ -6,8 +6,13 @@
     <h3>Edit History tab of Homepage</h3>
     <form action="history/insert" method="POST" name="history-form" id="history-form" enctype="multipart/form-data">
         {{@csrf_field()}}
+        @if(isset($history))
         <textarea class="form-control" placeholder="Description"
             name="history-description">{{$history->description}}</textarea>
+        @else
+        <textarea class="form-control" placeholder="Description"
+            name="history-description"></textarea>
+        @endif
         <label for="Banne Image"> <b> Can only add maximum of 5 images:</b></label>
         <div class="image-box">
             <div class="dropzone-wrapper">
