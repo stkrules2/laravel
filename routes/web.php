@@ -43,3 +43,4 @@ Route::get('/admin/profile', 'AdminController@profile');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/setting', 'HomeController@setting')->name('setting');

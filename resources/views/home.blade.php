@@ -6,7 +6,8 @@
     @if(isset($banner))
     @foreach($banner as $banner)
 
-    @if(isset($banner->path1) || isset($banner->path2) || isset($banner->path3) || isset($banner->path4) || isset($banner->path5))
+    @if(isset($banner->path1) || isset($banner->path2) || isset($banner->path3) || isset($banner->path4) ||
+    isset($banner->path5))
 
     <div class="owl-carousel owl-theme banner-carousel">
         @if(isset($banner->path1))
@@ -58,11 +59,18 @@
 
     <div class="content-tabs">
         <ul class="content-tabs-ul">
-            <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">Cateogory</a>
-            </li>
-            <li class=""><a href="#tab-latest-0" data-toggle="tab" aria-expanded="false">check</a></li>
-            <li class=""><a href="#tab-bestseller-0" data-toggle="tab" aria-expanded="false">Cateogory</a>
-            </li>
+            @if(isset($category))
+            <?php $count = 0 ?>
+            @foreach($category as $cat)
+            @if($count === 0)
+            <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a></li>
+            <?php $count = $count + 1 ?>
+            @else
+            <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a></li>
+
+            @endif
+            @endforeach
+            @endif
         </ul>
     </div>
     <div class="card-container">
@@ -70,8 +78,12 @@
             <div class="col-md-12">
                 <div id="news-slider10" class="owl-carousel">
                     <div class="post-slide10">
-                        <div class="card"><a href="#">
-                                <img class="image_thumb" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> </a>
+                        <div class="custom-card"><a href="#">
+                                <img class="image_thumb"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
                             <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                                 View</button>
                             <div class="card-text">
@@ -95,14 +107,19 @@
                                         Cart</span>
                                 </button>
                                 <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span>
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
+                                        title="Add to Compare"></span>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="post-slide10">
-                        <div class="card"><a href="#">
-                                <img class="image_thumb" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> </a>
+                        <div class="custom-card"><a href="#">
+                                <img class="image_thumb"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
                             <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                                 View</button>
                             <div class="card-text">
@@ -126,14 +143,19 @@
                                         Cart</span>
                                 </button>
                                 <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span>
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
+                                        title="Add to Compare"></span>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="post-slide10">
-                        <div class="card"><a href="#">
-                                <img class="image_thumb" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> </a>
+                        <div class="custom-card"><a href="#">
+                                <img class="image_thumb"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
                             <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                                 View</button>
                             <div class="card-text">
@@ -157,14 +179,19 @@
                                         Cart</span>
                                 </button>
                                 <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span>
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
+                                        title="Add to Compare"></span>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="post-slide10">
-                        <div class="card"><a href="#">
-                                <img class="image_thumb" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> </a>
+                        <div class="custom-card"><a href="#">
+                                <img class="image_thumb"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
                             <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                                 View</button>
                             <div class="card-text">
@@ -188,14 +215,19 @@
                                         Cart</span>
                                 </button>
                                 <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span>
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
+                                        title="Add to Compare"></span>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="post-slide10">
-                        <div class="card"><a href="#">
-                                <img class="image_thumb" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> </a>
+                        <div class="custom-card"><a href="#">
+                                <img class="image_thumb"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
                             <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                                 View</button>
                             <div class="card-text">
@@ -219,14 +251,19 @@
                                         Cart</span>
                                 </button>
                                 <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span>
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
+                                        title="Add to Compare"></span>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="post-slide10">
-                        <div class="card"><a href="#">
-                                <img class="image_thumb" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> </a>
+                        <div class="custom-card"><a href="#">
+                                <img class="image_thumb"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
+                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
+                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
                             <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                                 View</button>
                             <div class="card-text">
@@ -250,7 +287,8 @@
                                         Cart</span>
                                 </button>
                                 <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span>
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
+                                        title="Add to Compare"></span>
                                 </button>
                             </div>
                         </div>
@@ -300,8 +338,12 @@
     <div class="row">
         <div class=" col-sm-12 owl-carousel owl-theme" style="display:block">
             <div class="carousel2">
-                <div class="card item"><a href="#">
-                        <img class="image_thumb" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> </a>
+                <div class="custom-card item"><a href="#">
+                        <img class="image_thumb"
+                            src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
+                            title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
+                            src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
+                            title="voluptate velit esse" alt="voluptate velit esse"> </a>
                     <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                         View</button>
                     <div class="card-text">
@@ -349,66 +391,11 @@
 
 </div>
 <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14315.106282143128!2d50.5918502!3d26.2364484!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x907c5be8df48780d!2zS0FCQUIgSE9VU0UgQkFIUkFJTiDZhdi32LnZhSDYqNmK2Kog2KfZhNmD2KjYp9io!5e0!3m2!1sen!2s!4v1600693747749!5m2!1sen!2s" class="map" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14315.106282143128!2d50.5918502!3d26.2364484!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x907c5be8df48780d!2zS0FCQUIgSE9VU0UgQkFIUkFJTiDZhdi32LnZhSDYqNmK2Kog2KfZhNmD2KjYp9io!5e0!3m2!1sen!2s!4v1600693747749!5m2!1sen!2s"
+        class="map" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 </div>
-<section id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-3 col-md-3">
-                <h5>Quick links</h5>
-                <ul class="list-unstyled quick-links">
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Home</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">About</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">FAQ</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Get Started</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Videos</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-3">
-                <h5>Quick links</h5>
-                <ul class="list-unstyled quick-links">
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Home</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">About</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">FAQ</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Get Started</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Videos</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-3">
-                <h5>Quick links</h5>
-                <ul class="list-unstyled quick-links">
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Home</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">About</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">FAQ</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Get Started</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Videos</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-3">
-                <h5>Quick links</h5>
-                <ul class="list-unstyled quick-links">
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Home</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">About</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">FAQ</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Get Started</a></li>
-                    <li><a href="https://www.fiverr.com/share/qb8D02">Videos</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-                <ul class="list-unstyled list-inline social text-center">
-                    <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-facebook"></i></a></li>
-                    <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-twitter"></i></a></li>
-                    <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02" target="_blank"><i class="fa fa-envelope"></i></a></li>
-                </ul>
-            </div>
-            <hr>
-        </div>
 
-    </div>
-</section>
 
 
 @endsection

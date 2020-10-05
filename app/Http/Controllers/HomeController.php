@@ -17,4 +17,15 @@ class HomeController extends Controller
 
         return view('home', ['banner' => $banner, 'category' => $category, 'dish' => $dish]);
     }
+    public function setting()
+    {
+        $category = Category::get();
+        $dish = Dish::get();
+
+        return view('setting', ['category' => $category, 'dish' => $dish]);
+    }
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
 }
