@@ -44,3 +44,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/setting', 'HomeController@setting')->name('setting');
+Route::get('/account', 'HomeController@account')->name('my-account');
+Route::get('/password', 'HomeController@password')->name('password');
+Route::get('/address', 'HomeController@address')->name('address');
+Route::get('/new/address', 'HomeController@new_address')->name('new_address');
+Route::get('/wishlist', 'HomeController@wishlist')->name('wishlist');

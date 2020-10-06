@@ -49,11 +49,11 @@
 
 </div>
 
-<div class="container">
+<div class="dishes-container">
     <div class="content">
         <div class="content-heading">
             <div class="bos">best of us</div>
-            <h3>Trending Products </h3>
+            <h3>Finest Dishes </h3>
         </div>
     </div>
 
@@ -62,18 +62,36 @@
             @if(isset($category))
             <?php $count = 0 ?>
             @foreach($category as $cat)
-            @if($count === 0)
-            <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a></li>
-            <?php $count = $count + 1 ?>
-            @else
-            <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a></li>
 
-            @endif
-            @endforeach
-            @endif
+            @if($count < 4) @if($count===0) <span class="top">
+                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a>
+                </li>
+                @else
+                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a></li>
+
+                @endif
+                @if($count === 3)
+                </span>
+                @endif
+                @endif
+                @if($count >= 4)
+                @if($count === 4)
+                <span class="bottom">
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a>
+                    </li>
+                    @else
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a></li>
+                    @if($count === (count($category) - 1))
+                </span>
+                @endif
+                @endif
+                @endif
+                <?php $count = $count + 1 ?>
+                @endforeach
+                @endif
         </ul>
     </div>
-    <div class="card-container">
+    <div class="card-container container">
         <div class="row">
             <div class="col-md-12">
                 <div id="news-slider10" class="owl-carousel">

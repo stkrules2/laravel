@@ -21,8 +21,6 @@
 
 <body>
 
-
-
     <div class="page">
 
         <header>
@@ -118,7 +116,7 @@
                                         <i class="fa fa-cog" aria-hidden="true"></i>Setting
                                     </a>
                                     <a class="dropdown-item" href="">
-                                        <i class="fa fa-heart" aria-hidden="true"></i>Wishlist
+                                        <i class="fa fa-heart" aria-hidden="true"></i>Wishlist (0)
                                     </a>
                                     <a class="dropdown-item" href="">
                                         <i class="fa fa-truck" aria-hidden="true"></i>My Orders
@@ -320,7 +318,7 @@
             if ($checkWidth > 1160) {
                 var sticky = $('header'),
                     scroll = $(window).scrollTop();
-                if (scroll >= 40) {
+                if (scroll >= 240) {
                     sticky.addClass('fixed');
                 } else {
                     sticky.removeClass('fixed');
