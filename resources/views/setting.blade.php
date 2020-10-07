@@ -37,8 +37,7 @@
             </div>
             <div class="setting-list-content">
                 <ul class="list-unstyled">
-                    <li><a href="">Order History</a></li>
-                    <li><a href="">Current Orders</a></li>
+                    <li><a href="/order">Order History</a></li>
                     <li><a href="">My Cart</a></li>
                     <li><a href="">Transactions</a></li>
                 </ul>

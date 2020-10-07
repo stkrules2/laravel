@@ -59,6 +59,13 @@ class HomeController extends Controller
 
         return view('wishlist', ['category' => $category, 'dish' => $dish]);
     }
+    public function order()
+    {
+        $category = Category::get();
+        $dish = Dish::get();
+
+        return view('order', ['category' => $category, 'dish' => $dish]);
+    }
     public function __construct()
     {
         $this->middleware(['auth']);

@@ -52,7 +52,7 @@
 
             </fieldset>
             <div class="buttons clearfix">
-                <div class="pull-left"><a href="/setting" class="btn btn-default">Back</a></div>
+                <div class="pull-left"><a href="/address" class="btn btn-default">Back</a></div>
                 <div class="pull-right">
                     <input type="submit" value="Continue" class="btn btn-primary">
                 </div>

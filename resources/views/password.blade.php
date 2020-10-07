@@ -14,7 +14,7 @@
             </span>
         </ol>
     </nav>
-    <div id="password" class="col-sm-12 Cwidth container" style="width: 100%;">
+    <div id="password-setting" class="col-sm-12 Cwidth container" style="width: 100%;">
 
         <form method="post" enctype="multipart/form-data" class="form-horizontal">
             <fieldset>

@@ -199,6 +199,150 @@ header.fixed .logo a {
     font: 400 13px/18px "Muli", Helvetica, sans-serif;
 }
 
+.shopping-cart {
+    width: 310px;
+    padding: 10px 15px;
+
+}
+
+.shopping-cart span:first-child {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    display: inline-block;
+}
+
+.shopping-cart p {
+    font-family: Muli;
+    line-height: 24px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    color: #666;
+    margin: 0;
+}
+
+.cart-list {
+    display: flex;
+    width: 260px;
+    max-height: 100px;
+    justify-content: space-around;
+}
+
+.cart-product {
+
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.cart-img {
+    width: 70px;
+    max-height: 100;
+    object-fit: cover;
+}
+
+.cart-name {
+    width: 105px;
+}
+
+.cart-name a {
+    color: #666;
+    font-size: 13px;
+    text-transform: capitalize;
+    line-height: 18px;
+
+    text-decoration: none;
+    text-align: left;
+    font-weight: 500;
+}
+
+.cart-name a:hover {
+    color: black;
+
+}
+
+.cart-number {
+    display: flex;
+    flex-direction: column;
+    color: #666;
+    font-size: 13px;
+    font-family: Muli;
+    line-height: 24px;
+    text-decoration: none;
+    text-align: left;
+    font-weight: 500;
+}
+
+.cart-price {
+    color: #666;
+    font-size: 13px;
+    font-family: Muli;
+    line-height: 24px;
+    text-decoration: none;
+    text-align: left;
+    font-weight: 500;
+}
+
+.cart-remove i {
+    font-size: inherit;
+    margin-right: 0px;
+    padding: 0px 0px;
+}
+
+.cart-total-price {
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-total,
+.total {
+    font-family: Muli;
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.shopping-cart .text-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.shopping-cart .text-right .btn {
+    background: #111111;
+    border: 1px solid #111111;
+    color: #fff;
+    width: 48%;
+    float: left;
+    border-radius: 40px;
+}
+
+.shopping-cart .text-right .btn:hover {
+    background: #00706d;
+    border: 1px solid #00706d;
+}
+
+
+.sub-total b,
+.total b {
+    font: 400 14px/20px "Oswald", Helvetica, sans-serif;
+    color: #000;
+    text-align: right;
+}
+
+
+li.cart-product {
+    max-height: 400px;
+    overflow-y: auto;
+    float: left;
+    width: 100%;
+    min-height: 50px;
+    overflow-x: visible;
+}
+
 .menu-icons {
     display: contents;
 }
@@ -1002,12 +1146,12 @@ div.required .control-label::before {
     padding-right: 5%;
 }
 
-#password {
+#password-setting {
     min-height: 450px;
     margin-top: 2em;
 }
 
-#password .form-horizontal fieldset legend {
+#password-setting .form-horizontal fieldset legend {
     display: block;
     width: 100%;
     padding: 0;
@@ -1108,6 +1252,37 @@ div.required .control-label::before {
     color: white;
 }
 
+/* Orders Section */
+
+.order-container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#orders-table .btn-primary {
+    border-radius: 20px;
+    background-color: black;
+    border: none;
+}
+
+#orders-table .btn-primary:hover {
+    background-color: #00706d;
+}
+
+.page-link {
+    color: #00706d;
+}
+
+.page-link:hover {
+    color: #333;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #00706d;
+    border-color: #00706d;
+}
 
 /* Footer and newsletter */
 
@@ -1689,7 +1864,11 @@ div.required .control-label::before {
     }
 
     .carousel-margin {
-        margin-top: 2em;
+        margin-top: -1.7em;
+    }
+
+    main {
+        margin-top: 2.0em;
     }
 }
 

@@ -11,6 +11,7 @@
     <link href='https://fonts.googleapis.com/css?family=Muli:400,600,700,800,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ URL::to('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/styles.css') }}">
@@ -115,7 +116,7 @@
                                     <a class="dropdown-item" href="/setting">
                                         <i class="fa fa-cog" aria-hidden="true"></i>Setting
                                     </a>
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="/wishlist">
                                         <i class="fa fa-heart" aria-hidden="true"></i>Wishlist (0)
                                     </a>
                                     <a class="dropdown-item" href="">
@@ -135,8 +136,65 @@
                                 <i class="fa fa-shopping-cart dropdown-toggle" class="dropdown-toggle" href="#"
                                     data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true"
                                     aria-expanded="false" aria-hidden="true"></i>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                    check
+                                <div class="dropdown-menu shopping-cart" aria-labelledby="navbarDropdown2">
+                                    <span>
+                                        <li class="cart-product">
+                                            <div class="cart-list">
+                                                <div class="cart-img"><img
+                                                        src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/05-70x91.jpg"
+                                                        alt="magni dolores eosquies" title="magni dolores eosquies">
+                                                </div>
+                                                <div class="cart-name"><a href="">Magni Dolores Eosquies</a></div>
+                                                <div class="cart-number">x <br> 1</div>
+                                                <div class="cart-price">BD200</div>
+                                                <div class="cart-remove"><i class="fa fa-times" aria-hidden="true"></i>
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="cart-product">
+                                            <div class="cart-list">
+                                                <div class="cart-img"><img
+                                                        src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/05-70x91.jpg"
+                                                        alt="magni dolores eosquies" title="magni dolores eosquies">
+                                                </div>
+                                                <div class="cart-name"><a href="">Magni Dolores Eosquies</a></div>
+                                                <div class="cart-number">x <br> 1</div>
+                                                <div class="cart-price">BD200</div>
+                                                <div class="cart-remove"><i class="fa fa-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="cart-product">
+                                            <div class="cart-list">
+                                                <div class="cart-img"><img
+                                                        src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/05-70x91.jpg"
+                                                        alt="magni dolores eosquies" title="magni dolores eosquies">
+                                                </div>
+                                                <div class="cart-name"><a href="">Magni Dolores Eosquies</a></div>
+                                                <div class="cart-number">x <br> 1</div>
+                                                <div class="cart-price">BD200</div>
+                                                <div class="cart-remove"><i class="fa fa-times" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </span>
+                                    <div class="cart-total-price">
+                                        <div class="sub-total">Sub-Total <b>BD2000</b></div>
+                                        <div class="total">Total <b>BD3000</b></div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <p class="text-right"><a
+                                            href="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/index.php?route=checkout/cart"
+                                            class="btn"><strong>
+                                                View Cart</strong></a><a
+                                            href="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/index.php?route=checkout/checkout"
+                                            class="btn"><strong>Checkout</strong></a>
+                                    </p>
+                                    <!-- <li>
+                                        <p>Your shopping cart is empty!</p>
+                                    </li> -->
                                 </div>
                             </span>
                             <span class='badge' id='lblCartCount'>0</span>
@@ -233,12 +291,17 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ URL::to('js/owl.carousel.min.js') }}"></script>
     <script>
     $(document).ready(function() {
@@ -341,6 +404,9 @@
                 }
             }
         })
+    });
+    $(document).ready(function() {
+        $('#orders-table').DataTable();
     });
     </script>
 </body>
