@@ -66,6 +66,34 @@ class HomeController extends Controller
 
         return view('order', ['category' => $category, 'dish' => $dish]);
     }
+    public function mycart()
+    {
+        $category = Category::get();
+        $dish = Dish::get();
+
+        return view('cart', ['category' => $category, 'dish' => $dish]);
+    }
+    public function checkout()
+    {
+        $category = Category::get();
+        $dish = Dish::get();
+
+        return view('checkout', ['category' => $category, 'dish' => $dish]);
+    }
+    public function transaction()
+    {
+        $category = Category::get();
+        $dish = Dish::get();
+
+        return view('transaction', ['category' => $category, 'dish' => $dish]);
+    }
+    public function newsletter()
+    {
+        $category = Category::get();
+        $dish = Dish::get();
+
+        return view('newsletter', ['category' => $category, 'dish' => $dish]);
+    }
     public function __construct()
     {
         $this->middleware(['auth']);

@@ -10,7 +10,7 @@
             <span>
                 <li class="breadcrumb-item"><a href="/home"><i class="fa fa-home"></i></a></li>
                 <li class="breadcrumb-item" aria-current="/page"><a href="/setting">Settings</a></li>
-                <li class="breadcrumb-item active" aria-current="/page"><a href="/address">Address</a></li>
+                <li class="breadcrumb-item" aria-current="/page"><a href="/address">Address</a></li>
                 <li class="breadcrumb-item active" aria-current="/page">Add Address</li>
             </span>
         </ol>

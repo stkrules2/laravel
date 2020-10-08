@@ -38,8 +38,8 @@
             <div class="setting-list-content">
                 <ul class="list-unstyled">
                     <li><a href="/order">Order History</a></li>
-                    <li><a href="">My Cart</a></li>
-                    <li><a href="">Transactions</a></li>
+                    <li><a href="/mycart">My Cart</a></li>
+                    <li><a href="/transaction">Transactions</a></li>
                 </ul>
             </div>
         </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="setting-list-content">
                 <ul class="list-unstyled">
-                    <li><a href="">Newsletter</a></li>
+                    <li><a href="/newsletter">Newsletter</a></li>
                 </ul>
             </div>
         </div>

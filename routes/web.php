@@ -50,3 +50,7 @@ Route::get('/address', 'HomeController@address')->name('address');
 Route::get('/new/address', 'HomeController@new_address')->name('new_address');
 Route::get('/wishlist', 'HomeController@wishlist')->name('wishlist');
 Route::get('/order', 'HomeController@order')->name('order');
+Route::get('/mycart', 'HomeController@mycart')->name('mycart');
+Route::get('/checkout', 'HomeController@checkout')->name('checkout');
+Route::get('/transaction', 'HomeController@transaction')->name('transaction');
+Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');

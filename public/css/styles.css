@@ -320,6 +320,10 @@ header.fixed .logo a {
     border-radius: 40px;
 }
 
+.shopping-cart .text-right .btn strong {
+    font-weight: 400;
+}
+
 .shopping-cart .text-right .btn:hover {
     background: #00706d;
     border: 1px solid #00706d;
@@ -1284,6 +1288,202 @@ div.required .control-label::before {
     border-color: #00706d;
 }
 
+/* My Cart Section */
+
+.cart-container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.cart-container #content {
+    margin: 0 0 50px;
+}
+
+#content {
+    min-height: 650px;
+}
+
+.table.table-bordered {
+    border-color: #e9e9e9;
+}
+
+.cart-container .table.table-bordered thead {
+    color: #666;
+    font-family: 'Muli', Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 1px;
+}
+
+.cart-container .table.table-bordered tbody tr td {
+    background: #fff;
+    color: #444;
+    font-family: "Muli", Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 22px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    vertical-align: middle;
+    border: 1px solid #ebebeb;
+    color: #222;
+}
+
+.cart-container .table.table-bordered tbody tr td .img-thumbnail {
+    max-width: 75px;
+    border: none;
+}
+
+.cart-container .table.table-bordered tbody tr td.text-left a {
+    font-family: "Muli", Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #444444;
+    text-decoration: none;
+}
+
+.cart-container .table.table-bordered tbody tr td .cart_input_block.input-group {
+    display: inline-block;
+    width: auto;
+}
+
+.cart-container .table.table-bordered tbody tr td .input-group .form-control {
+    width: auto;
+    min-width: 50px;
+    float: left;
+    text-align: center;
+}
+
+.cart-container .table.table-bordered tbody tr td .input-group .input-group-btn {
+    display: table;
+    float: left;
+}
+
+.cart-container .table.table-bordered tbody tr td .input-group .input-group-btn button {
+    height: 42px;
+    width: 45px;
+    border-radius: 0;
+}
+
+.cart-container .table.table-bordered tbody tr td .input-group .input-group-btn button.btn-primary {
+    background-color: black;
+    border: black;
+}
+
+.cart-container .table.table-bordered tbody tr td .input-group .input-group-btn button.btn-danger {
+    background-color: #C9302C;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    width: 40px;
+}
+
+.cart-container .table.table-bordered tbody tr td.text-right,
+.cart-container .table.table-bordered tbody tr td.text-right {
+    color: #282828;
+    font: 400 16px/18px "Oswald", Helvetica, sans-serif;
+}
+
+.checkout {
+    font-size: 14px;
+    text-transform: capitalize;
+    background: #000;
+    border: 1px solid #000;
+    color: #fff;
+    border-radius: 30px;
+}
+
+.checkout:hover {
+    background-color: #00706d;
+    border-color: #00706d;
+}
+
+/* Checkout */
+
+.checkout-container {
+    margin-left: 5%;
+    margin-right: 5%;
+    min-height: 450px;
+}
+
+.panel-group {
+    width: 100%;
+}
+
+.panel {
+    min-height: 40px;
+    background-color: #F5F5F5;
+    border: 1px solid #E5E5E5;
+    padding: 12px 15px;
+    padding-bottom: 0;
+    margin-top: 5px;
+}
+
+.panel-body {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #E5E5E5;
+}
+
+.panel-heading .panel-title a {
+    font-family: "Muli", Helvetica, sans-serif;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #333;
+    background-color: #f5f5f5;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: inherit;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Transaction */
+
+.transaction-container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+/* Newsletter */
+
+.newsletter-container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.radio-inline {
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.radio-wrapper {
+    background: url(https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/catalog/view/theme/OPC202_04/stylesheet/TemplateTrip/images/input-sprite.png) repeat scroll 0 -243px;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+}
+
+.radio-wrapper input {
+    background: none;
+    border: none;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    position: relative;
+    opacity: 0;
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    -webkit-opacity: 0;
+}
+
 /* Footer and newsletter */
 
 .newsletter {
@@ -1597,11 +1797,13 @@ div.required .control-label::before {
         display: inline-block;
         height: 50px !important;
         background-color: #00706d !important;
+        margin-left: 5%;
+        margin-right: 5%;
     }
 
     .icons {
         position: absolute;
-        right: 10px;
+        right: 6%;
         float: right;
         margin-top: 10px;
     }
@@ -1672,8 +1874,10 @@ div.required .control-label::before {
     }
 
     .carousel-margin {
-        width: 100%;
+        width: 95%;
         padding: 0;
+        margin-left: 5%;
+        padding-right: 5%;
     }
 
     .fixed {
@@ -1859,16 +2063,19 @@ div.required .control-label::before {
 }
 
 @media only screen and (max-width: 600px) {
+
     .logo {
         width: 130px;
     }
 
-    .carousel-margin {
-        margin-top: -1.7em;
-    }
 
     main {
         margin-top: 2.0em;
+    }
+
+    .content-tabs-ul li a {
+        font-size: 13px;
+        margin-right: 0;
     }
 }
 
@@ -1915,6 +2122,7 @@ div.required .control-label::before {
 }
 
 @media (max-width: 481px) {
+
     .categories-product-carousel img {
         width: 170px !important;
     }
@@ -1925,5 +2133,10 @@ div.required .control-label::before {
 
     .carousel2 {
         margin-left: 3.5em;
+    }
+
+    .breadcrumb {
+        flex-direction: column;
+        align-items: center;
     }
 }
