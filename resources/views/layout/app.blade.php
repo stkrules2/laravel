@@ -186,8 +186,7 @@
                                     </div>
                                     <div class="dropdown-divider"></div>
                                     <p class="text-right"><a href="/mycart" class="btn"><strong>
-                                                View Cart</strong></a><a
-                                            href="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/index.php?route=checkout/checkout"
+                                                View Cart</strong></a><a href="/checkout"
                                             class="btn"><strong>Checkout</strong></a>
                                     </p>
                                     <!-- <li>
