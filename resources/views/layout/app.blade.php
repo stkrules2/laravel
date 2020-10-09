@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Kabab House</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,500,600,700' rel='stylesheet' type='text/css'>
@@ -300,112 +301,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ URL::to('js/owl.carousel.min.js') }}"></script>
-    <script>
-    $(document).ready(function() {
-
-        const $dropdown = $(".dropdown");
-        const $dropdownToggle = $(".dropdown-toggle");
-        const $dropdownMenu = $(".dropdown-menu");
-        const showClass = "show";
-        $(window).on("load resize", function() {
-            if (this.matchMedia("(min-width: 768px)").matches) {
-                $dropdown.hover(
-                    function() {
-                        const $this = $(this);
-                        $this.addClass(showClass);
-                        $this.find($dropdownToggle).attr("aria-expanded", "true");
-                        $this.find($dropdownMenu).addClass(showClass);
-                    },
-                    function() {
-                        const $this = $(this);
-                        $this.removeClass(showClass);
-                        $this.find($dropdownToggle).attr("aria-expanded", "false");
-                        $this.find($dropdownMenu).removeClass(showClass);
-                    }
-                );
-            } else {
-                $dropdown.off("mouseenter mouseleave");
-            }
-        });
-
-        $("#news-slider10").owlCarousel({
-            items: 4,
-            itemsDesktop: [1199, 3],
-            itemsDesktopSmall: [980, 2],
-            itemsMobile: [600, 2],
-            loop: true,
-            lazyLoad: true,
-            autoWidth: true,
-            margin: 20,
-            dots: false,
-            autoplay: true,
-            autoplayTimeout: 4000
-        });
-
-
-        $(".categories-product-carousel").owlCarousel({
-            items: 3,
-            itemsDesktop: [1199, 3],
-            itemsDesktopSmall: [980, 2],
-            itemsMobile: [600, 1],
-            loop: true,
-            margin: 30,
-            lazyLoad: true,
-            autoWidth: true,
-            dots: false,
-            autoplay: true,
-            autoplayTimeout: 4000,
-        });
-        $(".carousel2").owlCarousel({
-            items: 4,
-            itemsDesktop: [1199, 3],
-            itemsDesktopSmall: [980, 2],
-            itemsMobile: [600, 1],
-            loop: true,
-            lazyLoad: true,
-            autoWidth: true,
-            margin: 20,
-            dots: false,
-            autoplay: true,
-            autoplayTimeout: 4000
-
-        });
-
-
-        $(window).scroll(function() {
-            var $win = $(window);
-            var $checkWidth = $win.width();
-            if ($checkWidth > 1160) {
-                var sticky = $('header'),
-                    scroll = $(window).scrollTop();
-                if (scroll >= 240) {
-                    sticky.addClass('fixed');
-                } else {
-                    sticky.removeClass('fixed');
-                }
-            }
-        });
-        $('.banner-carousel').owlCarousel({
-            loop: true,
-            nav: true,
-            dots: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 1
-                },
-                1000: {
-                    items: 1
-                }
-            }
-        })
-    });
-    $(document).ready(function() {
-        $('#orders-table').DataTable();
-    });
-    </script>
+    <script src="{{ URL::to('js/userScript.js') }}"></script>
 </body>
 
 </html>

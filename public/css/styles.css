@@ -613,6 +613,7 @@ li.cart-product {
 
 .custom-card img {
     object-fit: cover;
+    height: 389px;
 }
 
 .custom-card .img-top {
@@ -2091,6 +2092,10 @@ div.required .control-label::before {
         width: 220px;
     }
 
+    .custom-card img {
+        height: 286px;
+    }
+
     .btn-cart span {
         display: none;
     }
@@ -2129,6 +2134,16 @@ div.required .control-label::before {
 
     .custom-card {
         width: 299px;
+    }
+
+    .custom-card img {
+        width: 299px;
+        height: 386px;
+    }
+
+    .card-img-btn {
+        top: 33%;
+        left: 68px;
     }
 
     .carousel2 {

@@ -64,10 +64,12 @@
             @foreach($category as $cat)
 
             @if($count < 4) @if($count===0) <span class="top">
-                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a>
+                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                        id="{{$cat->id}}">{{$cat->title}}</a>
                 </li>
                 @else
-                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a></li>
+                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                        id="{{$cat->id}}">{{$cat->title}}</a></li>
 
                 @endif
                 @if($count === 3)
@@ -77,10 +79,12 @@
                 @if($count >= 4)
                 @if($count === 4)
                 <span class="bottom">
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a>
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                            id="{{$cat->id}}">{{$cat->title}}</a>
                     </li>
                     @else
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true">{{$cat->title}}</a></li>
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                            id="{{$cat->id}}">{{$cat->title}}</a></li>
                     @if($count === (count($category) - 1))
                 </span>
                 @endif
@@ -95,216 +99,46 @@
         <div class="row">
             <div class="col-md-12">
                 <div id="news-slider10" class="owl-carousel">
+                    <span style="display: none;">{{$firstcat = $category->first()}}</span>
+                    @foreach($dish->where('category_id', $firstcat->id) as $dishes)
+
+
                     <div class="post-slide10">
-                        <div class="custom-card"><a href="#">
-                                <img class="image_thumb"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
-                            <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
+                        <div class="custom-card">
+                            <a href="#">
+                                <img class="image_thumb" src="../storage/{{$dishes->image1}}"
+                                    title="voluptate velit esse" alt="voluptate velit esse">
+                                @if($dishes->image2)
+
+                                <img class="img-top" src="../storage/{{$dishes->image2}}" title="voluptate velit esse"
+                                    alt="voluptate velit esse">
+                                @endif
+                            </a>
+                            <button class="btn card-img-btn" id="{{$dishes->id}}"><i
+                                    class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                                 View</button>
                             <div class="card-text">
                                 <a href="#">
-                                    <h4>aliquam quaerat voluptatem</h4>
+                                    <h4>{{$dishes->name}}</h4>
                                 </a>
 
                             </div>
                             <div class="price">
-                                <span class="price-new">$62.00</span>
-                                <span class="price-old">$122.00</span>
-                                <span class="price-tax">Without tax: $50.00</span>
+                                <span class="price-new">BD&nbsp;{{number_format($dishes->price, 2)}}</span>
+                                @if($dishes->before_discount_price)
+                                <span class="price-old">BD&nbsp;{{number_format($dishes->before_discount_price)}}</span>
+                                @endif
                             </div>
                             <div class="button-group">
-                                <button class="btn btn-wishlist" title="Add to wishlist">
+                                <button class="btn btn-wishlist" title="Add to wishlist" id="{{$dishes->id}}">
                                     <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
                                 </button>
-                                <button class="btn btn-cart " type="button" title="Add to Cart">
+                                <button class="btn btn-cart " type="button" title="Add to Cart" id="{{$dishes->id}}">
                                     <i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add
                                         to
                                         Cart</span>
                                 </button>
-                                <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
-                                        title="Add to Compare"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-slide10">
-                        <div class="custom-card"><a href="#">
-                                <img class="image_thumb"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
-                            <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
-                                View</button>
-                            <div class="card-text">
-                                <a href="#">
-                                    <h4>aliquam quaerat voluptatem</h4>
-                                </a>
-
-                            </div>
-                            <div class="price">
-                                <span class="price-new">$62.00</span>
-                                <span class="price-old">$122.00</span>
-                                <span class="price-tax">Without tax: $50.00</span>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn btn-wishlist" title="Add to wishlist">
-                                    <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
-                                </button>
-                                <button class="btn btn-cart " type="button" title="Add to Cart">
-                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add
-                                        to
-                                        Cart</span>
-                                </button>
-                                <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
-                                        title="Add to Compare"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-slide10">
-                        <div class="custom-card"><a href="#">
-                                <img class="image_thumb"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
-                            <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
-                                View</button>
-                            <div class="card-text">
-                                <a href="#">
-                                    <h4>aliquam quaerat voluptatem</h4>
-                                </a>
-
-                            </div>
-                            <div class="price">
-                                <span class="price-new">$62.00</span>
-                                <span class="price-old">$122.00</span>
-                                <span class="price-tax">Without tax: $50.00</span>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn btn-wishlist" title="Add to wishlist">
-                                    <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
-                                </button>
-                                <button class="btn btn-cart " type="button" title="Add to Cart">
-                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add
-                                        to
-                                        Cart</span>
-                                </button>
-                                <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
-                                        title="Add to Compare"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-slide10">
-                        <div class="custom-card"><a href="#">
-                                <img class="image_thumb"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
-                            <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
-                                View</button>
-                            <div class="card-text">
-                                <a href="#">
-                                    <h4>aliquam quaerat voluptatem</h4>
-                                </a>
-
-                            </div>
-                            <div class="price">
-                                <span class="price-new">$62.00</span>
-                                <span class="price-old">$122.00</span>
-                                <span class="price-tax">Without tax: $50.00</span>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn btn-wishlist" title="Add to wishlist">
-                                    <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
-                                </button>
-                                <button class="btn btn-cart " type="button" title="Add to Cart">
-                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add
-                                        to
-                                        Cart</span>
-                                </button>
-                                <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
-                                        title="Add to Compare"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-slide10">
-                        <div class="custom-card"><a href="#">
-                                <img class="image_thumb"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
-                            <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
-                                View</button>
-                            <div class="card-text">
-                                <a href="#">
-                                    <h4>aliquam quaerat voluptatem</h4>
-                                </a>
-
-                            </div>
-                            <div class="price">
-                                <span class="price-new">$62.00</span>
-                                <span class="price-old">$122.00</span>
-                                <span class="price-tax">Without tax: $50.00</span>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn btn-wishlist" title="Add to wishlist">
-                                    <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
-                                </button>
-                                <button class="btn btn-cart " type="button" title="Add to Cart">
-                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add
-                                        to
-                                        Cart</span>
-                                </button>
-                                <button class="btn btn-compare" title="Add to Compare">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
-                                        title="Add to Compare"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-slide10">
-                        <div class="custom-card"><a href="#">
-                                <img class="image_thumb"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
-                                    src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
-                                    title="voluptate velit esse" alt="voluptate velit esse"> </a>
-                            <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
-                                View</button>
-                            <div class="card-text">
-                                <a href="#">
-                                    <h4>aliquam quaerat voluptatem</h4>
-                                </a>
-
-                            </div>
-                            <div class="price">
-                                <span class="price-new">$62.00</span>
-                                <span class="price-old">$122.00</span>
-                                <span class="price-tax">Without tax: $50.00</span>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn btn-wishlist" title="Add to wishlist">
-                                    <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
-                                </button>
-                                <button class="btn btn-cart " type="button" title="Add to Cart">
-                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add
-                                        to
-                                        Cart</span>
-                                </button>
-                                <button class="btn btn-compare" title="Add to Compare">
+                                <button class="btn btn-compare" title="Add to Compare" id="{{$dishes->id}}">
                                     <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
                                         title="Add to Compare"></span>
                                 </button>
@@ -312,7 +146,7 @@
                         </div>
                     </div>
 
-
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -19,8 +19,8 @@ class CreateDishesTable extends Migration
             $table->boolean('availibility');
             $table->boolean('sale')->nullable();
             $table->boolean('special_product')->nullable();
-            $table->bigInteger('price');
-            $table->bigInteger('before_discount_price')->nullable();
+            $table->float('price');
+            $table->float('before_discount_price')->nullable();
             $table->text('description');
             $table->string('image1');
             $table->string('image2')->nullable();

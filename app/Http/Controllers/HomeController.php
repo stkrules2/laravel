@@ -94,6 +94,12 @@ class HomeController extends Controller
 
         return view('newsletter', ['category' => $category, 'dish' => $dish]);
     }
+    public function showDishes(Request $request)
+    {
+        $id = $request->categoryid;
+        $dish = Dish::where('category_id', $id)->get();
+        return $dish;
+    }
     public function __construct()
     {
         $this->middleware(['auth']);
