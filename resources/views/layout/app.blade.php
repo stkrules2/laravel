@@ -10,8 +10,7 @@
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,500,600,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Muli:400,600,700,800,900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ URL::to('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/owl.theme.default.min.css') }}">
@@ -28,13 +27,11 @@
         <header>
             <nav class="navbar">
                 <div class="logo-div">
-                    <a href="/home"><img src="{{ URL::to('img/logo/kabab-house-logo-org.png') }}" alt="Kabab House"
-                            class="logo"></a>
+                    <a href="/home"><img src="{{ URL::to('img/logo/kabab-house-logo-org.png') }}" alt="Kabab House" class="logo"></a>
                 </div>
                 <div class="menu-icons">
 
-                    <a class="btn collapse-btn" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
-                        aria-controls="collapseExample" style="float:left;font-size:23px">
+                    <a class="btn collapse-btn" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="float:left;font-size:23px">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </a>
 
@@ -57,8 +54,7 @@
                         @break
                         @endif
                         <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2"
-                                role="button" aria-haspopup="true" aria-expanded="false"> {{$cat->title}} </a>
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false"> {{$cat->title}} </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                                 @if(isset($dish))
                                 @foreach($dish as $di)
@@ -74,8 +70,7 @@
                         @endforeach
                         @if($count === 6)
                         <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2"
-                                role="button" aria-haspopup="true" aria-expanded="false"> More </a>
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false"> More </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                                 <?php $count = $count - 1 ?>
                                 @foreach($category as $cat2)
@@ -97,20 +92,15 @@
                         <span class="icons-span">
 
                             <span class="dropdown">
-                                <i class="fa fa-search dropdown-toggle" class="dropdown-toggle" href="#"
-                                    data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true"
-                                    aria-expanded="false" aria-hidden="true"></i>
+                                <i class="fa fa-search dropdown-toggle" class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false" aria-hidden="true"></i>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                                     check
                                 </div>
                             </span>
                             <span class="dropdown">
-                                <i class="fa fa-user dropdown-toggle" class="dropdown-toggle" href="#"
-                                    data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true"
-                                    aria-expanded="false" aria-hidden="true"></i>
+                                <i class="fa fa-user dropdown-toggle" class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false" aria-hidden="true"></i>
                                 <div class="dropdown-menu user" aria-labelledby="navbarDropdown2">
-                                    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User"
-                                        style="border-radius: 50%;">
+                                    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User" style="border-radius: 50%;">
                                     <p>{{ Auth::user()->name }}</p>
                                     <div class="dropdown-divider"></div>
 
@@ -134,16 +124,12 @@
                                 </div>
                             </span>
                             <span class="dropdown">
-                                <i class="fa fa-shopping-cart dropdown-toggle" class="dropdown-toggle" href="#"
-                                    data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true"
-                                    aria-expanded="false" aria-hidden="true"></i>
+                                <i class="fa fa-shopping-cart dropdown-toggle" class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false" aria-hidden="true"></i>
                                 <div class="dropdown-menu shopping-cart" aria-labelledby="navbarDropdown2">
                                     <span>
                                         <li class="cart-product">
                                             <div class="cart-list">
-                                                <div class="cart-img"><img
-                                                        src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/05-70x91.jpg"
-                                                        alt="magni dolores eosquies" title="magni dolores eosquies">
+                                                <div class="cart-img"><img src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/05-70x91.jpg" alt="magni dolores eosquies" title="magni dolores eosquies">
                                                 </div>
                                                 <div class="cart-name"><a href="">Magni Dolores Eosquies</a></div>
                                                 <div class="cart-number">x <br> 1</div>
@@ -155,9 +141,7 @@
                                         </li>
                                         <li class="cart-product">
                                             <div class="cart-list">
-                                                <div class="cart-img"><img
-                                                        src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/05-70x91.jpg"
-                                                        alt="magni dolores eosquies" title="magni dolores eosquies">
+                                                <div class="cart-img"><img src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/05-70x91.jpg" alt="magni dolores eosquies" title="magni dolores eosquies">
                                                 </div>
                                                 <div class="cart-name"><a href="">Magni Dolores Eosquies</a></div>
                                                 <div class="cart-number">x <br> 1</div>
@@ -168,9 +152,7 @@
                                         </li>
                                         <li class="cart-product">
                                             <div class="cart-list">
-                                                <div class="cart-img"><img
-                                                        src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/05-70x91.jpg"
-                                                        alt="magni dolores eosquies" title="magni dolores eosquies">
+                                                <div class="cart-img"><img src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/05-70x91.jpg" alt="magni dolores eosquies" title="magni dolores eosquies">
                                                 </div>
                                                 <div class="cart-name"><a href="">Magni Dolores Eosquies</a></div>
                                                 <div class="cart-number">x <br> 1</div>
@@ -187,8 +169,7 @@
                                     </div>
                                     <div class="dropdown-divider"></div>
                                     <p class="text-right"><a href="/mycart" class="btn"><strong>
-                                                View Cart</strong></a><a href="/checkout"
-                                            class="btn"><strong>Checkout</strong></a>
+                                                View Cart</strong></a><a href="/checkout" class="btn"><strong>Checkout</strong></a>
                                     </p>
                                     <!-- <li>
                                         <p>Your shopping cart is empty!</p>
@@ -215,10 +196,9 @@
                 <p>Sign up with us and get latest deals, offers & updates about store.</p>
             </div>
             <form name="subscribe" id="subscribe">
-                <input type="text" placeholder="Your email address" value="" name="subscribe_email"
-                    id="subscribe_email">
+                <input type="text" placeholder="Your email address" value="" name="subscribe_email" id="subscribe_email">
                 <input type="hidden" value="" name="subscribe_name" id="subscribe_name">
-                <a class="button btn btn-primary" onclick="email_subscribe()"><span>subscribe</span></a>
+                <a class="button btn btn-primary" onclick="email_subscribe()"><span>subscribe</span><i class="fa fa-paper-plane"></i></a>
 
             </form>
         </div>
@@ -269,14 +249,10 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                         <ul class="list-unstyled list-inline social text-center">
-                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i
-                                        class="fa fa-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i
-                                        class="fa fa-twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i
-                                        class="fa fa-instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"
-                                    target="_blank"><i class="fa fa-envelope"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02" target="_blank"><i class="fa fa-envelope"></i></a></li>
                         </ul>
                     </div>
                     <hr>
@@ -286,17 +262,13 @@
         </section>
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>

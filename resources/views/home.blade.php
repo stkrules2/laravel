@@ -64,12 +64,10 @@
             @foreach($category as $cat)
 
             @if($count < 4) @if($count===0) <span class="top">
-                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
-                        id="{{$cat->id}}">{{$cat->title}}</a>
+                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="{{$cat->id}}">{{$cat->title}}</a>
                 </li>
                 @else
-                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
-                        id="{{$cat->id}}">{{$cat->title}}</a></li>
+                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="{{$cat->id}}">{{$cat->title}}</a></li>
 
                 @endif
                 @if($count === 3)
@@ -79,12 +77,10 @@
                 @if($count >= 4)
                 @if($count === 4)
                 <span class="bottom">
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
-                            id="{{$cat->id}}">{{$cat->title}}</a>
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="{{$cat->id}}">{{$cat->title}}</a>
                     </li>
                     @else
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
-                            id="{{$cat->id}}">{{$cat->title}}</a></li>
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="{{$cat->id}}">{{$cat->title}}</a></li>
                     @if($count === (count($category) - 1))
                 </span>
                 @endif
@@ -95,7 +91,7 @@
                 @endif
         </ul>
     </div>
-    <div class="card-container container">
+    <div class="card-container container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div id="news-slider10" class="owl-carousel">
@@ -106,16 +102,13 @@
                     <div class="post-slide10">
                         <div class="custom-card">
                             <a href="#">
-                                <img class="image_thumb" src="../storage/{{$dishes->image1}}"
-                                    title="voluptate velit esse" alt="voluptate velit esse">
+                                <img class="image_thumb" src="../storage/{{$dishes->image1}}" title="voluptate velit esse" alt="voluptate velit esse">
                                 @if($dishes->image2)
 
-                                <img class="img-top" src="../storage/{{$dishes->image2}}" title="voluptate velit esse"
-                                    alt="voluptate velit esse">
+                                <img class="img-top" src="../storage/{{$dishes->image2}}" title="voluptate velit esse" alt="voluptate velit esse">
                                 @endif
                             </a>
-                            <button class="btn card-img-btn" id="{{$dishes->id}}"><i
-                                    class="fa fa-eye"></i>&nbsp;&nbsp;Quick
+                            <button class="btn card-img-btn" id="{{$dishes->id}}"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                                 View</button>
                             <div class="card-text">
                                 <a href="#">
@@ -126,7 +119,7 @@
                             <div class="price">
                                 <span class="price-new">BD&nbsp;{{number_format($dishes->price, 2)}}</span>
                                 @if($dishes->before_discount_price)
-                                <span class="price-old">BD&nbsp;{{number_format($dishes->before_discount_price)}}</span>
+                                <span class="price-old">BD&nbsp;{{number_format($dishes->before_discount_price, 2)}}</span>
                                 @endif
                             </div>
                             <div class="button-group">
@@ -139,8 +132,7 @@
                                         Cart</span>
                                 </button>
                                 <button class="btn btn-compare" title="Add to Compare" id="{{$dishes->id}}">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
-                                        title="Add to Compare"></span>
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span>
                                 </button>
                             </div>
                         </div>
@@ -191,11 +183,7 @@
         <div class=" col-sm-12 owl-carousel owl-theme" style="display:block">
             <div class="carousel2">
                 <div class="custom-card item"><a href="#">
-                        <img class="image_thumb"
-                            src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg"
-                            title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top"
-                            src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg"
-                            title="voluptate velit esse" alt="voluptate velit esse"> </a>
+                        <img class="image_thumb" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> <img class="img-top" src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/16-295x384.jpg" title="voluptate velit esse" alt="voluptate velit esse"> </a>
                     <button class="btn card-img-btn"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                         View</button>
                     <div class="card-text">
@@ -243,9 +231,7 @@
 
 </div>
 <div class="map-container">
-    <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14315.106282143128!2d50.5918502!3d26.2364484!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x907c5be8df48780d!2zS0FCQUIgSE9VU0UgQkFIUkFJTiDZhdi32LnZhSDYqNmK2Kog2KfZhNmD2KjYp9io!5e0!3m2!1sen!2s!4v1600693747749!5m2!1sen!2s"
-        class="map" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14315.106282143128!2d50.5918502!3d26.2364484!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x907c5be8df48780d!2zS0FCQUIgSE9VU0UgQkFIUkFJTiDZhdi32LnZhSDYqNmK2Kog2KfZhNmD2KjYp9io!5e0!3m2!1sen!2s!4v1600693747749!5m2!1sen!2s" class="map" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 </div>
 
 

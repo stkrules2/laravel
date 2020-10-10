@@ -636,6 +636,15 @@ li.cart-product {
     animation-duration: 0.5s;
 }
 
+#news-slider10 {
+    display: flex;
+    justify-content: center;
+}
+
+#news-slider10 .owl-stage-outer {
+    max-width: 1198px;
+}
+
 .card-img-btn {
     position: absolute;
     top: 170px;
@@ -681,6 +690,7 @@ li.cart-product {
     color: #666;
     font: 500 14px/14px "Oswald", Helvetica, sans-serif;
     text-decoration: line-through;
+    margin-left: 5px;
 }
 
 .price .price-tax {
@@ -1572,6 +1582,10 @@ div.required .control-label::before {
     text-transform: capitalize;
 }
 
+#subscribe .btn .fa-paper-plane {
+    display: none;
+}
+
 #footer {
     padding: 60px 0em;
     background: #111111 !important;
@@ -1953,6 +1967,9 @@ div.required .control-label::before {
         height: 420px;
     }
 
+    #subscribe {
+        width: 400px;
+    }
 }
 
 @media only screen and (max-width: 991px) {
@@ -1975,6 +1992,31 @@ div.required .control-label::before {
     .carousel-margin::after {
         height: 536px;
         width: 385px;
+    }
+
+    .newsletter {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 1.5em 3em;
+    }
+
+    .newsletter .newsletter-text h3 {
+        font-size: 24px;
+    }
+
+    .newsletter .newsletter-text h3 i {
+        font-size: 30px;
+    }
+
+    #subscribe {
+        margin-top: 0.5em;
+    }
+
+    #subscribe .btn {
+
+        top: 5px;
     }
 }
 
@@ -2048,6 +2090,21 @@ div.required .control-label::before {
 
     .content-tabs-ul li {}
 
+    #subscribe {
+        width: 250px;
+    }
+
+    #subscribe .btn .fa-paper-plane {
+        display: inherit;
+    }
+
+    #subscribe .btn span {
+        display: none;
+    }
+
+    #subscribe_email {
+        padding: 5px 96px 5px 15px;
+    }
 
 }
 
@@ -2153,5 +2210,17 @@ div.required .control-label::before {
     .breadcrumb {
         flex-direction: column;
         align-items: center;
+    }
+
+    #footer::before {
+        display: none;
+    }
+
+    .carousel-margin::before {
+        display: none;
+    }
+
+    .carousel-margin::afteR {
+        display: none;
     }
 }
