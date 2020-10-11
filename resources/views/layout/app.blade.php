@@ -272,6 +272,7 @@
     </script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ URL::to('js/owl.carousel.min.js') }}"></script>
     <script src="{{ URL::to('js/userScript.js') }}"></script>
 </body>

@@ -1081,6 +1081,15 @@ li.cart-product {
 
 }
 
+#new-address-form span,
+#password-change-form span,
+#account-edit-form span {
+    color: red;
+    font-size: 13px;
+    text-transform: capitalize;
+    font-style: italic;
+}
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -1820,7 +1829,6 @@ div.required .control-label::before {
         position: absolute;
         right: 6%;
         float: right;
-        margin-top: 10px;
     }
 
     .icons-span i {
@@ -1828,7 +1836,7 @@ div.required .control-label::before {
     }
 
     #lblCartCount {
-        top: 0px;
+        top: 6px;
     }
 
 
@@ -1857,6 +1865,7 @@ div.required .control-label::before {
     .dropdown {
         margin-top: 0;
         height: auto;
+        padding: 12px 0px;
     }
 
     .menu-list>li>a:after {
@@ -1905,7 +1914,7 @@ div.required .control-label::before {
 
     .icons-span .dropdown-menu {
         position: absolute;
-        top: 40px;
+        top: 50px;
     }
 }
 

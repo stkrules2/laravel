@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,6 @@ Route::get('/checkout', 'HomeController@checkout')->name('checkout');
 Route::get('/transaction', 'HomeController@transaction')->name('transaction');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::post('/dishes/show', 'HomeController@showDishes')->name('showdishes');
+Route::post('/user/edit', 'HomeController@useredit')->name('useredit');
+Route::post('/user/change/password', 'HomeController@changePassword')->name('changepassword');
+Route::post('/user/add/address', 'HomeController@addAddress')->name('addaddress');

@@ -149,11 +149,148 @@ $(document).ready(function () {
 
     });
 
-    function isJson(str) {
-        try {
-            return JSON.parse(str);
-        } catch (e) {
-            return false;
-        }
-    }
+    $('#account-edit-form').on('submit', function (e) {
+        e.preventDefault();
+        formdata = new FormData(this);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/user/edit',
+            type: "post",
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (response) {
+                swal("Congratulations!", "Your data has been updated!", "success");
+                $('.number-error').hide();
+                $('.name-error').hide();
+            },
+            error: function (xhr, ) {
+                if (xhr.responseJSON.errors.fullname) {
+                    $('.name-error').show();
+                    $('.name-error').html(xhr.responseJSON.errors.fullname[0]);
+                } else {
+                    $('.name-error').hide();
+                }
+                if (xhr.responseJSON.errors.telephone) {
+                    $('.number-error').show();
+                    $('.number-error').html(xhr.responseJSON.errors.telephone[0]);
+                } else {
+                    $('.number-error').hide();
+                }
+
+
+            }
+
+        });
+    });
+    $('#password-change-form').on('submit', function (e) {
+        e.preventDefault();
+        formdata = new FormData(this);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/user/change/password',
+            type: "post",
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (response) {
+                swal("Congratulations!", "Your password has been updated!", "success");
+                $('.current_password_error').hide();
+                $('.new_password_error').hide();
+                $('.confirm_password_error').hide();
+            },
+            error: function (xhr) {
+                console.log(xhr.responseJSON.errors);
+                if (xhr.responseJSON) {
+                    if (xhr.responseJSON.errors) {
+                        if (xhr.responseJSON.errors) {
+                            $('.current_password_error').show();
+                            $('.current_password_error').html(xhr.responseJSON.errors);
+                        } else {
+                            $('.current_password_error').hide();
+                        }
+                    } else {
+                        if (xhr.responseJSON.error.current_password) {
+                            $('.current_password_error').show();
+                            $('.current_password_error').html(xhr.responseJSON.error.current_password[0]);
+                        } else {
+                            $('.current_password_error').hide();
+                        }
+                    }
+                    if (xhr.responseJSON.error.new_password) {
+                        $('.new_password_error').show();
+                        $('.new_password_error').html(xhr.responseJSON.error.new_password[0]);
+                    } else {
+                        $('.new_password_error').hide();
+                    }
+                    if (xhr.responseJSON.error.confirm_password) {
+                        $('.confirm_password_error').show();
+                        $('.confirm_password_error').html(xhr.responseJSON.error.confirm_password[0]);
+                    } else {
+                        $('.confirm_password_error').hide();
+                    }
+
+                }
+
+
+            }
+
+        });
+    });
+    $('#new-address-form').on('submit', function (e) {
+        e.preventDefault();
+        formdata = new FormData(this);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/user/add/address',
+            type: "post",
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (response) {
+                swal("Congratulations!", "Your address has been added!", "success");
+                $('.name-error').hide();
+                $('.address-error').hide();
+                $('.post-error').hide();
+            },
+            error: function (xhr) {
+                console.log(xhr.responseJSON.errors);
+                if (xhr.responseJSON) {
+
+                    if (xhr.responseJSON.errors.fullname) {
+                        $('.name-error').show();
+                        $('.name-error').html(xhr.responseJSON.errors.fullname[0]);
+                    } else {
+                        $('.name-error').hide();
+                    }
+
+                    if (xhr.responseJSON.errors.address) {
+                        $('.address-error').show();
+                        $('.address-error').html(xhr.responseJSON.errors.address[0]);
+                    } else {
+                        $('.address-error').hide();
+                    }
+                    if (xhr.responseJSON.errors.postcode) {
+                        $('.post-error').show();
+                        $('.post-error').html(xhr.responseJSON.errors.postcode[0]);
+                    } else {
+                        $('.post-error').hide();
+                    }
+
+                }
+
+
+            }
+
+        });
+    });
 });
