@@ -59,3 +59,8 @@ Route::post('/dishes/show', 'HomeController@showDishes')->name('showdishes');
 Route::post('/user/edit', 'HomeController@useredit')->name('useredit');
 Route::post('/user/change/password', 'HomeController@changePassword')->name('changepassword');
 Route::post('/user/add/address', 'HomeController@addAddress')->name('addaddress');
+Route::get('/user/delete/address{id}', 'HomeController@deleteAddress')->name('deleteAddress');
+Route::get('/user/add/cart{id}', 'HomeController@addCart')->name('addCart');
+Route::get('/user/remove/cart{id}', 'HomeController@removeCart')->name('removeCart');
+Route::get('/user/remove/cart/page{id}', 'HomeController@removeCartPage')->name('removeCartPage');
+Route::get('/user/refresh/count{id}{count}', 'HomeController@refreshCount')->name('refreshCount');

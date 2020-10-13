@@ -24,39 +24,50 @@
                             <tr>
                                 <td class="text-center">Image</td>
                                 <td class="text-left">Product Name</td>
-                                <td class="text-left">Model</td>
                                 <td class="text-left">Quantity</td>
                                 <td class="text-right">Unit Price</td>
                                 <td class="text-right text-right-price">Total</td>
                             </tr>
                         </thead>
                         <tbody>
+                            @if(count($cart)>0)
+                            @foreach($cart as $carts)
                             <tr>
                                 <td class="text-center">
                                     <a href=""><img
-                                            src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/20-70x91.jpg"
-                                            alt="voluptate velit esse" title="voluptate velit esse"
+                                            src="../storage/{{$dish->where('id', $carts->dishid)->first()->image1}}"
+                                            alt="{{$dish->where('id', $carts->dishid)->first()->name}}"
+                                            title="{{$dish->where('id', $carts->dishid)->first()->name}}"
                                             class="img-thumbnail"></a>
                                 </td>
                                 <td class="text-left"><a
-                                        href="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/index.php?route=product/product&amp;product_id=40">voluptate
-                                        velit esse</a>
+                                        href="/home">{{$dish->where('id', $carts->dishid)->first()->name}}</a>
                                 </td>
-                                <td class="text-left">product 11</td>
                                 <td class="text-left">
                                     <div class="cart_input_block input-group btn-block">
-                                        <input type="text" value="2" size="1" class="form-control">
+                                        <input type="text" value="{{$carts->countdish}}" size="1"
+                                            class="form-control cart-dish-count">
                                         <span class="input-group-btn">
-                                            <button type="submit" class="btn btn-primary main"><i
-                                                    class="fa fa-refresh"></i></button>
-                                            <button type="button" class="btn btn-danger"><i
-                                                    class="fa fa-times-circle"></i></button>
+                                            <button type="button" class="btn btn-primary main refresh-cart"
+                                                id="{{$carts->id}}"><i class="fa fa-refresh"></i></button>
+                                            <a href="/user/remove/cart/page{{$carts->id}}"><button type="button"
+                                                    class="btn btn-danger"><i class="fa fa-times-circle"
+                                                        id="{{$carts->id}}"></i></button></a>
                                         </span>
                                     </div>
                                 </td>
-                                <td class="text-right unit-price">$101.00</td>
-                                <td class="text-right total-price">$202.00</td>
+                                <td class="text-right unit-price">
+                                    BD{{$dish->where('id', $carts->dishid)->first()->price}}</td>
+                                <td class="text-right total-price">
+                                    BD{{$dish->where('id', $carts->dishid)->first()->price}}</td>
                             </tr>
+                            @endforeach
+
+                            @else
+                            <tr>
+                                <td>You have no itesms in cart</td>
+                            </tr>
+                            @endif
 
                         </tbody>
 
@@ -71,15 +82,18 @@
                         <tbody>
                             <tr>
                                 <td class="text-right heading-title"><strong>Sub-Total:</strong></td>
-                                <td class="text-right total-amount">$3,402.00</td>
+                                <td class="text-right total-amount">
+                                    BD </td>
                             </tr>
                             <tr>
                                 <td class="text-right heading-title"><strong>Flat Shipping Rate:</strong></td>
-                                <td class="text-right total-amount">$5.00</td>
+                                <td class="text-right total-amount">
+                                    BD </td>
                             </tr>
                             <tr>
                                 <td class="text-right heading-title"><strong>Total:</strong></td>
-                                <td class="text-right total-amount">$3,407.00</td>
+                                <td class="text-right total-amount">
+                                    BD </td>
                             </tr>
                         </tbody>
                     </table>

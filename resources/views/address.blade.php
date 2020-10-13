@@ -17,16 +17,27 @@
     <div id="address" class="col-sm-12 Cwidth container" style="width: 100%;">
 
         <div class="table-responsive">
+            @if(isset($addresses))
+            <?php $count = 0 ?>
+            @foreach($addresses as $address)
+            <?php $count = $count + 1  ?>
             <table class="table table-bordered table-hover">
                 <tbody>
                     <tr>
-                        <td class="text-left">Sulman Azhar<br>H#144, Alflah-town, Bedian road Lahore cantt<br>
-                            54810</td>
-                        <td class="text-right"><a href="" class="btn btn-info">Edit</a> &nbsp; <a href=""
-                                class="btn btn-danger">Delete</a></td>
+                        <td class="text-left">{{$address->fullname}}<br>{{$address->address}}<br>
+                            {{$address->postcode}}</td>
+                        <td class="text-right"><a href="#" class="btn btn-info edit-address-delete"
+                                id="{{$address->id}}">Edit</a> &nbsp; <a href="#" class="btn btn-danger delete-address"
+                                id="{{$address->id}}">Delete</a></td>
                     </tr>
                 </tbody>
             </table>
+            @endforeach
+            @if($count == 0)
+            <p>Your address book entries are empty </p>
+            @endif
+
+            @endif
         </div>
         <div class="buttons clearfix">
             <div class="pull-left"><a href="/setting" class="btn btn-default">Back</a></div>

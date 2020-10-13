@@ -23,28 +23,32 @@
                 <div class="form-group required">
                     <label class="col-sm-2 control-label" for="input-fullname">Full Name </label>
                     <div class="col-sm-10">
-                        <input type="text" name="fullname" value="" placeholder="Full Name" id="input-fullname" class="form-control">
+                        <input type="text" name="fullname" placeholder="Full Name" id="input-fullname"
+                            class="form-control">
                         <span class='name-error'></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="input-company-name">Company </label>
                     <div class="col-sm-10">
-                        <input type="text" name="company-name" value="" placeholder="Company Name (Option)" id="input-company-name" class="form-control">
+                        <input type="text" name="company-name" placeholder="Company Name (Optional)"
+                            id="input-company-name" class="form-control">
 
                     </div>
                 </div>
                 <div class="form-group required">
                     <label class="col-sm-2 control-label" for="input-address">Address </label>
                     <div class="col-sm-10">
-                        <input type="text" name="address" value="" placeholder="Address" id="input-address" class="form-control">
+                        <input type="text" name="address" value="" placeholder="Address" id="input-address"
+                            class="form-control">
                         <span class='address-error'></span>
                     </div>
                 </div>
                 <div class="form-group required">
                     <label class="col-sm-2 control-label" for="input-postcode">Post Code </label>
                     <div class="col-sm-10">
-                        <input type="number" name="postcode" value="" placeholder="Post Code" id="input-postcode" class="form-control">
+                        <input type="number" name="postcode" value="" placeholder="Post Code" id="input-postcode"
+                            class="form-control">
                         <span class='post-error'></span>
                     </div>
                 </div>

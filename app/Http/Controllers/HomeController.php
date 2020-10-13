@@ -12,6 +12,8 @@ use App\Banner;
 use App\Category;
 use App\Dish;
 use App\User;
+use App\Address;
+use App\Cart;
 
 class HomeController extends Controller
 {
@@ -20,85 +22,93 @@ class HomeController extends Controller
         $banner = Banner::get();
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('home', ['banner' => $banner, 'category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('home', ['banner' => $banner, 'category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function setting()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('setting', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('setting', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function account()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('account', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('account', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function password()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('password', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('password', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function address()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('address', ['category' => $category, 'dish' => $dish]);
+        $address = Address::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('address', ['category' => $category, 'dish' => $dish, 'addresses' => $address, 'cart' => $cart]);
     }
     public function new_address()
     {
         $category = Category::get();
         $dish = Dish::get();
 
-        return view('newaddress', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('newaddress', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
+    public function deleteAddress($id)
+    {
+        Address::where('id', $id)->delete();
+        return $id;
+    }
+
     public function wishlist()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('wishlist', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('wishlist', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function order()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('order', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('order', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function mycart()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('cart', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('cart', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function checkout()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('checkout', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('checkout', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function transaction()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('transaction', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('transaction', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function newsletter()
     {
         $category = Category::get();
         $dish = Dish::get();
-
-        return view('newsletter', ['category' => $category, 'dish' => $dish]);
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        return view('newsletter', ['category' => $category, 'dish' => $dish, 'cart' => $cart]);
     }
     public function showDishes(Request $request)
     {
@@ -183,14 +193,62 @@ class HomeController extends Controller
 
     public function addAddress(Request $request)
     {
+
+
+        $address = new Address();
         $request->validate([
             'fullname' => 'required | regex:/^[a-zA-Z][a-zA-Z\s]*$/ | min:3 | max: 30',
             'address' => 'required | min:5 ',
             'postcode' => 'required | max:7 '
         ]);
 
-        return $request;
+
+        $address->fullname = $request->input('fullname');
+        $address->company = $request->input('company-name');
+        $address->address = $request->input('address');
+        $address->postcode = $request->input('postcode');
+        $address->userid = Auth::User()->id;
+        $address->save();
     }
+    public function addCart($id)
+    {
+        $cart = new Cart();
+        $count = Cart::where('dishid', $id)->where('userid', Auth::User()->id)->first();
+
+        if (isset($count)) {
+
+            $count->countdish = $count->countdish + 1;
+            $count->save();
+        } else {
+
+            $cart->userid = Auth::User()->id;
+            $cart->dishid = $id;
+            $cart->countdish = 1;
+            $cart->save();
+        }
+        $cartCount = Cart::where('userid', Auth::user()->id)->get();
+        $dish = Dish::get();
+        return [$cartCount, $dish];
+    }
+    public function removeCart($id)
+    {
+        Cart::where('id', $id)->delete();
+        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $dish = Dish::get();
+        return [$cart, $dish];
+    }
+    public function removeCartPage($id)
+    {
+        Cart::where('id', $id)->delete();
+        return redirect('/mycart');
+    }
+    public function refreshCount($id, $count)
+    {
+        $cart = Cart::where('id', $id)->first();
+        $cart->countdish = $count;
+        $cart->save();
+    }
+
     public function __construct()
     {
         $this->middleware(['auth']);
