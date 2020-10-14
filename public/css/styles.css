@@ -4,6 +4,12 @@
     transition: 0.2s;
 }
 
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+}
+
 header.fixed {
     background: #fff;
     position: fixed;
@@ -1293,6 +1299,11 @@ div.required .control-label::before {
 #wishlist .btn-primary:hover {
     background: #da4f49;
     color: white;
+}
+
+#wishlist table tbody tr td.image-col img {
+    width: 70px;
+    height: 91px;
 }
 
 /* Orders Section */

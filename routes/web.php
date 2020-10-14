@@ -64,3 +64,6 @@ Route::get('/user/add/cart{id}', 'HomeController@addCart')->name('addCart');
 Route::get('/user/remove/cart{id}', 'HomeController@removeCart')->name('removeCart');
 Route::get('/user/remove/cart/page{id}', 'HomeController@removeCartPage')->name('removeCartPage');
 Route::get('/user/refresh/count{id}{count}', 'HomeController@refreshCount')->name('refreshCount');
+Route::get('/user/add/wishlist{id}', 'HomeController@addWishlist')->name('addWishlist');
+Route::get('/user/remove/wishlist{id}', 'HomeController@removeWishlist')->name('removeWishlist');
+Route::post('/user/add/email', 'HomeController@emailNewsletter')->name('emailNewsletter');

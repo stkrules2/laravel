@@ -20,35 +20,43 @@
             <thead>
                 <tr>
                     <td class="text-center">Image</td>
-                    <td class="text-left">Product Name</td>
-                    <td class="text-left">Model</td>
-                    <td class="text-right">Stock</td>
+                    <td class="text-left">Name</td>
+                    <td class="text-right">Availability</td>
                     <td class="text-right">Unit Price</td>
                     <td class="text-right">Action</td>
                 </tr>
             </thead>
             <tbody>
+                @if(isset($wish))
+                @foreach($wish as $wishdish)
+
 
                 <tr>
-                    <td class="text-center"><a href=""><img
-                                src="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/image/cache/catalog/demo/product/19-70x91.jpg"
-                                alt="voluptas sit aspernatur" title="voluptas sit aspernatur"></a></td>
-                    <td class="text-left"><a href="">voluptas
-                            sit aspernatur</a></td>
-                    <td class="text-left">product 20</td>
-                    <td class="text-right">In Stock</td>
+                    <td class="text-center image-col"><img
+                            src="../storage/{{$dish->where('id', $wishdish->dishid)->first()->image1}}"
+                            alt="{{$dish->where('id', $wishdish->dishid)->first()->name}}"
+                            title="{{$dish->where('id', $wishdish->dishid)->first()->name}}"></a></td>
+                    <td class="text-left">{{$dish->where('id', $wishdish->dishid)->first()->name}}</a></td>
+                    @if($dish->where('id', $wishdish->dishid)->first()->availibility)
+                    <td class="text-right">Available</td>
+                    @else
+                    <td class="text-right">Not Available</td>
+                    @endif
+
                     <td class="text-right">
-                        <div class="price"> $100.00
+                        <div class="price"> BD
+                            {{number_format($dish->where('id', $wishdish->dishid)->first()->price, 2)}}
                         </div>
                     </td>
-                    <td class="text-right"><button type="button" onclick="cart.add('48');" data-toggle="tooltip"
-                            title="" class="btn btn-primary" data-original-title="Add to Cart"><i
+                    <td class="text-right"><button type="button" data-toggle="tooltip" title="" class="btn btn-primary"
+                            data-original-title="Add to Cart" id="{{$wishdish->id}}"><i
                                 class="fa fa-shopping-cart"></i></button>
-                        <a href="https://demo.templatetrip.com/Opencart/OPC07/OPC202_tomato/OPC04/index.php?route=account/wishlist&amp;remove=48"
-                            data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Remove"><i
-                                class="fa fa-times"></i></a>
+                        <a href="/user/remove/wishlist{{$wishdish->id}}" data-toggle="tooltip" title=""
+                            class="btn btn-danger" data-original-title="Remove"><i class="fa fa-times"></i></a>
                     </td>
                 </tr>
+                @endforeach
+                @endif
             </tbody>
 
         </table>

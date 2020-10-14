@@ -25,7 +25,7 @@ $(document).ready(function () {
         }
     });
 
-    var owl = $("#news-slider10").owlCarousel({
+    $("#news-slider10").owlCarousel({
         loop: false,
         rewind: true,
         lazyLoad: true,
@@ -145,7 +145,7 @@ $(document).ready(function () {
                                         response[
                                             i
                                         ].before_discount_price.toFixed(2) +
-                                        '</span></div><div class="button-group"><button class="btn btn-wishlist" title="Add to wishlist" id="' +
+                                        '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                         response[i].id +
                                         '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
                                         response[i].id +
@@ -176,7 +176,7 @@ $(document).ready(function () {
                                         response[i].name +
                                         '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
                                         response[i].price.toFixed(2) +
-                                        '</span></div><div class="button-group"><button class="btn btn-wishlist" title="Add to wishlist" id="' +
+                                        '</span></div><div class="button-group"><button class="btn btn-wishlist add-top-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                         response[i].id +
                                         '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
                                         response[i].id +
@@ -207,7 +207,7 @@ $(document).ready(function () {
                                         response[
                                             i
                                         ].before_discount_price.toFixed(2) +
-                                        '</span></div><div class="button-group"><button class="btn btn-wishlist" title="Add to wishlist" id="' +
+                                        '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                         response[i].id +
                                         '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
                                         response[i].id +
@@ -232,7 +232,7 @@ $(document).ready(function () {
                                         response[i].name +
                                         '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
                                         response[i].price.toFixed(2) +
-                                        '</span></div><div class="button-group"><button class="btn btn-wishlist" title="Add to wishlist" id="' +
+                                        '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                         response[i].id +
                                         '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
                                         response[i].id +
@@ -424,6 +424,97 @@ $(document).ready(function () {
     });
     $(document).on(
         "click",
+        ".post-slide10 .custom-card .button-group .btn.btn-wishlist.add-to-wishlist",
+        function (e) {
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                url: "/user/add/wishlist" + e.currentTarget.id + "",
+                type: "get",
+                success: function (response) {
+                    if (response) {
+                        swal(
+                            "Success!",
+                            "Dish is added to your wishlist!",
+                            "success"
+                        );
+                    } else {
+                        swal(
+                            "Error occurred!",
+                            "This dish might already be in your wishlist!",
+                            "error"
+                        );
+                    }
+                },
+                error: function (xhr) {
+                    swal(
+                        "Error occurred!",
+                        "This dish might already be in your wishlist!",
+                        "error"
+                    );
+                },
+            });
+        }
+    );
+
+    $("#wishlist .btn-primary").on("click", function (e) {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            url: "/user/add/cart" + e.currentTarget.id + "",
+            type: "get",
+            success: function (response) {
+                $(".shopping-cart span").empty();
+                for (var i = 0; i < response[0].length; i++) {
+                    for (var j = 0; j < response[1].length; j++) {
+                        if (response[0][i].dishid == response[1][j].id) {
+                            $(".shopping-cart span").append(
+                                '<li class="cart-product"><div class="cart-list"><div class="cart-img"><img src="../storage/' +
+                                    response[1][j].image1 +
+                                    '" alt="' +
+                                    response[1][j].name +
+                                    '" title="' +
+                                    response[1][j].name +
+                                    '"></div><div class="cart-name"><a href="#">' +
+                                    response[1][j].name +
+                                    '</a></div><div class="cart-number">x <br>' +
+                                    response[0][i].countdish +
+                                    ' </div><div class="cart-price">BD' +
+                                    response[1][j].price.toFixed(2) +
+                                    '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
+                                    response[0][i].id +
+                                    '"></i></div></div></li>'
+                            );
+                            $("#lblCartCount").empty();
+                            $("#lblCartCount").text(response[0].length);
+                        }
+                    }
+                }
+                $(".cart-total-price .total b").empty();
+                $(".cart-total-price .total b").append(
+                    "BD " + response[2].toFixed(2)
+                );
+                $(".shopping-cart .empty-cart-list").remove();
+                if (response[0].length == 1) {
+                    $(".shopping-cart span").css("display", "inline-block");
+                    $(".cart-footer").remove();
+                    $(".shopping-cart").append(
+                        ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
+                            response[2].toFixed(2) +
+                            '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
+                    );
+                }
+                $.notify("Added to Cart", "success");
+            },
+        });
+    });
+
+    $(document).on(
+        "click",
         ".post-slide10 .custom-card .button-group .btn.btn-cart.add-to-cart",
         function (e) {
             $.ajax({
@@ -451,7 +542,7 @@ $(document).ready(function () {
                                         '</a></div><div class="cart-number">x <br>' +
                                         response[0][i].countdish +
                                         ' </div><div class="cart-price">BD' +
-                                        response[1][j].price +
+                                        response[1][j].price.toFixed(2) +
                                         '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
                                         response[0][i].id +
                                         '"></i></div></div></li>'
@@ -461,11 +552,18 @@ $(document).ready(function () {
                             }
                         }
                     }
+                    $(".cart-total-price .total b").empty();
+                    $(".cart-total-price .total b").append(
+                        "BD " + response[2].toFixed(2)
+                    );
                     $(".shopping-cart .empty-cart-list").remove();
                     if (response[0].length == 1) {
                         $(".shopping-cart span").css("display", "inline-block");
+                        $(".cart-footer").remove();
                         $(".shopping-cart").append(
-                            ' <div class="cart-footer"><div class="cart-total-price"><div class="sub-total">Sub-Total <b>BD2000</b></div><div class="total">Total <b>BD3000</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
+                            ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
+                                response[2].toFixed(2) +
+                                '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
                         );
                     }
                     $.notify("Added to Cart", "success");
@@ -494,8 +592,10 @@ $(document).ready(function () {
                                     response[1][j].name +
                                     '"></div><div class="cart-name"><a href="#">' +
                                     response[1][j].name +
-                                    '</a></div><div class="cart-number">x <br> </div><div class="cart-price">' +
-                                    response[1][j].price +
+                                    '</a></div><div class="cart-number">x <br> ' +
+                                    response[0][i].countdish +
+                                    ' </div><div class="cart-price">' +
+                                    response[1][j].price.toFixed(2) +
                                     '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
                                     response[0][i].id +
                                     '"></i></div></div></li>'
@@ -505,6 +605,10 @@ $(document).ready(function () {
                         }
                     }
                 }
+                $(".cart-total-price .total b").empty();
+                $(".cart-total-price .total b").append(
+                    "BD " + response[2].toFixed(2)
+                );
                 if (response[0].length == 0) {
                     $(".shopping-cart .cart-footer").remove();
                     $(".shopping-cart span").css("display", "inherit");
@@ -517,20 +621,56 @@ $(document).ready(function () {
             },
         });
     });
-    $(".refresh-cart").on("click", function (e) {
+
+    $(document).on("click", ".refresh-cart", function (e) {
+        console.log();
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url:
                 "/user/refresh/count" +
-                e.target.id +
+                e.currentTarget.id +
                 "" +
-                $(".cart-dish-count").val(),
+                $(e.currentTarget).parent().siblings(".cart-dish-count").val(),
             type: "get",
             success: function (response) {
-                $.notify("Field Updated", "success");
+                location.reload(true);
             },
         });
     });
+    $("#subscribe").on("submit", function (e) {
+        e.preventDefault();
+        if (isEmail($("#subscribe_email").val())) {
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                url: "/user/add/email",
+                type: "post",
+                data: {
+                    email: $("#subscribe_email").val(),
+                },
+                success: function (response) {
+                    if (response) {
+                        swal(
+                            "Congratulations!",
+                            "Email has been added!",
+                            "success"
+                        );
+                    } else {
+                        swal("Error!", "Email already exists!", "error");
+                    }
+                },
+            });
+        } else {
+            swal("Error!", "Please enter a valid email address!", "error");
+        }
+    });
 });
+function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+}

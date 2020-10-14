@@ -134,7 +134,8 @@
                                 @endif
                             </div>
                             <div class="button-group">
-                                <button class="btn btn-wishlist" title="Add to wishlist" id="{{$dishes->id}}">
+                                <button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist"
+                                    id="{{$dishes->id}}">
                                     <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
                                 </button>
                                 <button class="btn btn-cart add-to-cart" type="button" title="Add to Cart"
@@ -217,7 +218,7 @@
                         <span class="price-tax">Without tax: $50.00</span>
                     </div>
                     <div class="button-group">
-                        <button class="btn btn-wishlist" title="Add to wishlist">
+                        <button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist">
                             <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
                         </button>
                         <button class="btn btn-cart " type="button" title="Add to Cart">
