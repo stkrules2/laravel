@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $("#newsletter-modal").modal("show");
     const $dropdown = $(".dropdown");
     const $dropdownToggle = $(".dropdown-toggle");
     const $dropdownMenu = $(".dropdown-menu");
@@ -652,6 +653,36 @@ $(document).ready(function () {
                 type: "post",
                 data: {
                     email: $("#subscribe_email").val(),
+                },
+                success: function (response) {
+                    if (response) {
+                        swal(
+                            "Congratulations!",
+                            "Email has been added!",
+                            "success"
+                        );
+                    } else {
+                        swal("Error!", "Email already exists!", "error");
+                    }
+                },
+            });
+        } else {
+            swal("Error!", "Please enter a valid email address!", "error");
+        }
+    });
+    $("#subscribe_popup").on("submit", function (e) {
+        e.preventDefault();
+        if (isEmail($("#subscribe_pemail").val())) {
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                url: "/user/add/email",
+                type: "post",
+                data: {
+                    email: $("#subscribe_pemail").val(),
                 },
                 success: function (response) {
                     if (response) {

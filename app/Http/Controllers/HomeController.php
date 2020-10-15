@@ -217,6 +217,7 @@ class HomeController extends Controller
         $dish = Dish::get();
         $cart = Cart::where('userid', Auth::user()->id)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
+        $news = Newsletter::where('email', Auth::user()->email)->get();
         $total = 0;
         foreach ($cart as $userid) {
 
@@ -224,7 +225,7 @@ class HomeController extends Controller
             $total = $total + ($temp[0] * $userid['countdish']);
         }
 
-        return view('newsletter', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish]);
+        return view('newsletter', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish, 'news' => $news]);
     }
     public function showDishes(Request $request)
     {
@@ -389,6 +390,28 @@ class HomeController extends Controller
         $news->email = $request->input('email');
         $news->save();
         return true;
+    }
+
+    public function changeNewsletterEmail(Request $request)
+    {
+        $news = new Newsletter();
+
+        if ($request->input('newsletter') == 1) {
+            $mailCheck = Newsletter::where('email', Auth::user()->email)->get();
+
+            if (count($mailCheck) > 0) {
+                return redirect('/newsletter');
+            } else {
+                $news->email = Auth::user()->email;
+                $news->save();
+                return redirect('/newsletter');
+            }
+        } elseif ($request->input('newsletter') == 0) {
+            Newsletter::where('email', Auth::user()->email)->delete();
+            return redirect('/newsletter');
+        } else {
+            return redirect('/newsletter');
+        }
     }
 
     public function __construct()

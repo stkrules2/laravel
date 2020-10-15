@@ -205,6 +205,7 @@
 
         <main>
 
+
             @yield('content')
         </main>
         <div class="newsletter">

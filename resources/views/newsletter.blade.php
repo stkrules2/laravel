@@ -15,19 +15,40 @@
         </ol>
     </nav>
     <div class="container">
-        <form method="post" enctype="multipart/form-data" class="form-horizontal">
+        <form action="/user/change/newsletter/email" method="post" enctype="multipart/form-data"
+            class="form-horizontal">
+            @csrf
             <fieldset>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Subscribe</label>
                     <div class="col-sm-10">
                         <label class="radio-inline">
-                            <span class="radio-wrapper"><input type="radio" name="newsletter" value="1"
-                                    class="radioid"></span>
+                            <span class="radio-wrapper">
+                                @if(isset($news))
+                                @if(count($news)>0)
+
+                                <input type="radio" name="newsletter" value=1 class="radioid" checked="checked"></span>
                             Yes </label>
                         <label class="radio-inline">
-                            <span class="radio-wrapper"><input type="radio" name="newsletter" value="0"
-                                    checked="checked" class="radioid"></span>
+                            <span class="radio-wrapper">
+                                <input type="radio" name="newsletter" value=0 class="radioid"></span>
                             No</label>
+                        @else
+                        <input type="radio" name="newsletter" value=1 class="radioid"></span>
+                        Yes </label>
+                        <label class="radio-inline">
+                            <span class="radio-wrapper">
+                                <input type="radio" name="newsletter" value=0 class="radioid" checked="checked"></span>
+                            No</label>
+                        @endif
+                        @else
+                        <input type="radio" name="newsletter" value=1 class="radioid"></span>
+                        Yes </label>
+                        <label class="radio-inline">
+                            <span class="radio-wrapper">
+                                <input type="radio" name="newsletter" value=0 class="radioid"></span>
+                            No</label>
+                        @endif
                     </div>
                 </div>
             </fieldset>

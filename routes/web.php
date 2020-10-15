@@ -67,3 +67,4 @@ Route::get('/user/refresh/count{id}{count}', 'HomeController@refreshCount')->nam
 Route::get('/user/add/wishlist{id}', 'HomeController@addWishlist')->name('addWishlist');
 Route::get('/user/remove/wishlist{id}', 'HomeController@removeWishlist')->name('removeWishlist');
 Route::post('/user/add/email', 'HomeController@emailNewsletter')->name('emailNewsletter');
+Route::post('/user/change/newsletter/email', 'HomeController@changeNewsletterEmail')->name('changeNewsletterEmail');

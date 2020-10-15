@@ -1,6 +1,45 @@
 @extends('layout.app')
 
 @section('content')
+<div id="newsletter-modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="newsletter-notification row">
+                <div id="popup2">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="newsletter-image col-sm-5 col-xs-5"> </div>
+
+                <div class="col-sm-7 col-xs-7 box ">
+                    <div class="newletter-title">
+                        <h2>Newsletter</h2>
+                    </div>
+                    <div class="box-content newleter-content">
+                        <div id="frm_subscribe">
+                            <form name="subscribe" id="subscribe_popup">
+                                <div class="newslatterpopup-content">
+                                    <span>Subscribe to our newsletters now and stay up to date with new collections,
+                                        latest
+                                        lookbooks and exclusive offers.</span>
+                                    <div id="notification"></div>
+                                    <input type="text" value="" name="subscribe_pemail" id="subscribe_pemail"
+                                        placeholder="Your email address">
+                                    <input type="hidden" value="" name="subscribe_pname" id="subscribe_pname">
+
+                                    <div class="popup-button">
+                                        <a class="button btn btn-primary"><span>subscribe</span></a>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div><!-- /#frm_subscribe -->
+                    </div><!-- /.box-content -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid carousel-margin">
 
     @if(isset($banner))
