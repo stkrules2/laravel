@@ -25,17 +25,11 @@
         border-radius: 0 !important;
     }
 
-    textarea:hover,
     .form-control:hover,
-    textarea:active,
     .form-control:active,
-    textarea:focus,
-    textarea:active,
-    textarea:focus,
-    textarea:hover,
-    #main-form select:active,
-    #main-form select:focus,
-    #main-form select:hover,
+    button:active,
+    button:focus,
+    button:hover,
     .form-control:focus,
     label:focus {
         outline: 0px !important;
@@ -52,7 +46,7 @@
         margin-bottom: 0;
     }
 
-    .login-container .card .card-header h2 {
+    h2 {
         background: none;
         border-bottom: none;
         font: 700 20px/25px "Muli", Helvetica, sans-serif;
@@ -133,15 +127,15 @@
     }
 
     .bottom-form {
-        height: 80px;
+        height: 40px;
     }
-    @media only screen and (max-width: 767px) {
+
+    @media only screen and (max-width: 400px) {
+
         .login-footer .bottom-form {
             height: 80px;
         }
-    }    
-    
-
+    }
 
 
     .login-container .card-body {
@@ -178,7 +172,7 @@
                     <p class="register-head"><strong>Register</strong></p>
                     <p class="register-text">By creating an account you will be able to shop faster, be up to date on an
                         order's status, and
-                        keep track of the orders you have previously made.</p> <br><br><br><br><br>
+                        keep track of the orders you have previously made.</p> <br><br>
                 </div>
 
                 <div class="text-right card-footer">
