@@ -1732,6 +1732,12 @@ div.required .control-label::before {
     min-height: 450px;
 }
 
+.error {
+    display: none;
+    color: red;
+    font-style: italic;
+}
+
 .panel-group {
     width: 100%;
 }
