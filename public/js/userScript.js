@@ -1,4 +1,61 @@
 $(document).ready(function () {
+    $('#existing-payment-address-radio').on('change', function () {
+        if ($('#existing-payment-address-radio').is(":checked")) {
+            $(".alternate").show();
+        } else {
+            $(".alternate").hide();
+        }
+    });
+    $("#button-payment-address").on('click', function () {
+        var address = 0;
+        if ($('#existing_address_id').val() != '' && $('#existing_address_id').val()) {
+            if ($('#existing-payment-address-radio').is(":checked")) {
+                address = $('#optional-fullname').val() + ", " + $('#optional-custom-address').val() + ", " + $('#optional-code').val();
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                    url: "/user/add/address",
+                    type: "post",
+                    data: {
+                        fullname: $('#optional-fullname').val(),
+                        address: $('#optional-custom-address').val(),
+                        postcode: $('#optional-code').val(),
+                    },
+                    success: function (response) {
+                        address = response;
+                        $('#collapse2').removeClass('show');
+                        $('#collapse2').css('pointer-events', 'none');
+                        $('.panel2 i').removeClass('fa-caret-down');
+                        $('.panel2 i').addClass('fa-check-circle');
+                    }
+                })
+            }
+
+        } else {
+            address = $('#fullname').val() + ", " + $('#custom-address').val() + ", " + $('#custom-address').val();
+            console.log('address');
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: "/user/add/address",
+                type: "post",
+                data: {
+                    fullname: $('#fullname').val(),
+                    address: $('#custom-address').val(),
+                    postcode: $('#code').val(),
+                },
+                success: function (response) {
+                    address = response;
+                    console.log(address);
+                }
+            })
+
+        }
+
+
+    })
     $("#newsletter-modal").modal("show");
     const $dropdown = $(".dropdown");
     const $dropdownToggle = $(".dropdown-toggle");
@@ -125,34 +182,34 @@ $(document).ready(function () {
                                 .owlCarousel(
                                     "add",
                                     '<div class="post-slide10"><div class="custom-card"><a href="#"><img class="image_thumb" src="../storage/' +
-                                        response[i].image1 +
-                                        '" title="' +
-                                        response[i].name +
-                                        '" alt="' +
-                                        response[i].name +
-                                        '"><img class="img-top" src="../storage/' +
-                                        response[i].image2 +
-                                        '" title="' +
-                                        response[i].name +
-                                        '" alt="' +
-                                        response[i].name +
-                                        '"></a><button class="btn card-img-btn" id="' +
-                                        response[i].id +
-                                        '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
-                                        response[i].name +
-                                        '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                        response[i].price.toFixed(2) +
-                                        '</span><span class="price-old">BD&nbsp;' +
-                                        response[
-                                            i
-                                        ].before_discount_price.toFixed(2) +
-                                        '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist add-to-wishlist" title="Add to wishlist" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button><button class="btn btn-compare" title="Add to Compare" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span></button></div></div></div>'
+                                    response[i].image1 +
+                                    '" title="' +
+                                    response[i].name +
+                                    '" alt="' +
+                                    response[i].name +
+                                    '"><img class="img-top" src="../storage/' +
+                                    response[i].image2 +
+                                    '" title="' +
+                                    response[i].name +
+                                    '" alt="' +
+                                    response[i].name +
+                                    '"></a><button class="btn card-img-btn" id="' +
+                                    response[i].id +
+                                    '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
+                                    response[i].name +
+                                    '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
+                                    response[i].price.toFixed(2) +
+                                    '</span><span class="price-old">BD&nbsp;' +
+                                    response[
+                                        i
+                                    ].before_discount_price.toFixed(2) +
+                                    '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist add-to-wishlist" title="Add to wishlist" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button><button class="btn btn-compare" title="Add to Compare" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span></button></div></div></div>'
                                 )
                                 .owlCarousel("update");
                         } else {
@@ -160,30 +217,30 @@ $(document).ready(function () {
                                 .owlCarousel(
                                     "add",
                                     '<div class="post-slide10"><div class="custom-card"><a href="#"><img class="image_thumb" src="../storage/' +
-                                        response[i].image1 +
-                                        '" title="' +
-                                        response[i].name +
-                                        '" alt="' +
-                                        response[i].name +
-                                        '"><img class="img-top" src="../storage/' +
-                                        response[i].image2 +
-                                        '" title="' +
-                                        response[i].name +
-                                        '" alt="' +
-                                        response[i].name +
-                                        '"></a><button class="btn card-img-btn" id="' +
-                                        response[i].id +
-                                        '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
-                                        response[i].name +
-                                        '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                        response[i].price.toFixed(2) +
-                                        '</span></div><div class="button-group"><button class="btn btn-wishlist add-top-wishlist add-to-wishlist" title="Add to wishlist" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button><button class="btn btn-compare" title="Add to Compare" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span></button></div></div></div>'
+                                    response[i].image1 +
+                                    '" title="' +
+                                    response[i].name +
+                                    '" alt="' +
+                                    response[i].name +
+                                    '"><img class="img-top" src="../storage/' +
+                                    response[i].image2 +
+                                    '" title="' +
+                                    response[i].name +
+                                    '" alt="' +
+                                    response[i].name +
+                                    '"></a><button class="btn card-img-btn" id="' +
+                                    response[i].id +
+                                    '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
+                                    response[i].name +
+                                    '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
+                                    response[i].price.toFixed(2) +
+                                    '</span></div><div class="button-group"><button class="btn btn-wishlist add-top-wishlist add-to-wishlist" title="Add to wishlist" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button><button class="btn btn-compare" title="Add to Compare" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span></button></div></div></div>'
                                 )
                                 .owlCarousel("update");
                         }
@@ -193,28 +250,28 @@ $(document).ready(function () {
                                 .owlCarousel(
                                     "add",
                                     '<div class="post-slide10"><div class="custom-card"><a href="#"><img class="image_thumb" src="../storage/' +
-                                        response[i].image1 +
-                                        '" title="' +
-                                        response[i].name +
-                                        '" alt="' +
-                                        response[i].name +
-                                        '"</a><button class="btn card-img-btn" id="' +
-                                        response[i].id +
-                                        '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
-                                        response[i].name +
-                                        '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                        response[i].price.toFixed(2) +
-                                        '</span><span class="price-old">BD&nbsp;' +
-                                        response[
-                                            i
-                                        ].before_discount_price.toFixed(2) +
-                                        '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button><button class="btn btn-compare" title="Add to Compare" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span></button></div></div></div>'
+                                    response[i].image1 +
+                                    '" title="' +
+                                    response[i].name +
+                                    '" alt="' +
+                                    response[i].name +
+                                    '"</a><button class="btn card-img-btn" id="' +
+                                    response[i].id +
+                                    '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
+                                    response[i].name +
+                                    '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
+                                    response[i].price.toFixed(2) +
+                                    '</span><span class="price-old">BD&nbsp;' +
+                                    response[
+                                        i
+                                    ].before_discount_price.toFixed(2) +
+                                    '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button><button class="btn btn-compare" title="Add to Compare" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span></button></div></div></div>'
                                 )
                                 .owlCarousel("update");
                         } else {
@@ -222,24 +279,24 @@ $(document).ready(function () {
                                 .owlCarousel(
                                     "add",
                                     ' <div class="post-slide10"><div class="custom-card"><a href="#"><img class="image_thumb" src="../storage/' +
-                                        response[i].image1 +
-                                        '" title="' +
-                                        response[i].name +
-                                        '" alt="' +
-                                        response[i].name +
-                                        '"></a><button class="btn card-img-btn" id="' +
-                                        response[i].id +
-                                        '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
-                                        response[i].name +
-                                        '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                        response[i].price.toFixed(2) +
-                                        '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button><button class="btn btn-compare" title="Add to Compare" id="' +
-                                        response[i].id +
-                                        '"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span></button></div></div></div>'
+                                    response[i].image1 +
+                                    '" title="' +
+                                    response[i].name +
+                                    '" alt="' +
+                                    response[i].name +
+                                    '"></a><button class="btn card-img-btn" id="' +
+                                    response[i].id +
+                                    '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
+                                    response[i].name +
+                                    '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
+                                    response[i].price.toFixed(2) +
+                                    '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button><button class="btn btn-compare" title="Add to Compare" id="' +
+                                    response[i].id +
+                                    '"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span></button></div></div></div>'
                                 )
                                 .owlCarousel("update");
                         }
@@ -475,20 +532,20 @@ $(document).ready(function () {
                         if (response[0][i].dishid == response[1][j].id) {
                             $(".shopping-cart span").append(
                                 '<li class="cart-product"><div class="cart-list"><div class="cart-img"><img src="../storage/' +
-                                    response[1][j].image1 +
-                                    '" alt="' +
-                                    response[1][j].name +
-                                    '" title="' +
-                                    response[1][j].name +
-                                    '"></div><div class="cart-name"><a href="#">' +
-                                    response[1][j].name +
-                                    '</a></div><div class="cart-number">x <br>' +
-                                    response[0][i].countdish +
-                                    ' </div><div class="cart-price">BD' +
-                                    response[1][j].price.toFixed(2) +
-                                    '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
-                                    response[0][i].id +
-                                    '"></i></div></div></li>'
+                                response[1][j].image1 +
+                                '" alt="' +
+                                response[1][j].name +
+                                '" title="' +
+                                response[1][j].name +
+                                '"></div><div class="cart-name"><a href="#">' +
+                                response[1][j].name +
+                                '</a></div><div class="cart-number">x <br>' +
+                                response[0][i].countdish +
+                                ' </div><div class="cart-price">BD' +
+                                response[1][j].price.toFixed(2) +
+                                '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
+                                response[0][i].id +
+                                '"></i></div></div></li>'
                             );
                             $("#lblCartCount").empty();
                             $("#lblCartCount").text(response[0].length);
@@ -505,8 +562,8 @@ $(document).ready(function () {
                     $(".cart-footer").remove();
                     $(".shopping-cart").append(
                         ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
-                            response[2].toFixed(2) +
-                            '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
+                        response[2].toFixed(2) +
+                        '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
                     );
                 }
                 $.notify("Added to Cart", "success");
@@ -533,20 +590,20 @@ $(document).ready(function () {
                             if (response[0][i].dishid == response[1][j].id) {
                                 $(".shopping-cart span").append(
                                     '<li class="cart-product"><div class="cart-list"><div class="cart-img"><img src="../storage/' +
-                                        response[1][j].image1 +
-                                        '" alt="' +
-                                        response[1][j].name +
-                                        '" title="' +
-                                        response[1][j].name +
-                                        '"></div><div class="cart-name"><a href="#">' +
-                                        response[1][j].name +
-                                        '</a></div><div class="cart-number">x <br>' +
-                                        response[0][i].countdish +
-                                        ' </div><div class="cart-price">BD' +
-                                        response[1][j].price.toFixed(2) +
-                                        '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
-                                        response[0][i].id +
-                                        '"></i></div></div></li>'
+                                    response[1][j].image1 +
+                                    '" alt="' +
+                                    response[1][j].name +
+                                    '" title="' +
+                                    response[1][j].name +
+                                    '"></div><div class="cart-name"><a href="#">' +
+                                    response[1][j].name +
+                                    '</a></div><div class="cart-number">x <br>' +
+                                    response[0][i].countdish +
+                                    ' </div><div class="cart-price">BD' +
+                                    response[1][j].price.toFixed(2) +
+                                    '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
+                                    response[0][i].id +
+                                    '"></i></div></div></li>'
                                 );
                                 $("#lblCartCount").empty();
                                 $("#lblCartCount").text(response[0].length);
@@ -563,8 +620,8 @@ $(document).ready(function () {
                         $(".cart-footer").remove();
                         $(".shopping-cart").append(
                             ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
-                                response[2].toFixed(2) +
-                                '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
+                            response[2].toFixed(2) +
+                            '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
                         );
                     }
                     $.notify("Added to Cart", "success");
@@ -586,20 +643,20 @@ $(document).ready(function () {
                         if (response[0][i].dishid == response[1][j].id) {
                             $(".shopping-cart span").append(
                                 '<li class="cart-product"><div class="cart-list"><div class="cart-img"><img src="../storage/' +
-                                    response[1][j].image1 +
-                                    '" alt="' +
-                                    response[1][j].name +
-                                    '" title="' +
-                                    response[1][j].name +
-                                    '"></div><div class="cart-name"><a href="#">' +
-                                    response[1][j].name +
-                                    '</a></div><div class="cart-number">x <br> ' +
-                                    response[0][i].countdish +
-                                    ' </div><div class="cart-price">' +
-                                    response[1][j].price.toFixed(2) +
-                                    '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
-                                    response[0][i].id +
-                                    '"></i></div></div></li>'
+                                response[1][j].image1 +
+                                '" alt="' +
+                                response[1][j].name +
+                                '" title="' +
+                                response[1][j].name +
+                                '"></div><div class="cart-name"><a href="#">' +
+                                response[1][j].name +
+                                '</a></div><div class="cart-number">x <br> ' +
+                                response[0][i].countdish +
+                                ' </div><div class="cart-price">' +
+                                response[1][j].price.toFixed(2) +
+                                '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
+                                response[0][i].id +
+                                '"></i></div></div></li>'
                             );
                             $("#lblCartCount").empty();
                             $("#lblCartCount").text(response[0].length);
@@ -629,8 +686,7 @@ $(document).ready(function () {
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
-            url:
-                "/user/refresh/count" +
+            url: "/user/refresh/count" +
                 e.currentTarget.id +
                 "" +
                 $(e.currentTarget).parent().siblings(".cart-dish-count").val(),
@@ -701,6 +757,7 @@ $(document).ready(function () {
         }
     });
 });
+
 function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);

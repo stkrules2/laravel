@@ -43,44 +43,47 @@
 <div class="container-fluid carousel-margin">
 
     @if(isset($banner))
-    @foreach($banner as $banner)
+        @foreach($banner as $banner)
 
-    @if(isset($banner->path1) || isset($banner->path2) || isset($banner->path3) || isset($banner->path4) ||
-    isset($banner->path5))
+            <blade
+                if|(isset(%24banner-%3Epath1)%20%7C%7C%20isset(%24banner-%3Epath2)%20%7C%7C%20isset(%24banner-%3Epath3)%20%7C%7C%20isset(%24banner-%3Epath4)%20%7C%7C%0D>
+                isset($banner->path5))
 
-    <div class="owl-carousel owl-theme banner-carousel">
-        @if(isset($banner->path1))
-        <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path1}}" alt="First slide">
-        </div>
-        @endif
-        @if(isset($banner->path2))
-        <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path2}}" alt="First slide">
-        </div>
-        @endif
-        @if(isset($banner->path3))
-        <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path3}}" alt="First slide">
-        </div>
-        @endif
-        @if(isset($banner->path4))
-        <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path4}}" alt="First slide">
-        </div>
-        @endif
-        @if(isset($banner->path5))
-        <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path5}}" alt="First slide">
-        </div>
-        @endif
-    </div>
+                <div class="owl-carousel owl-theme banner-carousel">
+                    @if(isset($banner->path1))
+                        <div class="item">
+                            <img class="d-block w-100" src="../storage/{{ $banner->path1 }}" alt="First slide">
+                        </div>
+                    @endif
+                    @if(isset($banner->path2))
+                        <div class="item">
+                            <img class="d-block w-100" src="../storage/{{ $banner->path2 }}" alt="First slide">
+                        </div>
+                    @endif
+                    @if(isset($banner->path3))
+                        <div class="item">
+                            <img class="d-block w-100" src="../storage/{{ $banner->path3 }}" alt="First slide">
+                        </div>
+                    @endif
+                    @if(isset($banner->path4))
+                        <div class="item">
+                            <img class="d-block w-100" src="../storage/{{ $banner->path4 }}" alt="First slide">
+                        </div>
+                    @endif
+                    @if(isset($banner->path5))
+                        <div class="item">
+                            <img class="d-block w-100" src="../storage/{{ $banner->path5 }}" alt="First slide">
+                        </div>
+                    @endif
+                </div>
+            @else
+                <img class="d-block w-100"
+                    src="{{ URL::to('img/bannner/1770X830BANNER.png') }}" alt="First slide">
+            @endif
+        @endforeach
     @else
-    <img class="d-block w-100" src="{{ URL::to('img/bannner/1770X830BANNER.png') }}" alt="First slide">
-    @endif
-    @endforeach
-    @else
-    <img class="d-block w-100" src="{{ URL::to('img/bannner/1770X830BANNER.png') }}" alt="First slide">
+        <img class="d-block w-100" src="{{ URL::to('img/bannner/1770X830BANNER.png') }}"
+            alt="First slide">
 
 
     @endif
@@ -99,39 +102,40 @@
     <div class="content-tabs">
         <ul class="content-tabs-ul">
             @if(isset($category))
-            <?php $count = 0 ?>
-            @foreach($category as $cat)
+                <?php $count = 0 ?>
+                @foreach($category as $cat)
 
-            @if($count < 4) @if($count===0) <span class="top">
-                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
-                        id="{{$cat->id}}">{{$cat->title}}</a>
-                </li>
-                @else
-                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
-                        id="{{$cat->id}}">{{$cat->title}}</a></li>
+                    <blade
+                        if|(%24count%20%3C%204)%20%40if(%24count%3D%3D%3D0)%20%3Cspan%20class%3D%26%2334%3Btop%26%2334%3B%3E%0D>
+                        <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                                id="{{ $cat->id }}">{{ $cat->title }}</a>
+                        </li>
+                    @else
+                        <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                                id="{{ $cat->id }}">{{ $cat->title }}</a></li>
 
-                @endif
-                @if($count === 3)
-                </span>
-                @endif
+                    @endif
+                    @if($count === 3)
+                        </span>
+                    @endif
                 @endif
                 @if($count >= 4)
-                @if($count === 4)
-                <span class="bottom">
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
-                            id="{{$cat->id}}">{{$cat->title}}</a>
-                    </li>
-                    @else
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
-                            id="{{$cat->id}}">{{$cat->title}}</a></li>
-                    @if($count === (count($category) - 1))
-                </span>
+                    @if($count === 4)
+                        <span class="bottom">
+                            <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                                    id="{{ $cat->id }}">{{ $cat->title }}</a>
+                            </li>
+                        @else
+                            <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                                    id="{{ $cat->id }}">{{ $cat->title }}</a></li>
+                            @if($count === (count($category) - 1))
+                        </span>
+                    @endif
                 @endif
-                @endif
-                @endif
-                <?php $count = $count + 1 ?>
-                @endforeach
-                @endif
+            @endif
+            <?php $count = $count + 1 ?>
+            @endforeach
+            @endif
         </ul>
     </div>
     <div class="card-container container-fluid">
@@ -139,59 +143,62 @@
             <div class="col-md-12">
                 <div id="news-slider10" class="owl-carousel">
 
-                    <span style="display: none;">{{$firstcat = $category->first()}}</span>
+                    <span style="display: none;">{{ $firstcat = $category->first() }}</span>
 
                     @if(isset($firstcat))
-                    @foreach($dish->where('category_id', $firstcat->id) as $dishes)
+                        <blade
+                            foreach|(%24dish-%3Ewhere(%26%2339%3Bcategory_id%26%2339%3B%2C%20%24firstcat-%3Eid)%20as%20%24dishes)%0D>
 
 
-                    <div class="post-slide10">
-                        <div class="custom-card">
-                            <a href="#">
-                                <img class="image_thumb" src="../storage/{{$dishes->image1}}"
-                                    title="voluptate velit esse" alt="voluptate velit esse">
-                                @if($dishes->image2)
+                            <div class="post-slide10">
+                                <div class="custom-card">
+                                    <a href="#">
+                                        <img class="image_thumb" src="../storage/{{ $dishes->image1 }}"
+                                            title="voluptate velit esse" alt="voluptate velit esse">
+                                        @if($dishes->image2)
 
-                                <img class="img-top" src="../storage/{{$dishes->image2}}" title="voluptate velit esse"
-                                    alt="voluptate velit esse">
-                                @endif
-                            </a>
-                            <button class="btn card-img-btn" id="{{$dishes->id}}"><i
-                                    class="fa fa-eye"></i>&nbsp;&nbsp;Quick
-                                View</button>
-                            <div class="card-text">
-                                <a href="#">
-                                    <h4>{{$dishes->name}}</h4>
-                                </a>
+                                            <img class="img-top" src="../storage/{{ $dishes->image2 }}"
+                                                title="voluptate velit esse" alt="voluptate velit esse">
+                                        @endif
+                                    </a>
+                                    <button class="btn card-img-btn" id="{{ $dishes->id }}"><i
+                                            class="fa fa-eye"></i>&nbsp;&nbsp;Quick
+                                        View</button>
+                                    <div class="card-text">
+                                        <a href="#">
+                                            <h4>{{ $dishes->name }}</h4>
+                                        </a>
 
+                                    </div>
+                                    <div class="price">
+                                        <span
+                                            class="price-new">BD&nbsp;{{ number_format($dishes->price, 2) }}</span>
+                                        @if($dishes->before_discount_price)
+                                            <span
+                                                class="price-old">BD&nbsp;{{ number_format($dishes->before_discount_price, 2) }}</span>
+                                        @endif
+                                    </div>
+                                    <div class="button-group">
+                                        <button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist"
+                                            id="{{ $dishes->id }}">
+                                            <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
+                                        </button>
+                                        <button class="btn btn-cart add-to-cart" type="button" title="Add to Cart"
+                                            id="{{ $dishes->id }}">
+                                            <i class="fa fa-shopping-cart"></i> <span
+                                                class="hidden-xs hidden-sm hidden-md">Add
+                                                to
+                                                Cart</span>
+                                        </button>
+                                        <button class="btn btn-compare" title="Add to Compare" id="{{ $dishes->id }}">
+                                            <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
+                                                title="Add to Compare"></span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="price">
-                                <span class="price-new">BD&nbsp;{{number_format($dishes->price, 2)}}</span>
-                                @if($dishes->before_discount_price)
-                                <span
-                                    class="price-old">BD&nbsp;{{number_format($dishes->before_discount_price, 2)}}</span>
-                                @endif
-                            </div>
-                            <div class="button-group">
-                                <button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist"
-                                    id="{{$dishes->id}}">
-                                    <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
-                                </button>
-                                <button class="btn btn-cart add-to-cart" type="button" title="Add to Cart"
-                                    id="{{$dishes->id}}">
-                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add
-                                        to
-                                        Cart</span>
-                                </button>
-                                <button class="btn btn-compare" title="Add to Compare" id="{{$dishes->id}}">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
-                                        title="Add to Compare"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
-                    @endforeach
+                        @endforeach
                     @endif
 
                 </div>
@@ -214,10 +221,14 @@
             </div>
             <div class="category-gallery col-sm-12 col-md-8">
                 <div class="categories-product-carousel owl-carousel owl-theme">
-                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item"></figure>
-                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item"></figure>
-                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item"></figure>
-                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}"
+                            class="item"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}"
+                            class="item"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}"
+                            class="item"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}"
+                            class="item"></figure>
                 </div>
             </div>
         </div>
@@ -276,15 +287,18 @@
 </div>
 <div class="promotion-container">
     <div>
-        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}" alt=""></figure>
+        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}"
+                alt=""></figure>
         <div class="show-off"></div>
     </div>
     <div>
-        <figure class="figure2"><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}" alt=""></figure>
+        <figure class="figure2"><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}"
+                alt=""></figure>
         <div class="show-off"></div>
     </div>
     <div>
-        <figure class="figure3"><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}" alt=""></figure>
+        <figure class="figure3"><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}"
+                alt=""></figure>
         <div class="show-off"></div>
     </div>
 
