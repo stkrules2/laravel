@@ -313,6 +313,7 @@ class HomeController extends Controller
         $address->postcode = $request->input('postcode');
         $address->userid = Auth::User()->id;
         $address->save();
+        return $address->id;
     }
     public function addCart($id)
     {

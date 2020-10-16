@@ -36,7 +36,6 @@ button:hover,
 .form-control:focus,
 label:focus {
     outline: 0px !important;
-    -webkit-appearance: none !important;
     box-shadow: none !important;
 }
 

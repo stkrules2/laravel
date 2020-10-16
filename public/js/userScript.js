@@ -1,4 +1,71 @@
 $(document).ready(function() {
+    $("#existing-payment-address-radio").on("change", function() {
+        if ($("#existing-payment-address-radio").is(":checked")) {
+            $(".alternate").show();
+        } else {
+            $(".alternate").hide();
+        }
+    });
+    $("#button-payment-address").on("click", function() {
+        var address = 0;
+        if (
+            $("#existing_address_id").val() != "" &&
+            $("#existing_address_id").val()
+        ) {
+            if ($("#existing-payment-address-radio").is(":checked")) {
+                address =
+                    $("#optional-fullname").val() +
+                    ", " +
+                    $("#optional-custom-address").val() +
+                    ", " +
+                    $("#optional-code").val();
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        )
+                    },
+                    url: "/user/add/address",
+                    type: "post",
+                    data: {
+                        fullname: $("#optional-fullname").val(),
+                        address: $("#optional-custom-address").val(),
+                        postcode: $("#optional-code").val()
+                    },
+                    success: function(response) {
+                        address = response;
+                    }
+                });
+            }
+        } else {
+            address =
+                $("#fullname").val() +
+                ", " +
+                $("#custom-address").val() +
+                ", " +
+                $("#custom-address").val();
+            console.log("address");
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                url: "/user/add/address",
+                type: "post",
+                data: {
+                    fullname: $("#fullname").val(),
+                    address: $("#custom-address").val(),
+                    postcode: $("#code").val()
+                },
+                success: function(response) {
+                    address = response;
+                    console.log(address);
+                }
+            });
+        }
+        $("#collapse2").removeClass("show");
+        $(".panel2 i").removeClass("fa-caret-down");
+        $(".panel2 i").addClass("fa-check-circle");
+    });
     $("#newsletter-modal").modal("show");
     const $dropdown = $(".dropdown");
     const $dropdownToggle = $(".dropdown-toggle");
@@ -706,6 +773,7 @@ $(document).ready(function() {
         }
     });
 });
+
 function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
