@@ -122,7 +122,7 @@
                                         @endif
 
                                     </a>
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="/order">
                                         <i class="fa fa-truck" aria-hidden="true"></i>My Orders
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

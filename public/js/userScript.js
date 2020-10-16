@@ -66,7 +66,10 @@ $(document).ready(function() {
         $(".panel2 i").removeClass("fa-caret-down");
         $(".panel2 i").addClass("fa-check-circle");
     });
-    $("#newsletter-modal").modal("show");
+    if ($(window).width() > 848) {
+        console.log($(window).width());
+        $("#newsletter-modal").modal("show");
+    }
     const $dropdown = $(".dropdown");
     const $dropdownToggle = $(".dropdown-toggle");
     const $dropdownMenu = $(".dropdown-menu");
