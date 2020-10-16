@@ -9,6 +9,7 @@ $(document).ready(function () {
     $("#button-payment-address").on('click', function () {
         var address = 0;
         if ($('#existing_address_id').val() != '' && $('#existing_address_id').val()) {
+
             if ($('#existing-payment-address-radio').is(":checked")) {
                 address = $('#optional-fullname').val() + ", " + $('#optional-custom-address').val() + ", " + $('#optional-code').val();
                 $.ajax({
@@ -24,13 +25,11 @@ $(document).ready(function () {
                     },
                     success: function (response) {
                         address = response;
-                        $('#collapse2').removeClass('show');
-                        $('#collapse2').css('pointer-events', 'none');
-                        $('.panel2 i').removeClass('fa-caret-down');
-                        $('.panel2 i').addClass('fa-check-circle');
+
                     }
                 })
             }
+
 
         } else {
             address = $('#fullname').val() + ", " + $('#custom-address').val() + ", " + $('#custom-address').val();
@@ -53,6 +52,9 @@ $(document).ready(function () {
             })
 
         }
+        $('#collapse2').removeClass('show');
+        $('.panel2 i').removeClass('fa-caret-down');
+        $('.panel2 i').addClass('fa-check-circle');
 
 
     })
