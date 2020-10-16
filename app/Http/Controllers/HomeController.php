@@ -19,22 +19,7 @@ use App\Newsletter;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        $banner = Banner::get();
-        $category = Category::get();
-        $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
-        $wish = Wishlist::where('userid', Auth::user()->id)->get();
 
-        $total = 0;
-        foreach ($cart as $userid) {
-
-            $temp = $dish->where('id', $userid['dishid'])->pluck('price');
-            $total = $total + ($temp[0] * $userid['countdish']);
-        }
-        return view('home', ['banner' => $banner, 'category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish]);
-    }
     public function setting()
     {
         $category = Category::get();

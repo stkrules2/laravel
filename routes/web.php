@@ -43,7 +43,8 @@ Route::get('/admin/users', 'AdminController@users');
 Route::get('/admin/profile', 'AdminController@profile');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('', 'HomePage@index')->name('home');
+Route::get('/home', 'HomePage@index')->name('home');
 Route::get('/setting', 'HomeController@setting')->name('setting');
 Route::get('/account', 'HomeController@account')->name('my-account');
 Route::get('/password', 'HomeController@password')->name('password');
