@@ -187,6 +187,7 @@ class HomeController extends Controller
         $dish = Dish::get();
         $cart = Cart::where('userid', Auth::user()->id)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
+        $address = Address::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
 
@@ -194,8 +195,9 @@ class HomeController extends Controller
             $total = $total + ($temp[0] * $userid['countdish']);
         }
 
-        return view('checkout', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish]);
+        return view('checkout', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish, 'addresses' => $address]);
     }
+
     public function transaction()
     {
         $category = Category::get();

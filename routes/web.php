@@ -68,3 +68,4 @@ Route::get('/user/add/wishlist{id}', 'HomeController@addWishlist')->name('addWis
 Route::get('/user/remove/wishlist{id}', 'HomeController@removeWishlist')->name('removeWishlist');
 Route::post('/user/add/email', 'HomeController@emailNewsletter')->name('emailNewsletter');
 Route::post('/user/change/newsletter/email', 'HomeController@changeNewsletterEmail')->name('changeNewsletterEmail');
+Route::post('/user/checkout', 'HomeController@CheckoutOrder')->name('CheckoutOrder');
