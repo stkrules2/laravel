@@ -210,22 +210,22 @@
                 <div class="categories-product-carousel owl-carousel owl-theme">
                     @if(isset($history))
                     @if($history->path1)
-                    <figure><img src="../storage{{$history->path1}}" class="item" loading="lazy"></figure>
+                    <figure><img src="../storage/{{$history->path1}}" class="item" loading="lazy"></figure>
                     @else
                     <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item" loading="lazy"></figure>
                     @endif
                     @if($history->path2)
-                    <figure><img src="../storage{{$history->path2}}" class="item" loading="lazy"></figure>
+                    <figure><img src="../storage/{{$history->path2}}" class="item" loading="lazy"></figure>
                     @else
                     <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item" loading="lazy"></figure>
                     @endif
                     @if($history->path3)
-                    <figure><img src="../storage{{$history->path3}}" class="item" loading="lazy"></figure>
+                    <figure><img src="../storage/{{$history->path3}}" class="item" loading="lazy"></figure>
                     @else
                     <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item" loading="lazy"></figure>
                     @endif
                     @if($history->path4)
-                    <figure><img src="../storage{{$history->path4}}" class="item" loading="lazy"></figure>
+                    <figure><img src="../storage/{{$history->path4}}" class="item" loading="lazy"></figure>
                     @else
                     <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item" loading="lazy"></figure>
                     @endif
