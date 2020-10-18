@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="{{ URL::to('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/styles.css') }}">
-    <style>
-
-    </style>
+    
 </head>
 
 <body>

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('#existing-payment-address-radio').on('change', function () {
         if ($('#existing-payment-address-radio').is(":checked")) {
             $(".alternate").show();
@@ -7,7 +8,7 @@ $(document).ready(function () {
         }
     });
     $("#button-payment-address").on('click', function () {
-        var address = 0;
+        address = $('#existing_address_id ').val();
         if ($('#existing_address_id').val() != '' && $('#existing_address_id').val()) {
 
             if ($('#existing-payment-address-radio').is(":checked")) {
@@ -55,9 +56,92 @@ $(document).ready(function () {
         $('#collapse2').removeClass('show');
         $('.panel2 i').removeClass('fa-caret-down');
         $('.panel2 i').addClass('fa-check-circle');
+        $('.collapse3').addClass('show');
+        $('.panel3').css('pointer-events', 'auto')
 
 
-    })
+    });
+    $("input[name=paymentRadios]").on('change', function () {
+        if ($(this).val() == 'Online Payment') {
+            $('.payment-method').show();
+        } else {
+            $('.payment-method').hide();
+        }
+    });
+    $(function () {
+        $('form.require-validation').bind('submit', function (e) {
+            var $form = $(e.target).closest('form'),
+                inputSelector = ['input[type=email]', 'input[type=password]',
+                    'input[type=text]', 'input[type=file]',
+                    'textarea'
+                ].join(', '),
+                $inputs = $form.find('.required').find(inputSelector),
+                $errorMessage = $form.find('div.error'),
+                valid = true;
+
+            $errorMessage.addClass('hide');
+            $('.has-error').removeClass('has-error');
+            $inputs.each(function (i, el) {
+                var $input = $(el);
+                if ($input.val() === '') {
+                    $input.parent().addClass('has-error');
+                    $errorMessage.removeClass('hide');
+                    e.preventDefault(); // cancel on first error
+                }
+            });
+        });
+    });
+    $('#payment-form').on('submit', function (e) {
+        if (!$('#payment-form').data('cc-on-file')) {
+            e.preventDefault();
+            Stripe.setPublishableKey($('#payment-form').data('stripe-publishable-key'));
+            Stripe.createToken({
+                number: $('.card-number').val(),
+                cvc: $('.card-cvc').val(),
+                exp_month: $('.card-expiry-month').val(),
+                exp_year: $('.card-expiry-year').val()
+            }, stripeResponseHandler);
+        }
+    });
+
+    function stripeResponseHandler(status, response) {
+        price = $('.price').val();
+        console.log(price);
+        if (response.error) {
+
+            console.log(address);
+            $('.error')
+                .show()
+                .find('.alert')
+                .text(response.error.message);
+        } else {
+            // token contains id, last4, and card type
+            var token = response['id'];
+
+            // insert the token into the form so it gets submitted to the server
+            $('#payment-form').find('input[type=text]').empty();
+
+            $('#payment-form').append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+            /*$.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: "/order/payment",
+                type: "post",
+                data: {
+                    number: $('.card-number').val(),
+                    cvc: $('.card-cvc').val(),
+                    exp_month: $('.card-expiry-month').val(),
+                    exp_year: $('.card-expiry-year').val(),
+                    address: address,
+                    price: price
+                },
+                success: function (response) {
+                   
+                }
+            })*/
+        }
+    }
     $("#newsletter-modal").modal("show");
     const $dropdown = $(".dropdown");
     const $dropdownToggle = $(".dropdown-toggle");
