@@ -9,6 +9,7 @@ $(document).ready(function() {
             $(".alternate").hide();
         }
     });
+
     $("#button-payment-address").on("click", function() {
         var address = 0;
         if (
@@ -173,6 +174,7 @@ $(document).ready(function() {
             .parent()
             .addClass("active");
         var categoryid = $(this).attr("id");
+        var newCat = categoryid.replace("categoryScroll", "");
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
@@ -180,7 +182,7 @@ $(document).ready(function() {
             url: "/dishes/show",
             type: "post",
             data: {
-                categoryid: categoryid
+                categoryid: newCat
             },
             success: function(response) {
                 // $('#news-slider10').empty();
@@ -889,4 +891,21 @@ $(document).ready(function() {
 function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
+}
+
+function scrollLink(e) {
+    e.preventDefault();
+    var hash = e.target.hash;
+    console.log(hash);
+    $("html, body").animate(
+        {
+            scrollTop: $(hash).offset().top
+        },
+        800,
+        function() {
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+            $(hash).click();
+        }
+    );
 }

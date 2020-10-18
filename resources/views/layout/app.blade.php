@@ -49,7 +49,7 @@
                         @break
                         @endif
                         <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false"> {{$cat->title}} </a>
+                            <a class="dropdown-toggle" href="#categoryScroll{{$cat->id}}" onclick="scrollLink(event)" data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false"> {{$cat->title}} </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                                 @if(isset($dish))
                                 @foreach($dish as $di)
@@ -218,46 +218,42 @@
         <section id="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-3 col-md-3">
-                        <h5>Quick links</h5>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <h5>Categories</h5>
                         <ul class="list-unstyled quick-links">
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Home</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">About</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">FAQ</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Get Started</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Videos</a></li>
+                            @if(isset($category))
+                            <?php $count = 0; ?>
+
+                            @foreach($category as $cat3)
+                            @if($count == 5)
+                            @break
+                            @endif
+                            <li><a href="#categoryScroll{{$cat3->id}}" onclick="scrollLink(event)">{{$cat3->title}}</a></li>
+                            <?php $count = $count + 1; ?>
+                            @endforeach
+                            @endif
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-3 col-md-3">
-                        <h5>Quick links</h5>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <h5>Users</h5>
                         <ul class="list-unstyled quick-links">
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Home</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">About</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">FAQ</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Get Started</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Videos</a></li>
+                            <li><a href="/mycart">Manage Cart</a></li>
+                            <li><a href="/wishlist">Wishlit</a></li>
+                            <li><a href="/order">Orders</a></li>
+                            <li><a href="/transaction">Your Transactions</a></li>
+                            <li><a href="/newsletter">Newsletter</a></li>
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-3 col-md-3">
-                        <h5>Quick links</h5>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <h5>Kabab House</h5>
                         <ul class="list-unstyled quick-links">
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Home</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">About</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">FAQ</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Get Started</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Videos</a></li>
+                            <li><a href="/setting">Settings</a></li>
+                            <li><a href="#aboutus" onclick="scrollLink(event)">About Us</a></li>
+                            <li><a href="/contact">Contact Us</a></li>
+
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-3 col-md-3">
-                        <h5>Quick links</h5>
-                        <ul class="list-unstyled quick-links">
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Home</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">About</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">FAQ</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Get Started</a></li>
-                            <li><a href="https://www.fiverr.com/share/qb8D02">Videos</a></li>
-                        </ul>
-                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">

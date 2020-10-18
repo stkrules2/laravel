@@ -50,36 +50,36 @@
     <div class="owl-carousel owl-theme banner-carousel">
         @if(isset($banner->path1))
         <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path1}}" alt="First slide">
+            <img class="d-block w-100" src="../storage/{{$banner->path1}}" alt="First slide" loading="lazy">
         </div>
         @endif
         @if(isset($banner->path2))
         <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path2}}" alt="First slide">
+            <img class="d-block w-100" src="../storage/{{$banner->path2}}" alt="First slide" loading="lazy">
         </div>
         @endif
         @if(isset($banner->path3))
         <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path3}}" alt="First slide">
+            <img class="d-block w-100" src="../storage/{{$banner->path3}}" alt="First slide" loading="lazy">
         </div>
         @endif
         @if(isset($banner->path4))
         <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path4}}" alt="First slide">
+            <img class="d-block w-100" src="../storage/{{$banner->path4}}" alt="First slide" loading="lazy">
         </div>
         @endif
         @if(isset($banner->path5))
         <div class="item">
-            <img class="d-block w-100" src="../storage/{{$banner->path5}}" alt="First slide">
+            <img class="d-block w-100" src="../storage/{{$banner->path5}}" alt="First slide" loading="lazy">
         </div>
         @endif
     </div>
     @else
-    <img class="d-block w-100" src="{{ URL::to('img/bannner/1770X830BANNER.png') }}" alt="First slide">
+    <img class="d-block w-100" src="{{ URL::to('img/bannner/1770X830BANNER.png') }}" alt="First slide" loading="lazy">
     @endif
     @endforeach
     @else
-    <img class="d-block w-100" src="{{ URL::to('img/bannner/1770X830BANNER.png') }}" alt="First slide">
+    <img class="d-block w-100" src="{{ URL::to('img/bannner/1770X830BANNER.png') }}" alt="First slide" loading="lazy">
 
 
     @endif
@@ -102,10 +102,10 @@
             @foreach($category as $cat)
 
             @if($count < 4) @if($count===0) <span class="top">
-                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="{{$cat->id}}">{{$cat->title}}</a>
+                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="categoryScroll{{$cat->id}}">{{$cat->title}}</a>
                 </li>
                 @else
-                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="{{$cat->id}}">{{$cat->title}}</a></li>
+                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="categoryScroll{{$cat->id}}">{{$cat->title}}</a></li>
 
                 @endif
                 @if($count === 3)
@@ -115,10 +115,10 @@
                 @if($count >= 4)
                 @if($count === 4)
                 <span class="bottom">
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="{{$cat->id}}">{{$cat->title}}</a>
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="categoryScroll{{$cat->id}}">{{$cat->title}}</a>
                     </li>
                     @else
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="{{$cat->id}}">{{$cat->title}}</a></li>
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="categoryScroll{{$cat->id}}">{{$cat->title}}</a></li>
                     @if($count === (count($category) - 1))
                 </span>
                 @endif
@@ -143,10 +143,10 @@
                     <div class="post-slide10">
                         <div class="custom-card">
                             <a href="#">
-                                <img class="image_thumb" src="../storage/{{$dishes->image1}}" title="{{$dishes->name}}" alt="{{$dishes->name}}">
+                                <img class="image_thumb" src="../storage/{{$dishes->image1}}" title="{{$dishes->name}}" alt="{{$dishes->name}}" loading="lazy">
                                 @if($dishes->image2)
 
-                                <img class="img-top" src="../storage/{{$dishes->image2}}" title="{{$dishes->name}}" alt="{{$dishes->name}}">
+                                <img class="img-top" src="../storage/{{$dishes->image2}}" title="{{$dishes->name}}" alt="{{$dishes->name}}" loading="lazy">
                                 @endif
                             </a>
                             <button class="btn card-img-btn" id="{{$dishes->id}}"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
@@ -189,7 +189,7 @@
     </div>
 
 </div>
-<div class="top-categories">
+<div class="top-categories" id="aboutus">
     <div class="container">
         <div class="row">
             <div class="category-text col-sm-12 col-md-4">
@@ -210,30 +210,30 @@
                 <div class="categories-product-carousel owl-carousel owl-theme">
                     @if(isset($history))
                     @if($history->path1)
-                    <figure><img src="../storage{{$history->path1}}" class="item"></figure>
+                    <figure><img src="../storage{{$history->path1}}" class="item" loading="lazy"></figure>
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item" loading="lazy"></figure>
                     @endif
                     @if($history->path2)
-                    <figure><img src="../storage{{$history->path2}}" class="item"></figure>
+                    <figure><img src="../storage{{$history->path2}}" class="item" loading="lazy"></figure>
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item" loading="lazy"></figure>
                     @endif
                     @if($history->path3)
-                    <figure><img src="../storage{{$history->path3}}" class="item"></figure>
+                    <figure><img src="../storage{{$history->path3}}" class="item" loading="lazy"></figure>
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item" loading="lazy"></figure>
                     @endif
                     @if($history->path4)
-                    <figure><img src="../storage{{$history->path4}}" class="item"></figure>
+                    <figure><img src="../storage{{$history->path4}}" class="item" loading="lazy"></figure>
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item" loading="lazy"></figure>
                     @endif
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item"></figure>
-                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item"></figure>
-                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item"></figure>
-                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item" loading="lazy"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item" loading="lazy"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item" loading="lazy"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item" loading="lazy"></figure>
                     @endif
                 </div>
             </div>
@@ -258,9 +258,9 @@
                 @if(isset($special))
                 @foreach($special as $sp)
                 <div class="custom-card item"><a href="#">
-                        <img class="image_thumb" src="../storage/{{$sp->image1}}" title="{{$sp->name}}" alt="{{$dishes->name}}">
+                        <img class="image_thumb" src="../storage/{{$sp->image1}}" title="{{$sp->name}}" alt="{{$dishes->name}}" loading="lazy">
                         @if($sp->image2)
-                        <img class="img-top" src="../storage/{{$sp->image2}}" title="{{$sp->name}}" alt="{{$sp->name}}">
+                        <img class="img-top" src="../storage/{{$sp->image2}}" title="{{$sp->name}}" alt="{{$sp->name}}" loading="lazy">
                         @endif
                     </a>
                     <button class="btn card-img-btn" id="{{$dishes->id}}"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
@@ -302,34 +302,34 @@
     @if(isset($promotion))
     @if(isset($promotion->path1))
     <div>
-        <figure class="figure1"><img src="../storage/{{$promotion->path1}}"></figure>
+        <figure class="figure1"><img src="../storage/{{$promotion->path1}}" loading="lazy"></figure>
         <div class="show-off"></div>
     </div>
     @else
     <div>
-        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}"></figure>
+        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}" loading="lazy"></figure>
         <div class="show-off"></div>
     </div>
     @endif
     @if(isset($promotion->path2))
     <div>
-        <figure class="figure1"><img src="../storage/{{$promotion->path2}}"></figure>
+        <figure class="figure1"><img src="../storage/{{$promotion->path2}}" loading="lazy"></figure>
         <div class="show-off"></div>
     </div>
     @else
     <div>
-        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}"></figure>
+        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}" loading="lazy"></figure>
         <div class="show-off"></div>
     </div>
     @endif
     @if(isset($promotion->path3))
     <div>
-        <figure class="figure1"><img src="../storage/{{$promotion->path3}}"></figure>
+        <figure class="figure1"><img src="../storage/{{$promotion->path3}}" loading="lazy"></figure>
         <div class="show-off"></div>
     </div>
     @else
     <div>
-        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}"></figure>
+        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}" loading="lazy"></figure>
         <div class="show-off"></div>
     </div>
     @endif
@@ -337,15 +337,15 @@
 
     @else
     <div>
-        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}" alt=""></figure>
+        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}" alt="" loading="lazy"></figure>
         <div class="show-off"></div>
     </div>
     <div>
-        <figure class="figure2"><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}" alt=""></figure>
+        <figure class="figure2"><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}" alt="" loading="lazy"></figure>
         <div class="show-off"></div>
     </div>
     <div>
-        <figure class="figure3"><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}" alt=""></figure>
+        <figure class="figure3"><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}" alt="" loading="lazy"></figure>
         <div class="show-off"></div>
     </div>
     @endif
