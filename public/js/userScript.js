@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    $(window).on("load", function() {
+        $("#loading").hide();
+    });
     $("#existing-payment-address-radio").on("change", function() {
         if ($("#existing-payment-address-radio").is(":checked")) {
             $(".alternate").show();
@@ -44,7 +47,6 @@ $(document).ready(function() {
                 $("#custom-address").val() +
                 ", " +
                 $("#custom-address").val();
-            console.log("address");
             $.ajax({
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
@@ -58,7 +60,6 @@ $(document).ready(function() {
                 },
                 success: function(response) {
                     address = response;
-                    console.log(address);
                 }
             });
         }
@@ -67,7 +68,6 @@ $(document).ready(function() {
         $(".panel2 i").addClass("fa-check-circle");
     });
     if ($(window).width() > 848) {
-        console.log($(window).width());
         $("#newsletter-modal").modal("show");
     }
     const $dropdown = $(".dropdown");
@@ -213,11 +213,13 @@ $(document).ready(function() {
                                         '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
                                         response[i].name +
                                         '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                        response[i].price.toFixed(2) +
+                                        parseFloat(response[i].price).toFixed(
+                                            3
+                                        ) +
                                         '</span><span class="price-old">BD&nbsp;' +
-                                        response[
-                                            i
-                                        ].before_discount_price.toFixed(2) +
+                                        parseFloat(
+                                            response[i].before_discount_price
+                                        ).toFixed(3) +
                                         '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                         response[i].id +
                                         '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
@@ -248,7 +250,9 @@ $(document).ready(function() {
                                         '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
                                         response[i].name +
                                         '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                        response[i].price.toFixed(2) +
+                                        parseFloat(response[i].price).toFixed(
+                                            3
+                                        ) +
                                         '</span></div><div class="button-group"><button class="btn btn-wishlist add-top-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                         response[i].id +
                                         '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
@@ -275,11 +279,13 @@ $(document).ready(function() {
                                         '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
                                         response[i].name +
                                         '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                        response[i].price.toFixed(2) +
+                                        parseFloat(response[i].price).toFixed(
+                                            3
+                                        ) +
                                         '</span><span class="price-old">BD&nbsp;' +
-                                        response[
-                                            i
-                                        ].before_discount_price.toFixed(2) +
+                                        parseFloat(
+                                            response[i].before_discount_price
+                                        ).toFixed(3) +
                                         '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                         response[i].id +
                                         '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
@@ -304,7 +310,9 @@ $(document).ready(function() {
                                         '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
                                         response[i].name +
                                         '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                        response[i].price.toFixed(2) +
+                                        parseFloat(response[i].price).toFixed(
+                                            3
+                                        ) +
                                         '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                         response[i].id +
                                         '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
@@ -534,6 +542,41 @@ $(document).ready(function() {
             });
         }
     );
+    $(document).on(
+        "click",
+        ".carousel2 .custom-card .button-group .btn.btn-wishlist.add-to-wishlist",
+        function(e) {
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                url: "/user/add/wishlist" + e.currentTarget.id + "",
+                type: "get",
+                success: function(response) {
+                    if (response) {
+                        swal(
+                            "Success!",
+                            "Dish is added to your wishlist!",
+                            "success"
+                        );
+                    } else {
+                        swal(
+                            "Error occurred!",
+                            "This dish might already be in your wishlist or you need to login!",
+                            "error"
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    swal(
+                        "Error occurred!",
+                        "This dish might already be in your wishlist!",
+                        "error"
+                    );
+                }
+            });
+        }
+    );
 
     $("#wishlist .btn-primary").on("click", function(e) {
         $.ajax({
@@ -559,7 +602,9 @@ $(document).ready(function() {
                                     '</a></div><div class="cart-number">x <br>' +
                                     response[0][i].countdish +
                                     ' </div><div class="cart-price">BD' +
-                                    response[1][j].price.toFixed(2) +
+                                    parseFloat(response[1][j].price).toFixed(
+                                        3
+                                    ) +
                                     '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
                                     response[0][i].id +
                                     '"></i></div></div></li>'
@@ -571,7 +616,7 @@ $(document).ready(function() {
                 }
                 $(".cart-total-price .total b").empty();
                 $(".cart-total-price .total b").append(
-                    "BD " + response[2].toFixed(2)
+                    "BD " + parseFloat(response[2]).toFixed(3)
                 );
                 $(".shopping-cart .empty-cart-list").remove();
                 if (response[0].length == 1) {
@@ -579,7 +624,7 @@ $(document).ready(function() {
                     $(".cart-footer").remove();
                     $(".shopping-cart").append(
                         ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
-                            response[2].toFixed(2) +
+                            parseFloat(response[2]).toFixed(3) +
                             '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
                     );
                 }
@@ -590,7 +635,7 @@ $(document).ready(function() {
 
     $(document).on(
         "click",
-        ".post-slide10 .custom-card .button-group .btn.btn-cart.add-to-cart",
+        ".carousel2 .custom-card .button-group .btn.btn-cart.add-to-cart",
         function(e) {
             $.ajax({
                 headers: {
@@ -599,7 +644,6 @@ $(document).ready(function() {
                 url: "/user/add/cart" + e.currentTarget.id + "",
                 type: "get",
                 success: function(response) {
-                    console.log(response);
                     $(".shopping-cart span").empty();
                     for (var i = 0; i < response[0].length; i++) {
                         for (var j = 0; j < response[1].length; j++) {
@@ -616,7 +660,9 @@ $(document).ready(function() {
                                         '</a></div><div class="cart-number">x <br>' +
                                         response[0][i].countdish +
                                         ' </div><div class="cart-price">BD' +
-                                        response[1][j].price.toFixed(2) +
+                                        parseFloat(
+                                            response[1][j].price
+                                        ).toFixed(3) +
                                         '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
                                         response[0][i].id +
                                         '"></i></div></div></li>'
@@ -628,7 +674,7 @@ $(document).ready(function() {
                     }
                     $(".cart-total-price .total b").empty();
                     $(".cart-total-price .total b").append(
-                        "BD " + response[2].toFixed(2)
+                        "BD " + parseFloat(response[2]).toFixed(3)
                     );
                     $(".shopping-cart .empty-cart-list").remove();
                     if (response[0].length == 1) {
@@ -636,7 +682,7 @@ $(document).ready(function() {
                         $(".cart-footer").remove();
                         $(".shopping-cart").append(
                             ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
-                                response[2].toFixed(2) +
+                                parseFloat(response[2]).toFixed(3) +
                                 '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
                         );
                     }
@@ -648,6 +694,68 @@ $(document).ready(function() {
             });
         }
     );
+    $(document).on(
+        "click",
+        ".post-slide10 .custom-card .button-group .btn.btn-cart.add-to-cart",
+        function(e) {
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                url: "/user/add/cart" + e.currentTarget.id + "",
+                type: "get",
+                success: function(response) {
+                    $(".shopping-cart span").empty();
+                    for (var i = 0; i < response[0].length; i++) {
+                        for (var j = 0; j < response[1].length; j++) {
+                            if (response[0][i].dishid == response[1][j].id) {
+                                $(".shopping-cart span").append(
+                                    '<li class="cart-product"><div class="cart-list"><div class="cart-img"><img src="../storage/' +
+                                        response[1][j].image1 +
+                                        '" alt="' +
+                                        response[1][j].name +
+                                        '" title="' +
+                                        response[1][j].name +
+                                        '"></div><div class="cart-name"><a href="#">' +
+                                        response[1][j].name +
+                                        '</a></div><div class="cart-number">x <br>' +
+                                        response[0][i].countdish +
+                                        ' </div><div class="cart-price">BD' +
+                                        parseFloat(
+                                            response[1][j].price
+                                        ).toFixed(3) +
+                                        '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
+                                        response[0][i].id +
+                                        '"></i></div></div></li>'
+                                );
+                                $("#lblCartCount").empty();
+                                $("#lblCartCount").text(response[0].length);
+                            }
+                        }
+                    }
+                    $(".cart-total-price .total b").empty();
+                    $(".cart-total-price .total b").append(
+                        "BD " + parseFloat(response[2]).toFixed(3)
+                    );
+                    $(".shopping-cart .empty-cart-list").remove();
+                    if (response[0].length == 1) {
+                        $(".shopping-cart span").css("display", "inline-block");
+                        $(".cart-footer").remove();
+                        $(".shopping-cart").append(
+                            ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
+                                parseFloat(response[2]).toFixed(3) +
+                                '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
+                        );
+                    }
+                    $.notify("Added to Cart", "success");
+                },
+                error: function(xhr) {
+                    swal("Error!", "You need to login first!", "error");
+                }
+            });
+        }
+    );
+
     $(".shopping-cart").on("click", ".cart-remove i", function(e) {
         $.ajax({
             headers: {
@@ -672,7 +780,9 @@ $(document).ready(function() {
                                     '</a></div><div class="cart-number">x <br> ' +
                                     response[0][i].countdish +
                                     ' </div><div class="cart-price">' +
-                                    response[1][j].price.toFixed(2) +
+                                    parseFloat(response[1][j].price).toFixed(
+                                        3
+                                    ) +
                                     '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
                                     response[0][i].id +
                                     '"></i></div></div></li>'
@@ -684,7 +794,7 @@ $(document).ready(function() {
                 }
                 $(".cart-total-price .total b").empty();
                 $(".cart-total-price .total b").append(
-                    "BD " + response[2].toFixed(2)
+                    "BD " + parseFloat(response[2]).toFixed(3)
                 );
                 if (response[0].length == 0) {
                     $(".shopping-cart .cart-footer").remove();
@@ -700,7 +810,6 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".refresh-cart", function(e) {
-        console.log();
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")

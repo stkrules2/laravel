@@ -214,12 +214,7 @@ class HomeController extends Controller
 
         return view('newsletter', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish, 'news' => $news]);
     }
-    public function showDishes(Request $request)
-    {
-        $id = $request->categoryid;
-        $dish = Dish::where('category_id', $id)->get();
-        return $dish;
-    }
+
     public function useredit(Request $request)
     {
         if ($request->telephone != null) {

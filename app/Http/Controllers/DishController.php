@@ -76,6 +76,7 @@ class DishController extends Controller
     }
     public function editform(Request $request)
     {
+
         $dish = Dish::find($request->input('edit-dish-id'));
         $request->validate([
             'edit-dish-name' => 'required | min:3 | max: 30',
@@ -123,17 +124,17 @@ class DishController extends Controller
             }
         }
         $dish->name = $request->input('edit-dish-name');
-        if ($request->input('edit-dish-availability') == 'Available' || $request->input('edit-dish-availability') == 'available') {
+        if ($request->input('edit-dish-availablity') == 'Available' || $request->input('edit-dish-availablity') == 'available') {
             $dish->availibility = 1;
         } else {
             $dish->availibility = 0;
         }
-        if ($request->input('edit-dish-sale') == 'Sale' || $request->input('edit-dish-availability') == 'sale') {
+        if ($request->input('edit-dish-sale') == 'Sale' || $request->input('edit-dish-sale') == 'sale') {
             $dish->sale = 1;
         } else {
             $dish->sale = 0;
         }
-        if ($request->input('edit-dish-special') == 'Special Product' || $request->input('edit-dish-availability') == 'special product') {
+        if ($request->input('edit-dish-special') == 'Special' || $request->input('edit-dish-special') == 'special') {
             $dish->special_product = 1;
         } else {
             $dish->special_product = 0;
@@ -141,6 +142,7 @@ class DishController extends Controller
         $dish->price = $request->input('edit-dish-price');
         $dish->before_discount_price = $request->input('edit-dish-discount');
         $dish->description = $request->input('edit-dish-description');
+
         $dish->save();
         return redirect('admin/menu');
     }

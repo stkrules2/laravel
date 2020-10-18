@@ -21,7 +21,9 @@
 </head>
 
 <body>
-
+    <div id="loading">
+        <img id="loading-image" src="{{ URL::to('img/loader/rings.gif')}}" alt="Loading..." />
+    </div>
     <div class="page">
 
         <header>
@@ -84,12 +86,7 @@
                     <div class="icons">
                         <span class="icons-span">
 
-                            <span class="dropdown">
-                                <i class="fa fa-search dropdown-toggle" class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false" aria-hidden="true"></i>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                    check
-                                </div>
-                            </span>
+
                             <span class="dropdown">
                                 <i class="fa fa-user dropdown-toggle" class="dropdown-toggle" href="#" data-toggle="dropdown" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false" aria-hidden="true"></i>
                                 <div class="dropdown-menu user" aria-labelledby="navbarDropdown2">
@@ -157,7 +154,7 @@
                                                 </div>
                                                 <div class="cart-number">x <br> {{$carts->countdish}} </div>
                                                 <div class="cart-price">
-                                                    BD{{number_format($dish->where('id', $carts->dishid)->first()->price, 2)}}
+                                                    BD{{number_format($dish->where('id', $carts->dishid)->first()->price, 3)}}
                                                 </div>
                                                 <div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="{{$carts->id}}"></i>
                                                 </div>
@@ -170,7 +167,7 @@
                                     <div class="cart-footer">
                                         <div class="cart-total-price">
 
-                                            <div class="total">Total <b>BD {{number_format($total, 2)}}</b></div>
+                                            <div class="total">Total <b>BD {{number_format($total, 3)}}</b></div>
                                         </div>
                                         <div class="dropdown-divider"></div>
                                         <p class="text-right"><a href="/mycart" class="btn"><strong>
