@@ -53,11 +53,13 @@ Route::get('/address', 'HomeController@address')->name('address');
 Route::get('/new/address', 'HomeController@new_address')->name('new_address');
 Route::get('/wishlist', 'HomeController@wishlist')->name('wishlist');
 Route::get('/order', 'HomeController@order')->name('order');
+Route::post('/checkout/payment', 'HomeController@payment')->name('checkout.payment');
 Route::get('/mycart', 'HomeController@mycart')->name('mycart');
 Route::get('/checkout', 'HomeController@checkout')->name('checkout');
 Route::get('/transaction', 'HomeController@transaction')->name('transaction');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::post('/user/edit', 'HomeController@useredit')->name('useredit');
+
 Route::post('/user/change/password', 'HomeController@changePassword')->name('changepassword');
 Route::post('/user/add/address', 'HomeController@addAddress')->name('addaddress');
 Route::get('/user/delete/address{id}', 'HomeController@deleteAddress')->name('deleteAddress');
