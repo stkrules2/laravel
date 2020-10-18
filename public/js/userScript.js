@@ -1,5 +1,7 @@
 $(document).ready(function () {
-
+    $(window).on("load", function () {
+        $("#loading").hide();
+    });
     $('#existing-payment-address-radio').on('change', function () {
         if ($('#existing-payment-address-radio').is(":checked")) {
             $(".alternate").show();
@@ -61,6 +63,7 @@ $(document).ready(function () {
 
 
     });
+
     $("input[name=paymentRadios]").on('change', function () {
         if ($(this).val() == 'Online Payment') {
             $('.payment-method').show();
@@ -68,6 +71,7 @@ $(document).ready(function () {
             $('.payment-method').hide();
         }
     });
+
     $(function () {
         $('form.require-validation').bind('submit', function (e) {
             var $form = $(e.target).closest('form'),
@@ -142,7 +146,9 @@ $(document).ready(function () {
             })*/
         }
     }
-    $("#newsletter-modal").modal("show");
+    if ($(window).width() > 848) {
+        $("#newsletter-modal").modal("show");
+    }
     const $dropdown = $(".dropdown");
     const $dropdownToggle = $(".dropdown-toggle");
     const $dropdownMenu = $(".dropdown-menu");
@@ -177,7 +183,7 @@ $(document).ready(function () {
         margin: 0,
         dots: false,
         autoplay: true,
-        autoplayTimeout: 4000,
+        autoplayTimeout: 4000
     });
 
     $(".categories-product-carousel").owlCarousel({
@@ -192,7 +198,7 @@ $(document).ready(function () {
         autoWidth: true,
         dots: false,
         autoplay: true,
-        autoplayTimeout: 4000,
+        autoplayTimeout: 4000
     });
     $(".carousel2").owlCarousel({
         items: 4,
@@ -206,7 +212,7 @@ $(document).ready(function () {
         margin: 20,
         dots: false,
         autoplay: true,
-        autoplayTimeout: 4000,
+        autoplayTimeout: 4000
     });
 
     $(window).scroll(function () {
@@ -229,29 +235,32 @@ $(document).ready(function () {
         dots: false,
         responsive: {
             0: {
-                items: 1,
+                items: 1
             },
             600: {
-                items: 1,
+                items: 1
             },
             1000: {
-                items: 1,
-            },
-        },
+                items: 1
+            }
+        }
     });
 
     $(".content-tabs-ul a").on("click", function () {
         $(".content-tabs-ul li").removeClass("active");
-        $(this).parent().addClass("active");
+        $(this)
+            .parent()
+            .addClass("active");
         var categoryid = $(this).attr("id");
+        var newCat = categoryid.replace("categoryScroll", "");
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: "/dishes/show",
             type: "post",
             data: {
-                categoryid: categoryid,
+                categoryid: newCat
             },
             success: function (response) {
                 // $('#news-slider10').empty();
@@ -284,11 +293,13 @@ $(document).ready(function () {
                                     '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
                                     response[i].name +
                                     '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                    response[i].price.toFixed(2) +
+                                    parseFloat(response[i].price).toFixed(
+                                        3
+                                    ) +
                                     '</span><span class="price-old">BD&nbsp;' +
-                                    response[
-                                        i
-                                    ].before_discount_price.toFixed(2) +
+                                    parseFloat(
+                                        response[i].before_discount_price
+                                    ).toFixed(3) +
                                     '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                     response[i].id +
                                     '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
@@ -319,7 +330,9 @@ $(document).ready(function () {
                                     '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
                                     response[i].name +
                                     '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                    response[i].price.toFixed(2) +
+                                    parseFloat(response[i].price).toFixed(
+                                        3
+                                    ) +
                                     '</span></div><div class="button-group"><button class="btn btn-wishlist add-top-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                     response[i].id +
                                     '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
@@ -346,11 +359,13 @@ $(document).ready(function () {
                                     '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
                                     response[i].name +
                                     '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                    response[i].price.toFixed(2) +
+                                    parseFloat(response[i].price).toFixed(
+                                        3
+                                    ) +
                                     '</span><span class="price-old">BD&nbsp;' +
-                                    response[
-                                        i
-                                    ].before_discount_price.toFixed(2) +
+                                    parseFloat(
+                                        response[i].before_discount_price
+                                    ).toFixed(3) +
                                     '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                     response[i].id +
                                     '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
@@ -375,7 +390,9 @@ $(document).ready(function () {
                                     '"><i  class="fa fa-eye"></i>&nbsp;&nbsp;Quick View</button><div class="card-text"><a href="#"><h4>' +
                                     response[i].name +
                                     '</h4></a></div><div class="price"><span class="price-new">BD&nbsp;' +
-                                    response[i].price.toFixed(2) +
+                                    parseFloat(response[i].price).toFixed(
+                                        3
+                                    ) +
                                     '</span></div><div class="button-group"><button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="' +
                                     response[i].id +
                                     '"><i class="fa fa-heart"></i> <span title="Add to wishlist"></span></button><button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="' +
@@ -388,7 +405,7 @@ $(document).ready(function () {
                         }
                     }
                 }
-            },
+            }
         });
     });
 
@@ -397,7 +414,7 @@ $(document).ready(function () {
         formdata = new FormData(this);
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: "/user/edit",
             type: "post",
@@ -429,7 +446,7 @@ $(document).ready(function () {
                 } else {
                     $(".number-error").hide();
                 }
-            },
+            }
         });
     });
     $("#password-change-form").on("submit", function (e) {
@@ -437,7 +454,7 @@ $(document).ready(function () {
         formdata = new FormData(this);
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: "/user/change/password",
             type: "post",
@@ -493,7 +510,7 @@ $(document).ready(function () {
                         $(".confirm_password_error").hide();
                     }
                 }
-            },
+            }
         });
     });
     $("#new-address-form").on("submit", function (e) {
@@ -501,7 +518,7 @@ $(document).ready(function () {
         formdata = new FormData(this);
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: "/user/add/address",
             type: "post",
@@ -547,14 +564,18 @@ $(document).ready(function () {
                         $(".post-error").hide();
                     }
                 }
-            },
+            }
         });
     });
     $(".delete-address").on("click", function (e) {
-        var table = $(this).parent().parent().parent().parent();
+        var table = $(this)
+            .parent()
+            .parent()
+            .parent()
+            .parent();
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: "/user/delete/address" + e.target.id + "",
             type: "get",
@@ -563,7 +584,7 @@ $(document).ready(function () {
                 $("#address .table-responsive").append(
                     "<p>Your address book entries are empty </p>"
                 );
-            },
+            }
         });
     });
     $(document).on(
@@ -572,9 +593,7 @@ $(document).ready(function () {
         function (e) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                 },
                 url: "/user/add/wishlist" + e.currentTarget.id + "",
                 type: "get",
@@ -588,7 +607,7 @@ $(document).ready(function () {
                     } else {
                         swal(
                             "Error occurred!",
-                            "This dish might already be in your wishlist!",
+                            "This dish might already be in your wishlist or you need to login!",
                             "error"
                         );
                     }
@@ -599,7 +618,42 @@ $(document).ready(function () {
                         "This dish might already be in your wishlist!",
                         "error"
                     );
+                }
+            });
+        }
+    );
+    $(document).on(
+        "click",
+        ".carousel2 .custom-card .button-group .btn.btn-wishlist.add-to-wishlist",
+        function (e) {
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                 },
+                url: "/user/add/wishlist" + e.currentTarget.id + "",
+                type: "get",
+                success: function (response) {
+                    if (response) {
+                        swal(
+                            "Success!",
+                            "Dish is added to your wishlist!",
+                            "success"
+                        );
+                    } else {
+                        swal(
+                            "Error occurred!",
+                            "This dish might already be in your wishlist or you need to login!",
+                            "error"
+                        );
+                    }
+                },
+                error: function (xhr) {
+                    swal(
+                        "Error occurred!",
+                        "This dish might already be in your wishlist!",
+                        "error"
+                    );
+                }
             });
         }
     );
@@ -607,7 +661,7 @@ $(document).ready(function () {
     $("#wishlist .btn-primary").on("click", function (e) {
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: "/user/add/cart" + e.currentTarget.id + "",
             type: "get",
@@ -628,7 +682,9 @@ $(document).ready(function () {
                                 '</a></div><div class="cart-number">x <br>' +
                                 response[0][i].countdish +
                                 ' </div><div class="cart-price">BD' +
-                                response[1][j].price.toFixed(2) +
+                                parseFloat(response[1][j].price).toFixed(
+                                    3
+                                ) +
                                 '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
                                 response[0][i].id +
                                 '"></i></div></div></li>'
@@ -640,7 +696,7 @@ $(document).ready(function () {
                 }
                 $(".cart-total-price .total b").empty();
                 $(".cart-total-price .total b").append(
-                    "BD " + response[2].toFixed(2)
+                    "BD " + parseFloat(response[2]).toFixed(3)
                 );
                 $(".shopping-cart .empty-cart-list").remove();
                 if (response[0].length == 1) {
@@ -648,24 +704,22 @@ $(document).ready(function () {
                     $(".cart-footer").remove();
                     $(".shopping-cart").append(
                         ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
-                        response[2].toFixed(2) +
+                        parseFloat(response[2]).toFixed(3) +
                         '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
                     );
                 }
                 $.notify("Added to Cart", "success");
-            },
+            }
         });
     });
 
     $(document).on(
         "click",
-        ".post-slide10 .custom-card .button-group .btn.btn-cart.add-to-cart",
+        ".carousel2 .custom-card .button-group .btn.btn-cart.add-to-cart",
         function (e) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                 },
                 url: "/user/add/cart" + e.currentTarget.id + "",
                 type: "get",
@@ -686,7 +740,9 @@ $(document).ready(function () {
                                     '</a></div><div class="cart-number">x <br>' +
                                     response[0][i].countdish +
                                     ' </div><div class="cart-price">BD' +
-                                    response[1][j].price.toFixed(2) +
+                                    parseFloat(
+                                        response[1][j].price
+                                    ).toFixed(3) +
                                     '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
                                     response[0][i].id +
                                     '"></i></div></div></li>'
@@ -698,7 +754,7 @@ $(document).ready(function () {
                     }
                     $(".cart-total-price .total b").empty();
                     $(".cart-total-price .total b").append(
-                        "BD " + response[2].toFixed(2)
+                        "BD " + parseFloat(response[2]).toFixed(3)
                     );
                     $(".shopping-cart .empty-cart-list").remove();
                     if (response[0].length == 1) {
@@ -706,19 +762,84 @@ $(document).ready(function () {
                         $(".cart-footer").remove();
                         $(".shopping-cart").append(
                             ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
-                            response[2].toFixed(2) +
+                            parseFloat(response[2]).toFixed(3) +
                             '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
                         );
                     }
                     $.notify("Added to Cart", "success");
                 },
+                error: function (xhr) {
+                    swal("Error!", "You need to login first!", "error");
+                }
             });
         }
     );
+    $(document).on(
+        "click",
+        ".post-slide10 .custom-card .button-group .btn.btn-cart.add-to-cart",
+        function (e) {
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                url: "/user/add/cart" + e.currentTarget.id + "",
+                type: "get",
+                success: function (response) {
+                    $(".shopping-cart span").empty();
+                    for (var i = 0; i < response[0].length; i++) {
+                        for (var j = 0; j < response[1].length; j++) {
+                            if (response[0][i].dishid == response[1][j].id) {
+                                $(".shopping-cart span").append(
+                                    '<li class="cart-product"><div class="cart-list"><div class="cart-img"><img src="../storage/' +
+                                    response[1][j].image1 +
+                                    '" alt="' +
+                                    response[1][j].name +
+                                    '" title="' +
+                                    response[1][j].name +
+                                    '"></div><div class="cart-name"><a href="#">' +
+                                    response[1][j].name +
+                                    '</a></div><div class="cart-number">x <br>' +
+                                    response[0][i].countdish +
+                                    ' </div><div class="cart-price">BD' +
+                                    parseFloat(
+                                        response[1][j].price
+                                    ).toFixed(3) +
+                                    '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
+                                    response[0][i].id +
+                                    '"></i></div></div></li>'
+                                );
+                                $("#lblCartCount").empty();
+                                $("#lblCartCount").text(response[0].length);
+                            }
+                        }
+                    }
+                    $(".cart-total-price .total b").empty();
+                    $(".cart-total-price .total b").append(
+                        "BD " + parseFloat(response[2]).toFixed(3)
+                    );
+                    $(".shopping-cart .empty-cart-list").remove();
+                    if (response[0].length == 1) {
+                        $(".shopping-cart span").css("display", "inline-block");
+                        $(".cart-footer").remove();
+                        $(".shopping-cart").append(
+                            ' <div class="cart-footer"><div class="cart-total-price"><div class="total">Total <b>BD ' +
+                            parseFloat(response[2]).toFixed(3) +
+                            '</b></div></div><div class="dropdown-divider"></div><p class="text-right"><a href="/mycart" class="btn"><strong>View Cart</strong></a><a href="/checkout"class="btn"><strong>Checkout</strong></a></p></div>'
+                        );
+                    }
+                    $.notify("Added to Cart", "success");
+                },
+                error: function (xhr) {
+                    swal("Error!", "You need to login first!", "error");
+                }
+            });
+        }
+    );
+
     $(".shopping-cart").on("click", ".cart-remove i", function (e) {
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: "/user/remove/cart" + e.target.id + "",
             type: "get",
@@ -739,7 +860,9 @@ $(document).ready(function () {
                                 '</a></div><div class="cart-number">x <br> ' +
                                 response[0][i].countdish +
                                 ' </div><div class="cart-price">' +
-                                response[1][j].price.toFixed(2) +
+                                parseFloat(response[1][j].price).toFixed(
+                                    3
+                                ) +
                                 '</div><div class="cart-remove"><i class="fa fa-times" aria-hidden="true" id="' +
                                 response[0][i].id +
                                 '"></i></div></div></li>'
@@ -751,7 +874,7 @@ $(document).ready(function () {
                 }
                 $(".cart-total-price .total b").empty();
                 $(".cart-total-price .total b").append(
-                    "BD " + response[2].toFixed(2)
+                    "BD " + parseFloat(response[2]).toFixed(3)
                 );
                 if (response[0].length == 0) {
                     $(".shopping-cart .cart-footer").remove();
@@ -762,24 +885,26 @@ $(document).ready(function () {
                     $("#lblCartCount").empty();
                     $("#lblCartCount").text(response[0].length);
                 }
-            },
+            }
         });
     });
 
     $(document).on("click", ".refresh-cart", function (e) {
-        console.log();
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: "/user/refresh/count" +
                 e.currentTarget.id +
                 "" +
-                $(e.currentTarget).parent().siblings(".cart-dish-count").val(),
+                $(e.currentTarget)
+                .parent()
+                .siblings(".cart-dish-count")
+                .val(),
             type: "get",
             success: function (response) {
                 location.reload(true);
-            },
+            }
         });
     });
     $("#subscribe").on("submit", function (e) {
@@ -787,14 +912,12 @@ $(document).ready(function () {
         if (isEmail($("#subscribe_email").val())) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                 },
                 url: "/user/add/email",
                 type: "post",
                 data: {
-                    email: $("#subscribe_email").val(),
+                    email: $("#subscribe_email").val()
                 },
                 success: function (response) {
                     if (response) {
@@ -806,7 +929,7 @@ $(document).ready(function () {
                     } else {
                         swal("Error!", "Email already exists!", "error");
                     }
-                },
+                }
             });
         } else {
             swal("Error!", "Please enter a valid email address!", "error");
@@ -817,14 +940,12 @@ $(document).ready(function () {
         if (isEmail($("#subscribe_pemail").val())) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                 },
                 url: "/user/add/email",
                 type: "post",
                 data: {
-                    email: $("#subscribe_pemail").val(),
+                    email: $("#subscribe_pemail").val()
                 },
                 success: function (response) {
                     if (response) {
@@ -836,7 +957,7 @@ $(document).ready(function () {
                     } else {
                         swal("Error!", "Email already exists!", "error");
                     }
-                },
+                }
             });
         } else {
             swal("Error!", "Please enter a valid email address!", "error");
@@ -847,4 +968,20 @@ $(document).ready(function () {
 function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
+}
+
+function scrollLink(e) {
+    e.preventDefault();
+    var hash = e.target.hash;
+    console.log(hash);
+    $("html, body").animate({
+            scrollTop: $(hash).offset().top
+        },
+        800,
+        function () {
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+            $(hash).click();
+        }
+    );
 }

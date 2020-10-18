@@ -43,7 +43,9 @@ Route::get('/admin/users', 'AdminController@users');
 Route::get('/admin/profile', 'AdminController@profile');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('', 'HomePage@index')->name('home');
+Route::get('/home', 'HomePage@index')->name('home');
+Route::post('/dishes/show', 'HomePage@showDishes')->name('showdishes');
 Route::get('/setting', 'HomeController@setting')->name('setting');
 Route::get('/account', 'HomeController@account')->name('my-account');
 Route::get('/password', 'HomeController@password')->name('password');
@@ -55,7 +57,6 @@ Route::get('/mycart', 'HomeController@mycart')->name('mycart');
 Route::get('/checkout', 'HomeController@checkout')->name('checkout');
 Route::get('/transaction', 'HomeController@transaction')->name('transaction');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
-Route::post('/dishes/show', 'HomeController@showDishes')->name('showdishes');
 Route::post('/user/edit', 'HomeController@useredit')->name('useredit');
 Route::post('/user/change/password', 'HomeController@changePassword')->name('changepassword');
 Route::post('/user/add/address', 'HomeController@addAddress')->name('addaddress');

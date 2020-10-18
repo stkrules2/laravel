@@ -34,31 +34,23 @@
                         @foreach($cart as $carts)
                         <tr>
                             <td class="text-center">
-                                <a href=""><img src="../storage/{{$dish->where('id', $carts->dishid)->first()->image1}}"
-                                        alt="{{$dish->where('id', $carts->dishid)->first()->name}}"
-                                        title="{{$dish->where('id', $carts->dishid)->first()->name}}"
-                                        class="img-thumbnail"></a>
+                                <a href=""><img src="../storage/{{$dish->where('id', $carts->dishid)->first()->image1}}" alt="{{$dish->where('id', $carts->dishid)->first()->name}}" title="{{$dish->where('id', $carts->dishid)->first()->name}}" class="img-thumbnail"></a>
                             </td>
-                            <td class="text-left"><a
-                                    href="/home">{{$dish->where('id', $carts->dishid)->first()->name}}</a>
+                            <td class="text-left"><a href="/home">{{$dish->where('id', $carts->dishid)->first()->name}}</a>
                             </td>
                             <td class="text-left">
                                 <div class="cart_input_block input-group btn-block">
-                                    <input type="text" value="{{$carts->countdish}}" size="1"
-                                        class="form-control cart-dish-count">
+                                    <input type="text" value="{{$carts->countdish}}" size="1" class="form-control cart-dish-count">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-primary main refresh-cart"
-                                            id="{{$carts->id}}"><i class="fa fa-refresh"></i></button>
-                                        <a href="/user/remove/cart/page{{$carts->id}}"><button type="button"
-                                                class="btn btn-danger"><i class="fa fa-times-circle"
-                                                    id="{{$carts->id}}"></i></button></a>
+                                        <button type="button" class="btn btn-primary main refresh-cart" id="{{$carts->id}}"><i class="fa fa-refresh"></i></button>
+                                        <a href="/user/remove/cart/page{{$carts->id}}"><button type="button" class="btn btn-danger"><i class="fa fa-times-circle" id="{{$carts->id}}"></i></button></a>
                                     </span>
                                 </div>
                             </td>
                             <td class="text-right unit-price">
-                                BD{{number_format($dish->where('id', $carts->dishid)->first()->price, 2)}}</td>
+                                BD{{number_format($dish->where('id', $carts->dishid)->first()->price, 3)}}</td>
                             <td class="text-right total-price">
-                                BD{{number_format($dish->where('id', $carts->dishid)->first()->price * $carts->countdish, 2) }}
+                                BD{{number_format($dish->where('id', $carts->dishid)->first()->price * $carts->countdish, 3) }}
                             </td>
                         </tr>
                         @endforeach
@@ -83,7 +75,7 @@
                             <tr>
                                 <td class="text-right heading-title"><strong>Total:</strong></td>
                                 <td class="text-right total-amount">
-                                    BD {{number_format($total, 2)}}</td>
+                                    BD {{number_format($total, 3)}}</td>
                             </tr>
                         </tbody>
                     </table>
