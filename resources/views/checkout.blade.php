@@ -230,8 +230,7 @@
                                                 type='text'>
                                         </div>
                                     </div>
-                                    <input type="hidden" class="price" name="price"
-                                        value={{ number_format($total , 2) }}>
+                                    <input type="hidden" class="price" name="price" value={{ $total }}>
                                     <div class='form-row'>
                                         <div class='col-2'>
                                             <div class='form-control total btn btn-info text-center'>

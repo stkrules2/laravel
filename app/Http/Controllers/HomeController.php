@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Session;
 use App\Banner;
 use App\Category;
 use App\Dish;
@@ -151,6 +152,7 @@ class HomeController extends Controller
 
         return view('order', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish]);
     }
+    
     public function mycart()
     {
         $category = Category::get();
@@ -309,6 +311,23 @@ class HomeController extends Controller
         $address->userid = Auth::User()->id;
         $address->save();
         return $address->id;
+    }
+    public function payment(Request $request)
+    {
+        \Stripe\Stripe::setApiKey ( 'sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX' );
+    try {
+        \Stripe\Charge::create ( array (
+                "amount" => $request->price,
+                "currency" => "usd",
+                "source" => $request->token, 
+                "description" => "Test payment." 
+        ) );
+        return "Payment Successfull";
+        
+    } catch ( \Exception $e ) {
+      return "Payment Unsuccessfull";
+        
+    }
     }
     public function addCart($id)
     {

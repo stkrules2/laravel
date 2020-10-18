@@ -126,14 +126,15 @@ $(document).ready(function () {
             $('#payment-form').find('input[type=text]').empty();
 
             $('#payment-form').append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-            /*$.ajax({
+            $.ajax({
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
-                url: "/order/payment",
+                url: "/checkout/payment",
                 type: "post",
                 data: {
                     number: $('.card-number').val(),
+                    token: token,
                     cvc: $('.card-cvc').val(),
                     exp_month: $('.card-expiry-month').val(),
                     exp_year: $('.card-expiry-year').val(),
@@ -141,9 +142,9 @@ $(document).ready(function () {
                     price: price
                 },
                 success: function (response) {
-                   
+                    console.log(response);
                 }
-            })*/
+            })
         }
     }
     if ($(window).width() > 848) {
