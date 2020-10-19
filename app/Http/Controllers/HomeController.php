@@ -327,6 +327,22 @@ class HomeController extends Controller
             return "Payment Unsuccessfull";
         }
     }
+    public function quickCart(Request $request)
+    {
+        $cart = new Cart();
+        $count = Cart::where('dishid', $request->input('id'))->where('userid', Auth::User()->id)->first();
+        if (isset($count)) {
+
+            $count->countdish = $request->input('count');
+            $count->save();
+        } else {
+            $cart->userid = Auth::User()->id;
+            $cart->dishid = $request->input('id');
+            $cart->countdish = $request->input('count');
+            $cart->save();
+        }
+        return true;
+    }
     public function addCart($id)
     {
         $cart = new Cart();

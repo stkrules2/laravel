@@ -61,6 +61,7 @@ Route::get('/transaction', 'HomeController@transaction')->name('transaction');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::post('/user/edit', 'HomeController@useredit')->name('useredit');
 Route::get('/contact', 'HomePage@contact')->name('contact');
+Route::get('/user/quick/cart', 'HomeController@quickCart')->name('quickCart');
 
 Route::post('/user/change/password', 'HomeController@changePassword')->name('changepassword');
 Route::post('/user/add/address', 'HomeController@addAddress')->name('addaddress');

@@ -63,7 +63,7 @@ class HomePage extends Controller
     public function getDishes(Request $request)
     {
         $dish = Dish::where('id', $request->input('id'))->first();
-
-        return $dish;
+        $cat = Category::where('id', $dish->category_id)->first();
+        return [$dish, $cat];
     }
 }

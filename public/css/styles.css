@@ -1942,6 +1942,7 @@ div.required .control-label::before {
     color: #414141;
     font: 500 13px/20px "Muli", Helvetica, sans-serif;
     text-transform: capitalize;
+    padding: 0 1em;
 }
 
 .product-details table.product-info {
@@ -1987,7 +1988,7 @@ div.required .control-label::before {
     float: left;
 }
 
-.product-options #quick-cart {
+.product-options .btn.btn-primary.btn-lg.btn-block {
     background: #111;
     border-color: #111;
     color: #ffffff;
