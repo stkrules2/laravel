@@ -45,6 +45,7 @@ Auth::routes();
 
 Route::get('', 'HomePage@index')->name('home');
 Route::get('/home', 'HomePage@index')->name('home');
+Route::get('/get/dish', 'HomePage@getDishes')->name('getDishes');
 Route::post('/dishes/show', 'HomePage@showDishes')->name('showdishes');
 Route::get('/setting', 'HomeController@setting')->name('setting');
 Route::get('/account', 'HomeController@account')->name('my-account');
@@ -59,6 +60,7 @@ Route::get('/checkout', 'HomeController@checkout')->name('checkout');
 Route::get('/transaction', 'HomeController@transaction')->name('transaction');
 Route::get('/newsletter', 'HomeController@newsletter')->name('newsletter');
 Route::post('/user/edit', 'HomeController@useredit')->name('useredit');
+Route::get('/contact', 'HomePage@contact')->name('contact');
 
 Route::post('/user/change/password', 'HomeController@changePassword')->name('changepassword');
 Route::post('/user/add/address', 'HomeController@addAddress')->name('addaddress');
@@ -66,7 +68,7 @@ Route::get('/user/delete/address{id}', 'HomeController@deleteAddress')->name('de
 Route::get('/user/add/cart{id}', 'HomeController@addCart')->name('addCart');
 Route::get('/user/remove/cart{id}', 'HomeController@removeCart')->name('removeCart');
 Route::get('/user/remove/cart/page{id}', 'HomeController@removeCartPage')->name('removeCartPage');
-Route::get('/user/refresh/count{id}{count}', 'HomeController@refreshCount')->name('refreshCount');
+Route::get('/user/refresh/count', 'HomeController@refreshCount')->name('refreshCount');
 Route::get('/user/add/wishlist{id}', 'HomeController@addWishlist')->name('addWishlist');
 Route::get('/user/remove/wishlist{id}', 'HomeController@removeWishlist')->name('removeWishlist');
 Route::post('/user/add/email', 'HomeController@emailNewsletter')->name('emailNewsletter');

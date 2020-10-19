@@ -22,7 +22,8 @@
                                         latest
                                         lookbooks and exclusive offers.</span>
                                     <div id="notification"></div>
-                                    <input type="text" value="" name="subscribe_pemail" id="subscribe_pemail" placeholder="Your email address">
+                                    <input type="text" value="" name="subscribe_pemail" id="subscribe_pemail"
+                                        placeholder="Your email address">
                                     <input type="hidden" value="" name="subscribe_pname" id="subscribe_pname">
 
                                     <div class="popup-button">
@@ -102,10 +103,12 @@
             @foreach($category as $cat)
 
             @if($count < 4) @if($count===0) <span class="top">
-                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="categoryScroll{{$cat->id}}">{{$cat->title}}</a>
+                <li class="active"><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                        id="categoryScroll{{$cat->id}}">{{$cat->title}}</a>
                 </li>
                 @else
-                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="categoryScroll{{$cat->id}}">{{$cat->title}}</a></li>
+                <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                        id="categoryScroll{{$cat->id}}">{{$cat->title}}</a></li>
 
                 @endif
                 @if($count === 3)
@@ -115,10 +118,12 @@
                 @if($count >= 4)
                 @if($count === 4)
                 <span class="bottom">
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="categoryScroll{{$cat->id}}">{{$cat->title}}</a>
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                            id="categoryScroll{{$cat->id}}">{{$cat->title}}</a>
                     </li>
                     @else
-                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true" id="categoryScroll{{$cat->id}}">{{$cat->title}}</a></li>
+                    <li><a href="#tab-featured-0" data-toggle="tab" aria-expanded="true"
+                            id="categoryScroll{{$cat->id}}">{{$cat->title}}</a></li>
                     @if($count === (count($category) - 1))
                 </span>
                 @endif
@@ -143,13 +148,16 @@
                     <div class="post-slide10">
                         <div class="custom-card">
                             <a href="#">
-                                <img class="image_thumb" src="../storage/{{$dishes->image1}}" title="{{$dishes->name}}" alt="{{$dishes->name}}" loading="lazy">
+                                <img class="image_thumb" src="../storage/{{$dishes->image1}}" title="{{$dishes->name}}"
+                                    alt="{{$dishes->name}}" loading="lazy">
                                 @if($dishes->image2)
 
-                                <img class="img-top" src="../storage/{{$dishes->image2}}" title="{{$dishes->name}}" alt="{{$dishes->name}}" loading="lazy">
+                                <img class="img-top" src="../storage/{{$dishes->image2}}" title="{{$dishes->name}}"
+                                    alt="{{$dishes->name}}" loading="lazy">
                                 @endif
                             </a>
-                            <button class="btn card-img-btn" id="{{$dishes->id}}"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
+                            <button class="btn card-img-btn" id="{{$dishes->id}}" data-toggle="modal"
+                                data-target="#dishModal"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                                 View</button>
                             <div class="card-text">
                                 <a href="#">
@@ -160,20 +168,24 @@
                             <div class="price">
                                 <span class="price-new">BD&nbsp;{{number_format($dishes->price, 3)}}</span>
                                 @if($dishes->before_discount_price)
-                                <span class="price-old">BD&nbsp;{{number_format($dishes->before_discount_price, 3)}}</span>
+                                <span
+                                    class="price-old">BD&nbsp;{{number_format($dishes->before_discount_price, 3)}}</span>
                                 @endif
                             </div>
                             <div class="button-group">
-                                <button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist" id="{{$dishes->id}}">
+                                <button class="btn btn-wishlist add-to-wishlist" title="Add to wishlist"
+                                    id="{{$dishes->id}}">
                                     <i class="fa fa-heart"></i> <span title="Add to wishlist"></span>
                                 </button>
-                                <button class="btn btn-cart add-to-cart" type="button" title="Add to Cart" id="{{$dishes->id}}">
+                                <button class="btn btn-cart add-to-cart" type="button" title="Add to Cart"
+                                    id="{{$dishes->id}}">
                                     <i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add
                                         to
                                         Cart</span>
                                 </button>
                                 <button class="btn btn-compare" title="Add to Compare" id="{{$dishes->id}}">
-                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span title="Add to Compare"></span>
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i> <span
+                                        title="Add to Compare"></span>
                                 </button>
                             </div>
                         </div>
@@ -199,10 +211,18 @@
                 @if($history->description)
                 <div class="category-subheading">{{$history->description}}</div>
                 @else
-                <div class="category-subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue erat ac ullamcorper porttitor. Nunc faucibus sem ligula, eu vehicula diam posuere in. Quisque pellentesque dapibus nisl id consectetur. Sed nisi ante, euismod rhoncus malesuada sit amet, tristique eu justo. Cras eget lacinia nisi, id interdum lectus. Cras eget condimentum enim, ut pretium sem. Sed non bibendum nisi, ac imperdiet metus.</div>
+                <div class="category-subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue
+                    erat ac ullamcorper porttitor. Nunc faucibus sem ligula, eu vehicula diam posuere in. Quisque
+                    pellentesque dapibus nisl id consectetur. Sed nisi ante, euismod rhoncus malesuada sit amet,
+                    tristique eu justo. Cras eget lacinia nisi, id interdum lectus. Cras eget condimentum enim, ut
+                    pretium sem. Sed non bibendum nisi, ac imperdiet metus.</div>
                 @endif
                 @else
-                <div class="category-subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue erat ac ullamcorper porttitor. Nunc faucibus sem ligula, eu vehicula diam posuere in. Quisque pellentesque dapibus nisl id consectetur. Sed nisi ante, euismod rhoncus malesuada sit amet, tristique eu justo. Cras eget lacinia nisi, id interdum lectus. Cras eget condimentum enim, ut pretium sem. Sed non bibendum nisi, ac imperdiet metus.</div>
+                <div class="category-subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue
+                    erat ac ullamcorper porttitor. Nunc faucibus sem ligula, eu vehicula diam posuere in. Quisque
+                    pellentesque dapibus nisl id consectetur. Sed nisi ante, euismod rhoncus malesuada sit amet,
+                    tristique eu justo. Cras eget lacinia nisi, id interdum lectus. Cras eget condimentum enim, ut
+                    pretium sem. Sed non bibendum nisi, ac imperdiet metus.</div>
                 @endif
 
             </div>
@@ -212,28 +232,36 @@
                     @if($history->path1)
                     <figure><img src="../storage/{{$history->path1}}" class="item" loading="lazy"></figure>
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item" loading="lazy"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item" loading="lazy">
+                    </figure>
                     @endif
                     @if($history->path2)
                     <figure><img src="../storage/{{$history->path2}}" class="item" loading="lazy"></figure>
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item" loading="lazy"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item" loading="lazy">
+                    </figure>
                     @endif
                     @if($history->path3)
                     <figure><img src="../storage/{{$history->path3}}" class="item" loading="lazy"></figure>
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item" loading="lazy"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item" loading="lazy">
+                    </figure>
                     @endif
                     @if($history->path4)
                     <figure><img src="../storage/{{$history->path4}}" class="item" loading="lazy"></figure>
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item" loading="lazy"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item" loading="lazy">
+                    </figure>
                     @endif
                     @else
-                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item" loading="lazy"></figure>
-                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item" loading="lazy"></figure>
-                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item" loading="lazy"></figure>
-                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item" loading="lazy"></figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-1.jpg') }}" class="item" loading="lazy">
+                    </figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-2.jpg') }}" class="item" loading="lazy">
+                    </figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-3.jpg') }}" class="item" loading="lazy">
+                    </figure>
+                    <figure><img src="{{ URL::to('img/product-images/slider-4.jpg') }}" class="item" loading="lazy">
+                    </figure>
                     @endif
                 </div>
             </div>
@@ -258,12 +286,15 @@
                 @if(isset($special))
                 @foreach($special as $sp)
                 <div class="custom-card item"><a href="#">
-                        <img class="image_thumb" src="../storage/{{$sp->image1}}" title="{{$sp->name}}" alt="{{$dishes->name}}" loading="lazy">
+                        <img class="image_thumb" src="../storage/{{$sp->image1}}" title="{{$sp->name}}"
+                            alt="{{$dishes->name}}" loading="lazy">
                         @if($sp->image2)
-                        <img class="img-top" src="../storage/{{$sp->image2}}" title="{{$sp->name}}" alt="{{$sp->name}}" loading="lazy">
+                        <img class="img-top" src="../storage/{{$sp->image2}}" title="{{$sp->name}}" alt="{{$sp->name}}"
+                            loading="lazy">
                         @endif
                     </a>
-                    <button class="btn card-img-btn" id="{{$dishes->id}}"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
+                    <button class="btn card-img-btn" id="{{$dishes->id}}" data-toggle="modal"
+                        data-target="#dishModal"><i class="fa fa-eye"></i>&nbsp;&nbsp;Quick
                         View</button>
                     <div class="card-text">
                         <a href="#">
@@ -337,23 +368,107 @@
 
     @else
     <div>
-        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}" alt="" loading="lazy"></figure>
+        <figure class="figure1"><img src="{{ URL::to('img/promotion-images/banner-01.jpg') }}" alt="" loading="lazy">
+        </figure>
         <div class="show-off"></div>
     </div>
     <div>
-        <figure class="figure2"><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}" alt="" loading="lazy"></figure>
+        <figure class="figure2"><img src="{{ URL::to('img/promotion-images/banner-02.jpg') }}" alt="" loading="lazy">
+        </figure>
         <div class="show-off"></div>
     </div>
     <div>
-        <figure class="figure3"><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}" alt="" loading="lazy"></figure>
+        <figure class="figure3"><img src="{{ URL::to('img/promotion-images/banner-03.jpg') }}" alt="" loading="lazy">
+        </figure>
         <div class="show-off"></div>
     </div>
     @endif
 </div>
 <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14315.106282143128!2d50.5918502!3d26.2364484!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x907c5be8df48780d!2zS0FCQUIgSE9VU0UgQkFIUkFJTiDZhdi32LnZhSDYqNmK2Kog2KfZhNmD2KjYp9io!5e0!3m2!1sen!2s!4v1600693747749!5m2!1sen!2s" class="map" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14315.106282143128!2d50.5918502!3d26.2364484!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x907c5be8df48780d!2zS0FCQUIgSE9VU0UgQkFIUkFJTiDZhdi32LnZhSDYqNmK2Kog2KfZhNmD2KjYp9io!5e0!3m2!1sen!2s!4v1600693747749!5m2!1sen!2s"
+        class="map" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 </div>
 
+<div class="modal bd-example-modal-lg" id="dishModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content" style="width:73%;padding: 0 1em;">
 
+            <div class="modal-body">
+                <div class="row">
+                    <div class="dish-image">
+                        <img src="" alt="">
+                    </div>
+                    <div class="col-sm-7 product-details">
+                        <h1 class="product-name">perspiciatis unde omnis</h1>
+                        <table class="product-info">
+                            <tbody>
+                                <tr>
+                                    <td>Category:</td>
+                                    <td class="product-info-value">
+                                        Appetizer
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Product Code:</td>
+                                    <td class="product-info-value">Product 16</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Availability:</td>
+                                    <td class="product-info-value">Available</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+                        <ul class="list-unstyled product-price">
+                            <li>
+                                <h2>BD&nbsp;602.00</h2>
+                            </li>
+                            <li class="product-tax">VAT: 5%</li>
+
+
+                        </ul>
+
+
+                        <!-- Product Options START -->
+                        <div id="product" class="product-options">
+
+
+                            <div class="form-group product-quantity">
+                                <label class="control-label" for="input-quantity">Qty</label>
+                                <input type="text" name="quantity" value="1" size="2" id="input-quantity"
+                                    class="form-control">
+                                <input type="hidden" name="product_id" value="43">
+                                <button type="button" id="quick-cart" data-loading-text="Loading..."
+                                    class="btn  btn-primary  btn-lg btn-block"><i class="fa fa-shopping-cart"
+                                        aria-hidden="true"></i>&nbsp;
+                                    Add to Cart </button>
+                            </div>
+
+                        </div>
+                        <!-- Product Options END -->
+                        <!-- Product Wishlist Compare START -->
+                        <div class="btn-group">
+                            <button class="btn btn-default product-btn-wishlist" type="button" title="Add to Wish List"
+                                onclick="addWishlist('43');"><i class="fa fa-heart"></i>
+                                Add to Wish List
+                            </button>
+
+                        </div>
+                        <!-- Product Wishlist Compare END -->
+
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 @endsection
