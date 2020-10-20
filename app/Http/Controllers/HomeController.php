@@ -15,6 +15,7 @@ use App\Dish;
 use App\User;
 use App\Address;
 use App\Cart;
+use App\Order;
 use App\Wishlist;
 use App\Newsletter;
 
@@ -316,9 +317,6 @@ class HomeController extends Controller
     }
     public function payment(Request $request)
     {
-        $amount = $request->price; 
-        $address = $request->address;
-        $address = $request->cart;
         /*
         \Stripe\Stripe::setApiKey ( 'sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX' );
         try {
@@ -334,6 +332,14 @@ class HomeController extends Controller
             return "Payment Unsuccessfull";
             
         }*/
+        $order = new Order();
+        $order->total_price = $request->price; 
+        $order->addressid = $request->address;
+        $order->cartid = $request->cart;
+        $order->userid = Auth::user()->id;
+        $order->status = "pending";
+        $order->payment_method =  $request->method;
+        $order->save();
     }
     public function addCart($id)
     {

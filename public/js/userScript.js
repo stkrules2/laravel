@@ -78,9 +78,45 @@ $(document).ready(function () {
     $("input[name=paymentRadios]").on("change", function () {
         if ($(this).val() == "Online Payment") {
             $(".payment-method").show();
+            $("#button-payment-method").hide();
         } else {
             $(".payment-method").hide();
+            $("#button-payment-method").show();
         }
+    });
+    $("#button-payment-method").on('click', function ()
+    {
+        $(".collapse3").removeClass("show");
+        $(".panel3 i").removeClass("fa-caret-down");
+        $(".panel3 i").addClass("fa-check-circle");
+        $(".collapse4").addClass("show");
+        $(".panel4").css("pointer-events", "auto");
+
+        
+    });
+    $("#button-confirm-order").on('click', function ()
+    {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            url: "/checkout/payment",
+            type: "post",
+            data: {
+                cart: $(".cart").val(),
+                address: address,
+                cart: $(".cart").val(),
+                method: "Cash on Delivery",
+                price: $(".price").val(),
+            },
+            success: function (response) {
+                window.location.href = "/home";
+            },
+        });
+
+        
     });
 
     $(function () {
@@ -128,7 +164,7 @@ $(document).ready(function () {
     });
 
     function stripeResponseHandler(status, response) {
-        price = $(".price").val();
+        
         if (response.error) {
             $(".error").show().find(".alert").text(response.error.message);
         } else {
@@ -159,7 +195,9 @@ $(document).ready(function () {
                     exp_month: $(".card-expiry-month").val(),
                     exp_year: $(".card-expiry-year").val(),
                     address: address,
-                    price: price,
+                    cart: $(".cart").val(),
+                    method: "Online Payment",
+                    price: $(".price").val(),
                 },
                 success: function (response) {},
             });
