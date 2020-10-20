@@ -236,8 +236,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-6 col-sm-4 col-md-4">
-                        <h5>Categories</h5>
-                        <ul class="list-unstyled quick-links">
+                        <a href="#demo1" data-toggle="collapse">
+                            <h5>Categories</h5>
+                        </a>
+                        <ul class="list-unstyled quick-links link-1">
                             @if(isset($category))
                             <?php $count = 0; ?>
 
@@ -253,8 +255,10 @@
                         </ul>
                     </div>
                     <div class="col-xs-6 col-sm-4 col-md-4">
-                        <h5>Users</h5>
-                        <ul class="list-unstyled quick-links">
+                        <a href="#demo2" data-toggle="collapse">
+                            <h5>Users</h5>
+                        </a>
+                        <ul class="list-unstyled quick-links link-2">
                             <li><a href="/mycart">Manage Cart</a></li>
                             <li><a href="/wishlist">Wishlit</a></li>
                             <li><a href="/order">Orders</a></li>
@@ -263,8 +267,10 @@
                         </ul>
                     </div>
                     <div class="col-xs-6 col-sm-4 col-md-4">
-                        <h5>Kabab House</h5>
-                        <ul class="list-unstyled quick-links">
+                        <a href="#demo3" data-toggle="collapse">
+                            <h5>Kabab House</h5>
+                        </a>
+                        <ul class="list-unstyled quick-links link-3">
                             <li><a href="/setting">Settings</a></li>
                             <li><a href="#aboutus" onclick="scrollLink(event)">About Us</a></li>
 
@@ -285,10 +291,10 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                         <ul class="list-unstyled list-inline social text-center">
-                            <li class="list-inline-item"><a href="https://www.facebook.com/bahrainkabab/"><i
-                                        class="fa fa-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="https://www.instagram.com/bahrainkabab"><i
-                                        class="fa fa-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.facebook.com/bahrainkabab/"
+                                    target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.instagram.com/bahrainkabab"
+                                    target="_blank"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
                     <hr>

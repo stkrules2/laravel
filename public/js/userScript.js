@@ -1,15 +1,16 @@
-$(document).ready(function() {
-    $(window).on("load", function() {
+$(document).ready(function () {
+    $(window).on("load", function () {
         $("#loading").hide();
     });
-    $("#existing-payment-address-radio").on("change", function() {
+    $(".loader-container2").hide();
+    $("#existing-payment-address-radio").on("change", function () {
         if ($("#existing-payment-address-radio").is(":checked")) {
             $(".alternate").show();
         } else {
             $(".alternate").hide();
         }
     });
-    $("#button-payment-address").on("click", function() {
+    $("#button-payment-address").on("click", function () {
         address = $("#existing_address_id ").val();
         if (
             $("#existing_address_id").val() != "" &&
@@ -26,18 +27,18 @@ $(document).ready(function() {
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                             "content"
-                        )
+                        ),
                     },
                     url: "/user/add/address",
                     type: "post",
                     data: {
                         fullname: $("#optional-fullname").val(),
                         address: $("#optional-custom-address").val(),
-                        postcode: $("#optional-code").val()
+                        postcode: $("#optional-code").val(),
                     },
-                    success: function(response) {
+                    success: function (response) {
                         address = response;
-                    }
+                    },
                 });
             }
         } else {
@@ -47,22 +48,22 @@ $(document).ready(function() {
                 $("#custom-address").val() +
                 ", " +
                 $("#custom-address").val();
-            console.log("address");
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
                 },
                 url: "/user/add/address",
                 type: "post",
                 data: {
                     fullname: $("#fullname").val(),
                     address: $("#custom-address").val(),
-                    postcode: $("#code").val()
+                    postcode: $("#code").val(),
                 },
-                success: function(response) {
+                success: function (response) {
                     address = response;
-                    console.log(address);
-                }
+                },
             });
         }
         $("#collapse2").removeClass("show");
@@ -72,7 +73,7 @@ $(document).ready(function() {
         $(".panel3").css("pointer-events", "auto");
     });
 
-    $("input[name=paymentRadios]").on("change", function() {
+    $("input[name=paymentRadios]").on("change", function () {
         if ($(this).val() == "Online Payment") {
             $(".payment-method").show();
         } else {
@@ -80,15 +81,15 @@ $(document).ready(function() {
         }
     });
 
-    $(function() {
-        $("form.require-validation").bind("submit", function(e) {
+    $(function () {
+        $("form.require-validation").bind("submit", function (e) {
             var $form = $(e.target).closest("form"),
                 inputSelector = [
                     "input[type=email]",
                     "input[type=password]",
                     "input[type=text]",
                     "input[type=file]",
-                    "textarea"
+                    "textarea",
                 ].join(", "),
                 $inputs = $form.find(".required").find(inputSelector),
                 $errorMessage = $form.find("div.error"),
@@ -96,7 +97,7 @@ $(document).ready(function() {
 
             $errorMessage.addClass("hide");
             $(".has-error").removeClass("has-error");
-            $inputs.each(function(i, el) {
+            $inputs.each(function (i, el) {
                 var $input = $(el);
                 if ($input.val() === "") {
                     $input.parent().addClass("has-error");
@@ -106,7 +107,7 @@ $(document).ready(function() {
             });
         });
     });
-    $("#payment-form").on("submit", function(e) {
+    $("#payment-form").on("submit", function (e) {
         if (!$("#payment-form").data("cc-on-file")) {
             e.preventDefault();
             Stripe.setPublishableKey(
@@ -117,7 +118,7 @@ $(document).ready(function() {
                     number: $(".card-number").val(),
                     cvc: $(".card-cvc").val(),
                     exp_month: $(".card-expiry-month").val(),
-                    exp_year: $(".card-expiry-year").val()
+                    exp_year: $(".card-expiry-year").val(),
                 },
                 stripeResponseHandler
             );
@@ -126,21 +127,14 @@ $(document).ready(function() {
 
     function stripeResponseHandler(status, response) {
         price = $(".price").val();
-        console.log(price);
         if (response.error) {
-            console.log(address);
-            $(".error")
-                .show()
-                .find(".alert")
-                .text(response.error.message);
+            $(".error").show().find(".alert").text(response.error.message);
         } else {
             // token contains id, last4, and card type
             var token = response["id"];
 
             // insert the token into the form so it gets submitted to the server
-            $("#payment-form")
-                .find("input[type=text]")
-                .empty();
+            $("#payment-form").find("input[type=text]").empty();
 
             $("#payment-form").append(
                 "<input type='hidden' name='stripeToken' value='" +
@@ -149,7 +143,9 @@ $(document).ready(function() {
             );
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
                 },
                 url: "/checkout/payment",
                 type: "post",
@@ -160,14 +156,31 @@ $(document).ready(function() {
                     exp_month: $(".card-expiry-month").val(),
                     exp_year: $(".card-expiry-year").val(),
                     address: address,
-                    price: price
+                    price: price,
                 },
-                success: function(response) {
-                    console.log(response);
-                }
+                success: function (response) {},
             });
         }
     }
+    if ($(window).width() <= 560) {
+        $(".list-unstyled.quick-links").addClass("collapse");
+        $(".list-unstyled.quick-links.link-1").attr("id", "demo1");
+        $(".list-unstyled.quick-links.link-2").attr("id", "demo2");
+        $(".list-unstyled.quick-links.link-3").attr("id", "demo3");
+    }
+    $(window).resize(function () {
+        if ($(window).width() <= 560) {
+            $(".list-unstyled.quick-links").addClass("collapse");
+            $(".list-unstyled.quick-links.link-1").attr("id", "demo1");
+            $(".list-unstyled.quick-links.link-2").attr("id", "demo2");
+            $(".list-unstyled.quick-links.link-3").attr("id", "demo3");
+        } else {
+            $(".list-unstyled.quick-links").removeClass("collapse");
+            $(".list-unstyled.quick-links.link-1").attr("id", "");
+            $(".list-unstyled.quick-links.link-2").attr("id", "");
+            $(".list-unstyled.quick-links.link-3").attr("id", "");
+        }
+    });
     if ($(window).width() > 848) {
         $("#newsletter-modal").modal("show");
     }
@@ -176,16 +189,16 @@ $(document).ready(function() {
     const $dropdownMenu = $(".dropdown-menu");
     const showClass = "show";
     $("#orders-table").DataTable();
-    $(window).on("load resize", function() {
+    $(window).on("load resize", function () {
         if (this.matchMedia("(min-width: 768px)").matches) {
             $dropdown.hover(
-                function() {
+                function () {
                     const $this = $(this);
                     $this.addClass(showClass);
                     $this.find($dropdownToggle).attr("aria-expanded", "true");
                     $this.find($dropdownMenu).addClass(showClass);
                 },
-                function() {
+                function () {
                     const $this = $(this);
                     $this.removeClass(showClass);
                     $this.find($dropdownToggle).attr("aria-expanded", "false");
@@ -199,49 +212,90 @@ $(document).ready(function() {
 
     $("#news-slider10").owlCarousel({
         items: 4,
-        itemsDesktop: [1199, 3],
-        itemsDesktopSmall: [980, 2],
-        itemsMobile: [600, 1],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                autoWidth: true,
+                items: 2,
+            },
+            600: {
+                autoWidth: true,
+                items: 3,
+            },
+            1000: {
+                autoWidth: true,
+                items: 4,
+            },
+            1300: {
+                autoWidth: true,
+                items: 4,
+            },
+        },
         loop: false,
         rewind: true,
         lazyLoad: true,
-        autoWidth: true,
-        margin: 0,
+        margin: 10,
         dots: false,
         autoplay: true,
-        autoplayTimeout: 4000
+        autoplayTimeout: 4000,
     });
 
     $(".categories-product-carousel").owlCarousel({
         items: 3,
-        itemsDesktop: [1199, 3],
-        itemsDesktopSmall: [980, 2],
-        itemsMobile: [600, 1],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 2,
+            },
+            600: {
+                items: 2,
+            },
+            1000: {
+                items: 2,
+            },
+            1300: {
+                items: 3,
+            },
+        },
         loop: false,
         margin: 20,
         rewind: true,
         lazyLoad: true,
-        autoWidth: true,
         dots: false,
         autoplay: true,
-        autoplayTimeout: 4000
+        autoplayTimeout: 4000,
     });
     $(".carousel2").owlCarousel({
         items: 4,
-        itemsDesktop: [1199, 3],
-        itemsDesktopSmall: [980, 2],
-        itemsMobile: [600, 1],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                autoWidth: true,
+                items: 2,
+            },
+            600: {
+                autoWidth: true,
+                items: 3,
+            },
+            1000: {
+                autoWidth: true,
+                items: 4,
+            },
+            1300: {
+                autoWidth: true,
+                items: 4,
+            },
+        },
         loop: false,
         rewind: true,
         lazyLoad: true,
-        autoWidth: true,
-        margin: 20,
+        margin: 10,
         dots: false,
         autoplay: true,
-        autoplayTimeout: 4000
+        autoplayTimeout: 4000,
     });
 
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         var $win = $(window);
         var $checkWidth = $win.width();
         if ($checkWidth > 1160) {
@@ -261,34 +315,33 @@ $(document).ready(function() {
         dots: false,
         responsive: {
             0: {
-                items: 1
+                items: 1,
             },
             600: {
-                items: 1
+                items: 1,
             },
             1000: {
-                items: 1
-            }
-        }
+                items: 1,
+            },
+        },
     });
 
-    $(".content-tabs-ul a").on("click", function() {
+    $(".content-tabs-ul a").on("click", function () {
         $(".content-tabs-ul li").removeClass("active");
-        $(this)
-            .parent()
-            .addClass("active");
+        $(this).parent().addClass("active");
         var categoryid = $(this).attr("id");
         var newCat = categoryid.replace("categoryScroll", "");
+
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/dishes/show",
             type: "post",
             data: {
-                categoryid: newCat
+                categoryid: newCat,
             },
-            success: function(response) {
+            success: function (response) {
                 // $('#news-slider10').empty();
                 var count = $("#news-slider10 .owl-item").length;
                 for (i = 0; i < count; i++) {
@@ -296,6 +349,8 @@ $(document).ready(function() {
                         .trigger("remove.owl.carousel", i)
                         .trigger("refresh.owl.carousel");
                 }
+
+                $(".loader-container2").show();
                 for (var i = 0; i < response.length; i++) {
                     if (response[i].image2) {
                         if (response[i].before_discount_price) {
@@ -431,16 +486,18 @@ $(document).ready(function() {
                         }
                     }
                 }
-            }
+
+                $(".loader-container2").hide();
+            },
         });
     });
 
-    $("#account-edit-form").on("submit", function(e) {
+    $("#account-edit-form").on("submit", function (e) {
         e.preventDefault();
         formdata = new FormData(this);
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/user/edit",
             type: "post",
@@ -448,7 +505,7 @@ $(document).ready(function() {
             contentType: false,
             cache: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 swal(
                     "Congratulations!",
                     "Your data has been updated!",
@@ -457,7 +514,7 @@ $(document).ready(function() {
                 $(".number-error").hide();
                 $(".name-error").hide();
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.responseJSON.errors.fullname) {
                     $(".name-error").show();
                     $(".name-error").html(xhr.responseJSON.errors.fullname[0]);
@@ -472,15 +529,15 @@ $(document).ready(function() {
                 } else {
                     $(".number-error").hide();
                 }
-            }
+            },
         });
     });
-    $("#password-change-form").on("submit", function(e) {
+    $("#password-change-form").on("submit", function (e) {
         e.preventDefault();
         formdata = new FormData(this);
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/user/change/password",
             type: "post",
@@ -488,7 +545,7 @@ $(document).ready(function() {
             contentType: false,
             cache: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 swal(
                     "Congratulations!",
                     "Your password has been updated!",
@@ -498,7 +555,7 @@ $(document).ready(function() {
                 $(".new_password_error").hide();
                 $(".confirm_password_error").hide();
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.responseJSON) {
                     if (xhr.responseJSON.errors) {
                         if (xhr.responseJSON.errors) {
@@ -536,15 +593,15 @@ $(document).ready(function() {
                         $(".confirm_password_error").hide();
                     }
                 }
-            }
+            },
         });
     });
-    $("#new-address-form").on("submit", function(e) {
+    $("#new-address-form").on("submit", function (e) {
         e.preventDefault();
         formdata = new FormData(this);
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/user/add/address",
             type: "post",
@@ -552,7 +609,7 @@ $(document).ready(function() {
             contentType: false,
             cache: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 swal(
                     "Congratulations!",
                     "Your address has been added!",
@@ -562,7 +619,7 @@ $(document).ready(function() {
                 $(".address-error").hide();
                 $(".post-error").hide();
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.responseJSON) {
                     if (xhr.responseJSON.errors.fullname) {
                         $(".name-error").show();
@@ -590,40 +647,38 @@ $(document).ready(function() {
                         $(".post-error").hide();
                     }
                 }
-            }
+            },
         });
     });
-    $(".delete-address").on("click", function(e) {
-        var table = $(this)
-            .parent()
-            .parent()
-            .parent()
-            .parent();
+    $(".delete-address").on("click", function (e) {
+        var table = $(this).parent().parent().parent().parent();
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/user/delete/address" + e.target.id + "",
             type: "get",
-            success: function(response) {
+            success: function (response) {
                 table.remove();
                 $("#address .table-responsive").append(
                     "<p>Your address book entries are empty </p>"
                 );
-            }
+            },
         });
     });
     $(document).on(
         "click",
         ".post-slide10 .custom-card .button-group .btn.btn-wishlist.add-to-wishlist",
-        function(e) {
+        function (e) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
                 },
                 url: "/user/add/wishlist" + e.currentTarget.id + "",
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     if (response) {
                         swal(
                             "Success!",
@@ -638,27 +693,29 @@ $(document).ready(function() {
                         );
                     }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     swal(
                         "Error occurred!",
                         "This dish might already be in your wishlist!",
                         "error"
                     );
-                }
+                },
             });
         }
     );
     $(document).on(
         "click",
         ".carousel2 .custom-card .button-group .btn.btn-wishlist.add-to-wishlist",
-        function(e) {
+        function (e) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
                 },
                 url: "/user/add/wishlist" + e.currentTarget.id + "",
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     if (response) {
                         swal(
                             "Success!",
@@ -673,25 +730,25 @@ $(document).ready(function() {
                         );
                     }
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     swal(
                         "Error occurred!",
                         "This dish might already be in your wishlist!",
                         "error"
                     );
-                }
+                },
             });
         }
     );
 
-    $("#wishlist .btn-primary").on("click", function(e) {
+    $("#wishlist .btn-primary").on("click", function (e) {
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/user/add/cart" + e.currentTarget.id + "",
             type: "get",
-            success: function(response) {
+            success: function (response) {
                 $(".shopping-cart span").empty();
                 for (var i = 0; i < response[0].length; i++) {
                     for (var j = 0; j < response[1].length; j++) {
@@ -735,21 +792,23 @@ $(document).ready(function() {
                     );
                 }
                 $.notify("Added to Cart", "success");
-            }
+            },
         });
     });
 
     $(document).on(
         "click",
         ".carousel2 .custom-card .button-group .btn.btn-cart.add-to-cart",
-        function(e) {
+        function (e) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
                 },
                 url: "/user/add/cart" + e.currentTarget.id + "",
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     $(".shopping-cart span").empty();
                     for (var i = 0; i < response[0].length; i++) {
                         for (var j = 0; j < response[1].length; j++) {
@@ -794,23 +853,25 @@ $(document).ready(function() {
                     }
                     $.notify("Added to Cart", "success");
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     swal("Error!", "You need to login first!", "error");
-                }
+                },
             });
         }
     );
     $(document).on(
         "click",
         ".post-slide10 .custom-card .button-group .btn.btn-cart.add-to-cart",
-        function(e) {
+        function (e) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
                 },
                 url: "/user/add/cart" + e.currentTarget.id + "",
                 type: "get",
-                success: function(response) {
+                success: function (response) {
                     $(".shopping-cart span").empty();
                     for (var i = 0; i < response[0].length; i++) {
                         for (var j = 0; j < response[1].length; j++) {
@@ -855,21 +916,21 @@ $(document).ready(function() {
                     }
                     $.notify("Added to Cart", "success");
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     swal("Error!", "You need to login first!", "error");
-                }
+                },
             });
         }
     );
 
-    $(".shopping-cart").on("click", ".cart-remove i", function(e) {
+    $(".shopping-cart").on("click", ".cart-remove i", function (e) {
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/user/remove/cart" + e.target.id + "",
             type: "get",
-            success: function(response) {
+            success: function (response) {
                 $(".shopping-cart span").empty();
                 for (var i = 0; i < response[0].length; i++) {
                     for (var j = 0; j < response[1].length; j++) {
@@ -911,14 +972,14 @@ $(document).ready(function() {
                     $("#lblCartCount").empty();
                     $("#lblCartCount").text(response[0].length);
                 }
-            }
+            },
         });
     });
 
-    $(document).on("click", ".refresh-cart", function(e) {
+    $(document).on("click", ".refresh-cart", function (e) {
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/user/refresh/count",
             type: "get",
@@ -927,26 +988,28 @@ $(document).ready(function() {
                 count: $(e.currentTarget)
                     .parent()
                     .siblings(".cart-dish-count")
-                    .val()
+                    .val(),
             },
-            success: function(response) {
+            success: function (response) {
                 location.reload(true);
-            }
+            },
         });
     });
-    $("#subscribe").on("submit", function(e) {
+    $("#subscribe").on("submit", function (e) {
         e.preventDefault();
         if (isEmail($("#subscribe_email").val())) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
                 },
                 url: "/user/add/email",
                 type: "post",
                 data: {
-                    email: $("#subscribe_email").val()
+                    email: $("#subscribe_email").val(),
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response) {
                         swal(
                             "Congratulations!",
@@ -956,29 +1019,30 @@ $(document).ready(function() {
                     } else {
                         swal("Error!", "Email already exists!", "error");
                     }
-                }
+                },
             });
         } else {
             swal("Error!", "Please enter a valid email address!", "error");
         }
     });
 
-    $("#contact-us-form").on("submit", function(e) {
+    $("#contact-us-form").on("submit", function (e) {
         e.preventDefault();
         alert("remind me to make this functional");
     });
 
-    $(".card-img-btn").on("click", function(e) {
+    $(".card-img-btn").on("click", function (e) {
+        $(".loader-container").show();
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/get/dish",
             type: "get",
             data: {
-                id: e.currentTarget.id
+                id: e.currentTarget.id,
             },
-            success: function(response) {
+            success: function (response) {
                 $(
                     "#dishModal .modal-dialog .modal-content .modal-body .row .dish-image img"
                 ).attr("src", "../storage/" + response[0].image1);
@@ -1006,18 +1070,19 @@ $(document).ready(function() {
                         "#dishModal .modal-dialog .modal-content .modal-body .row .product-details .product-info .product-info-value3"
                     ).text("Not Available");
                 }
+                $(".loader-container").hide();
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 swal("Error!", "Please try again later!", "error");
-            }
+            },
         });
     });
     $(
         ".product-options .product-quantity .btn.btn-primary.btn-lg.btn-block"
-    ).on("click", function(e) {
+    ).on("click", function (e) {
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "/user/quick/cart",
             type: "get",
@@ -1025,30 +1090,32 @@ $(document).ready(function() {
                 id: e.currentTarget.id,
                 count: $(
                     ".product-options .product-quantity #input-quantity"
-                ).val()
+                ).val(),
             },
-            success: function(response) {
+            success: function (response) {
                 location.reload(true);
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 swal("Error!", "Please login first!", "error");
-            }
+            },
         });
     });
 
-    $("#subscribe_popup").on("submit", function(e) {
+    $("#subscribe_popup").on("submit", function (e) {
         e.preventDefault();
         if (isEmail($("#subscribe_pemail").val())) {
             $.ajax({
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
                 },
                 url: "/user/add/email",
                 type: "post",
                 data: {
-                    email: $("#subscribe_pemail").val()
+                    email: $("#subscribe_pemail").val(),
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response) {
                         swal(
                             "Congratulations!",
@@ -1058,7 +1125,7 @@ $(document).ready(function() {
                     } else {
                         swal("Error!", "Email already exists!", "error");
                     }
-                }
+                },
             });
         } else {
             swal("Error!", "Please enter a valid email address!", "error");
@@ -1074,13 +1141,13 @@ function isEmail(email) {
 function scrollLink(e) {
     e.preventDefault();
     var hash = e.target.hash;
-    console.log(hash);
+
     $("html, body").animate(
         {
-            scrollTop: $(hash).offset().top
+            scrollTop: $(hash).offset().top,
         },
         800,
-        function() {
+        function () {
             // Add hash (#) to URL when done scrolling (default click behavior)
             window.location.hash = hash;
             $(hash).click();
