@@ -57,7 +57,8 @@
                                 @if(isset($dish))
                                 @foreach($dish as $di)
                                 @if($cat->id == $di->category_id)
-                                <a href="#" class="dropdown-item">{{$di->name}}</a>
+                                <a href="#categoryScroll{{$cat->id}}" onclick="scrollLink(event)"
+                                    class="dropdown-item">{{$di->name}}</a>
                                 @endif
                                 @endforeach
                                 @endif
@@ -74,7 +75,8 @@
                                 <?php $count = $count - 1 ?>
                                 @foreach($category as $cat2)
                                 <?php $count = $count - 1 ?>
-                                @if($count < 0) <a href="#" class="dropdown-item">{{$cat2->title}}</a>
+                                @if($count < 0) <a href="#categoryScroll{{$cat2->id}}" onclick="scrollLink(event)"
+                                    class="dropdown-item">{{$cat2->title}}</a>
                                     @endif
                                     @endforeach
 
