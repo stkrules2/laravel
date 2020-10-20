@@ -46,6 +46,13 @@
         margin-top: 7px;
         margin-right: 20px;
     }
+    .show-final-order{
+        font-size:12px;
+    }
+    .show-final-order thead{
+        background:#F5F5F5 !important;
+        font-weight:600;
+    }
 
 </style>
 <script src="https://js.stripe.com/v2/"></script>
@@ -208,6 +215,13 @@
                             <label class="form-check-label" for="exampleRadios2">
                                 Online Payment
                             </label> <br> <br>
+                            <div class="buttons clearfix">
+                                    <div class="pull-right">
+                                        <input type="button" value="Continue" id="button-payment-method"
+                                            data-loading-text="Loading..." class="btn btn-primary">
+                                    </div>
+
+                            </div>
                             <div style="display:none" class="payment-method">
                                 <form accept-charset="UTF-8" action="/" class="require-validation"
                                     data-cc-on-file="false"
@@ -245,6 +259,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" class="price" name="price" value={{ $total }}>
+                                    <input type="hidden" class="cart" name="cart" value={{ $cart->first()->id }}>
                                     <div class='form-row'>
                                         <div class='col-2'>
                                             <div class='form-control total btn btn-info text-center'>
@@ -263,19 +278,19 @@
 
                                     <div class="form-row">
                                         <div class="col-md-12 error hide form-group">
-                                            <div class="alert-danger alert">dsadsa</div>
+                                            <div class="alert-danger alert"></div>
                                         </div>
                                     </div>
 
                                 </form>
-
+                               
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div>
-                <div class="panel" style="pointer-events: none ">
+                <div class="panel panel4" style="pointer-events: none ">
                     <div class="panel-heading">
                         <h4 class="panel-title"><a data-toggle="collapse" href="#collapse5">Step 4: Confirm Order <i
                                     class="fa fa-caret-down"></i></a>
@@ -283,9 +298,36 @@
                     </div>
 
                 </div>
-                <div id="collapse5" class="panel-collapse collapse">
+                <div id="collapse5" class="panel-collapse collapse collapse4">
                     <div class="panel-body">
-                        <h4>Panel Body</h4>
+                       <p class="fill-address"></p>
+                       <table class="table show-final-order table-bordered table-hover">
+                       <span style="display:none">{{$dishid = $cart->first()->dishid}}</span>
+                            <thead>
+                                <tr>
+                                    <td class="text-left" >Dish Name</td>
+                                    <td class="text-right">Price</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($dish->where('id', $dishid) as $dishh)
+                                <tr>
+                                    <td class="text-left" >{{$dishh->name}}</td>
+                                    <td class="text-right">{{$dishh->price}}</td>
+                                </tr>
+                                @endforeach
+                                <tr>
+                                    <td class="text-left" ></td>
+                                    <td class="text-right"><b>Total:</b> {{ $total }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="buttons clearfix">
+                            <div class="pull-right">
+                                <input type="button" value="Confirm Order" id="button-confirm-order"
+                                    data-loading-text="Loading..." class="btn btn-primary">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

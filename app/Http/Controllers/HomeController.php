@@ -13,6 +13,7 @@ use App\Dish;
 use App\User;
 use App\Address;
 use App\Cart;
+use App\Order;
 use App\Wishlist;
 use App\Newsletter;
 
@@ -23,7 +24,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -37,7 +38,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -51,7 +52,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -66,7 +67,7 @@ class HomeController extends Controller
         $category = Category::get();
         $dish = Dish::get();
         $address = Address::where('userid', Auth::user()->id)->get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -80,7 +81,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -101,7 +102,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -139,7 +140,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -155,7 +156,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -170,7 +171,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $address = Address::where('userid', Auth::user()->id)->get();
         $total = 0;
@@ -315,6 +316,8 @@ class HomeController extends Controller
     public function payment(Request $request)
     {
         \Stripe\Stripe::setApiKey('sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX');
+        /*
+        \Stripe\Stripe::setApiKey ( 'sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX' );
         try {
             \Stripe\Charge::create(array(
                 "amount" => $request->price,
@@ -338,6 +341,19 @@ class HomeController extends Controller
         } catch (\Exception $e) {
             return "Payment Unsuccessfull";
         }
+    } */
+
+        $order = new Order();
+        $order->total_price = $request->price;
+        $order->addressid = $request->address;
+        $order->cartid = $request->cart;
+        $order->userid = Auth::user()->id;
+        $order->status = "pending";
+        $order->payment_method =  $request->method;
+        $order->save();
+        $cart = Cart::where('id', $request->cart)->first();
+        $cart->active = 0;
+        $cart->update();
     }
     public function quickCart(Request $request)
     {

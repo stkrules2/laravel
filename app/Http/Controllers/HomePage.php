@@ -23,7 +23,7 @@ class HomePage extends Controller
         $special = Dish::where('special_product', 1)->get();
         $promotion = Promotion::first();
         if (Auth::user()) {
-            $cart = Cart::where('userid', Auth::user()->id)->get();
+            $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
             $wish = Wishlist::where('userid', Auth::user()->id)->get();
 
             $total = 0;
