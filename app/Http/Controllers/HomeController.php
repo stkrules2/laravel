@@ -142,7 +142,10 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
+        $orders = Order::where('userid', Auth::user()->id)->get();
         $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
+        $ordercart = Cart::where('userid', Auth::user()->id)->where('active', 0)->get();
+        $address = Address::where('userid', Auth::user()->id)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -151,7 +154,7 @@ class HomeController extends Controller
             $total = $total + ($temp[0] * $userid['countdish']);
         }
 
-        return view('order', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish]);
+        return view('order', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'address' => $address ,'orders' => $orders, 'ordercart' => $ordercart, 'total' => $total, 'wish' => $wish]);
     }
 
     public function mycart()
@@ -348,7 +351,7 @@ class HomeController extends Controller
     public function addCart($id)
     {
         $cart = new Cart();
-        $count = Cart::where('dishid', $id)->where('userid', Auth::User()->id)->first();
+        $count = Cart::where('dishid', $id)->where('userid', Auth::User()->id)->where('active', 1)->first();
 
         if (isset($count)) {
 
@@ -361,7 +364,7 @@ class HomeController extends Controller
             $cart->countdish = 1;
             $cart->save();
         }
-        $cartCount = Cart::where('userid', Auth::user()->id)->get();
+        $cartCount = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $dish = Dish::get();
         $total = 0;
         foreach ($cartCount as $userid) {
