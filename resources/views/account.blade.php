@@ -1,7 +1,12 @@
 @extends('layout.app')
 
 @section('content')
+<style>
 
+.account-container input{
+    font-size:13px;
+}
+</style>
 <div class="account-container">
     <nav aria-label="breadcrumb">
 

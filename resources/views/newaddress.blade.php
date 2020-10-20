@@ -1,7 +1,11 @@
 @extends('layout.app')
 
 @section('content')
-
+<style>
+.address-container input{
+    font-size:13px;
+}
+</style>
 <div class="address-container">
     <nav aria-label="breadcrumb">
 
@@ -26,6 +30,14 @@
                         <input type="text" name="fullname" placeholder="Full Name" id="input-fullname"
                             class="form-control">
                         <span class='name-error'></span>
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="number">Mobile Number </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="number" placeholder="Mobile Number"
+                            id="number" class="form-control">
+
                     </div>
                 </div>
                 <div class="form-group">

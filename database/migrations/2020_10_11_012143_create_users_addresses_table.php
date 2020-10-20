@@ -17,6 +17,7 @@ class CreateUsersAddressesTable extends Migration
             $table->id();
             $table->string('fullname');
             $table->string('company')->nullable();
+            $table->bigInteger('number');
             $table->string('address');
             $table->bigInteger('postcode');
             $table->bigInteger('userid');

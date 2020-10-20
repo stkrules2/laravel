@@ -112,22 +112,29 @@
                                     </div>
                                     <div class="alternate" style="display:none">
                                         <div class="form-group col-10 mx-auto order-0 row">
-                                            <label for="fullname" class="col-sm-2 col-form-label">Full Name</label>
+                                            <label for="optional-fullname" class="col-sm-2 col-form-label">Full Name</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="optional-fullname"
+                                                <input type="text" name="optional-fullname" class="form-control" id="optional-fullname"
                                                     value={{ Auth::user()->name }}>
                                             </div>
                                         </div>
                                         <div class="form-group col-10 mx-auto order-0 row">
-                                            <label for="custom-address" class="col-sm-2 col-form-label">Address</label>
+                                            <label for="optional-number" class="col-sm-2 col-form-label">Mobile Number</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="optional-custom-address">
+                                                <input type="text" name="optional-number" class="form-control" id="optional-number"
+                                                    value={{ Auth::user()->mobile_number }}>
                                             </div>
                                         </div>
                                         <div class="form-group col-10 mx-auto order-0 row">
-                                            <label for="code" class="col-sm-2 col-form-label">Postal Code</label>
+                                            <label for="optional-custom-address" class="col-sm-2 col-form-label">Address</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="optional-code">
+                                                <input type="text" name="optional-custom-address" class="form-control" id="optional-custom-address">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-10 mx-auto order-0 row">
+                                            <label for="optional-code" class="col-sm-2 col-form-label">Postal Code</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="optional-code" class="form-control" id="optional-code">
                                             </div>
                                         </div>
                                     </div>
@@ -140,6 +147,13 @@
                                                 value={{ Auth::user()->name }}>
                                         </div>
                                     </div>
+                                    <div class="form-group col-10 mx-auto order-0 row">
+                                            <label for="number" class="col-sm-2 col-form-label">Mobile Number</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="number" class="form-control" id="number"
+                                                    value={{ Auth::user()->mobile_number }}>
+                                            </div>
+                                        </div>
                                     <div class="form-group col-10 mx-auto order-0 row">
                                         <label for="custom-address" class="col-sm-2 col-form-label">Address</label>
                                         <div class="col-sm-10">

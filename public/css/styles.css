@@ -444,8 +444,6 @@ header.fixed .logo a {
     margin: 0.5em 0 0 0;
 }
 
-.user .dropdown-item i {}
-
 .user i {
     margin: 0;
     padding: 0;
@@ -1105,6 +1103,9 @@ li.cart-product {
 .custom-card:hover .btn-compare {
     transform: rotateY(0deg);
 }
+.breadcrumb-item{
+    font-size:13px;
+}
 
 .post-slide10 {
     padding-bottom: 10px;
@@ -1439,8 +1440,8 @@ div.required .control-label::before {
     border-color: transparent;
     color: #fff;
     text-transform: capitalize;
-    padding: 8px 15px;
-    font: 500 14px/22px "Muli", Helvetica, sans-serif;
+    padding: 11px 18px;
+    font: 500 13px/13px "Muli", Helvetica, sans-serif;
     border-radius: 25px;
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
@@ -1458,8 +1459,8 @@ div.required .control-label::before {
     background: #000;
     border-color: transparent;
     color: #fff;
-    padding: 8px 15px;
-    font: 500 14px/22px "Muli", Helvetica, sans-serif;
+    padding: 7px 18px;
+    font: 500 13px/23px "Muli", Helvetica, sans-serif;
     text-transform: capitalize;
     display: inline-block;
     letter-spacing: 1px;
@@ -1523,7 +1524,9 @@ div.required .control-label::before {
     color: #fff;
     background-color: #000;
     border-color: #000;
-    padding: 9px 12px;
+    padding: 8px 15px;
+    font-size:13px;
+    width:70px;
     border-radius: 25px;
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
@@ -1533,8 +1536,9 @@ div.required .control-label::before {
 #address .btn-danger {
     color: #ffffff;
     background-color: #da4f49;
-    text-transform: uppercase;
-    padding: 10px 12px;
+    padding: 8px 15px;
+    width:90px;
+    font-size:13px;
     border-radius: 25px;
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
@@ -2389,7 +2393,6 @@ div.required .control-label::before {
         margin-top: 1em;
     }
 
-    .promotion-container img:last-child {}
 
 }
 
@@ -2407,7 +2410,6 @@ div.required .control-label::before {
         padding: 7px 80px;
     }
 
-    .content-tabs-ul li {}
 
     #subscribe {
         width: 250px;

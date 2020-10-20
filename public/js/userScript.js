@@ -24,6 +24,7 @@ $(document).ready(function () {
                     data: {
                         fullname: $('#optional-fullname').val(),
                         address: $('#optional-custom-address').val(),
+                        number: $('#optional-number').val(),
                         postcode: $('#optional-code').val(),
                     },
                     success: function (response) {
@@ -46,6 +47,7 @@ $(document).ready(function () {
                 data: {
                     fullname: $('#fullname').val(),
                     address: $('#custom-address').val(),
+                    number: $('#number').val(),
                     postcode: $('#code').val(),
                 },
                 success: function (response) {

@@ -1,7 +1,11 @@
 @extends('layout.app')
 
 @section('content')
-
+<style>
+   .action-buttons{
+        width:30%;
+   }
+</style>
 <div class="address-container">
     <nav aria-label="breadcrumb">
 
@@ -21,13 +25,13 @@
             <?php $count = 0 ?>
             @foreach($addresses as $address)
             <?php $count = $count + 1  ?>
-            <table class="table table-bordered table-hover">
+            <table class="table address-container table-bordered table-hover">
                 <tbody>
                     <tr>
-                        <td class="text-left">{{$address->fullname}}<br>{{$address->address}}<br>
+                        <td class="text-left text-items" >{{$address->fullname}}, {{$address->number}}, {{$address->address}}, 
                             {{$address->postcode}}</td>
-                        <td class="text-right"><a href="#" class="btn btn-info edit-address-delete"
-                                id="{{$address->id}}">Edit</a> &nbsp; <a href="#" class="btn btn-danger delete-address"
+                        <td class="text-right action-buttons"><a href="#" class="btn btn-info edit-address-delete"
+                                id="{{$address->id}}">Edit</a>&nbsp;<a href="#" class="btn btn-danger delete-address"
                                 id="{{$address->id}}">Delete</a></td>
                     </tr>
                 </tbody>
@@ -38,7 +42,7 @@
             @endif
 
             @endif
-        </div>
+        </div> <br>
         <div class="buttons clearfix">
             <div class="pull-left"><a href="/setting" class="btn btn-default">Back</a></div>
             <div class="pull-right">

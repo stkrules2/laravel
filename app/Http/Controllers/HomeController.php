@@ -300,13 +300,15 @@ class HomeController extends Controller
         $request->validate([
             'fullname' => 'required | regex:/^[a-zA-Z][a-zA-Z\s]*$/ | min:3 | max: 30',
             'address' => 'required | min:5 ',
+            'number' => 'required | numeric | min:10',
             'postcode' => 'required | max:7 '
         ]);
 
 
         $address->fullname = $request->input('fullname');
         $address->company = $request->input('company-name');
-        $address->address = $request->input('address');
+        $address->address = $request->input('address'); 
+        $address->number = $request->input('number');
         $address->postcode = $request->input('postcode');
         $address->userid = Auth::User()->id;
         $address->save();
@@ -315,19 +317,19 @@ class HomeController extends Controller
     public function payment(Request $request)
     {
         \Stripe\Stripe::setApiKey ( 'sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX' );
-    try {
-        \Stripe\Charge::create ( array (
-                "amount" => $request->price,
-                "currency" => "usd",
-                "source" => $request->token, 
-                "description" => "Test payment." 
-        ) );
-        return "Payment Successfull";
-        
-    } catch ( \Exception $e ) {
-      return "Payment Unsuccessfull";
-        
-    }
+        try {
+            \Stripe\Charge::create ( array (
+                    "amount" => $request->price,
+                    "currency" => "usd",
+                    "source" => $request->token, 
+                    "description" => "Test payment." 
+            ) );
+            return "Payment Successfull";
+            
+        } catch ( \Exception $e ) {
+            return "Payment Unsuccessfull";
+            
+        }
     }
     public function addCart($id)
     {
