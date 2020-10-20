@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Http\Controllers\Session;
-use App\Banner;
 use App\Category;
 use App\Dish;
 use App\User;
@@ -307,7 +305,7 @@ class HomeController extends Controller
 
         $address->fullname = $request->input('fullname');
         $address->company = $request->input('company-name');
-        $address->address = $request->input('address'); 
+        $address->address = $request->input('address');
         $address->number = $request->input('number');
         $address->postcode = $request->input('postcode');
         $address->userid = Auth::User()->id;
@@ -316,22 +314,18 @@ class HomeController extends Controller
     }
     public function payment(Request $request)
     {
-<<<<<<< HEAD
-        \Stripe\Stripe::setApiKey ( 'sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX' );
+        \Stripe\Stripe::setApiKey('sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX');
         try {
-            \Stripe\Charge::create ( array (
-                    "amount" => $request->price,
-                    "currency" => "usd",
-                    "source" => $request->token, 
-                    "description" => "Test payment." 
-            ) );
+            \Stripe\Charge::create(array(
+                "amount" => $request->price,
+                "currency" => "usd",
+                "source" => $request->token,
+                "description" => "Test payment."
+            ));
             return "Payment Successfull";
-            
-        } catch ( \Exception $e ) {
+        } catch (\Exception $e) {
             return "Payment Unsuccessfull";
-            
         }
-=======
         \Stripe\Stripe::setApiKey('sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX');
         try {
             \Stripe\Charge::create(array(
@@ -360,7 +354,6 @@ class HomeController extends Controller
             $cart->save();
         }
         return true;
->>>>>>> d38c29bd3b73d6d093ae1a6c1e2bbfc80c7fbbe6
     }
     public function addCart($id)
     {
