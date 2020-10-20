@@ -316,7 +316,10 @@ class HomeController extends Controller
     }
     public function payment(Request $request)
     {
-<<<<<<< HEAD
+        $amount = $request->price; 
+        $address = $request->address;
+        $address = $request->cart;
+        /*
         \Stripe\Stripe::setApiKey ( 'sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX' );
         try {
             \Stripe\Charge::create ( array (
@@ -330,37 +333,7 @@ class HomeController extends Controller
         } catch ( \Exception $e ) {
             return "Payment Unsuccessfull";
             
-        }
-=======
-        \Stripe\Stripe::setApiKey('sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX');
-        try {
-            \Stripe\Charge::create(array(
-                "amount" => $request->price,
-                "currency" => "usd",
-                "source" => $request->token,
-                "description" => "Test payment."
-            ));
-            return "Payment Successfull";
-        } catch (\Exception $e) {
-            return "Payment Unsuccessfull";
-        }
-    }
-    public function quickCart(Request $request)
-    {
-        $cart = new Cart();
-        $count = Cart::where('dishid', $request->input('id'))->where('userid', Auth::User()->id)->first();
-        if (isset($count)) {
-
-            $count->countdish = $request->input('count');
-            $count->save();
-        } else {
-            $cart->userid = Auth::User()->id;
-            $cart->dishid = $request->input('id');
-            $cart->countdish = $request->input('count');
-            $cart->save();
-        }
-        return true;
->>>>>>> d38c29bd3b73d6d093ae1a6c1e2bbfc80c7fbbe6
+        }*/
     }
     public function addCart($id)
     {

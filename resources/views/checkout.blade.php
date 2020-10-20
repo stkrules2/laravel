@@ -245,6 +245,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" class="price" name="price" value={{ $total }}>
+                                    <input type="hidden" class="cart" name="cart" value={{ $cart->first()->id }}>
                                     <div class='form-row'>
                                         <div class='col-2'>
                                             <div class='form-control total btn btn-info text-center'>
@@ -263,7 +264,7 @@
 
                                     <div class="form-row">
                                         <div class="col-md-12 error hide form-group">
-                                            <div class="alert-danger alert">dsadsa</div>
+                                            <div class="alert-danger alert"></div>
                                         </div>
                                     </div>
 

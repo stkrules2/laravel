@@ -154,6 +154,7 @@ $(document).ready(function () {
                 data: {
                     number: $(".card-number").val(),
                     token: token,
+                    cart: $(".cart").val(),
                     cvc: $(".card-cvc").val(),
                     exp_month: $(".card-expiry-month").val(),
                     exp_year: $(".card-expiry-year").val(),
