@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -40,7 +40,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -54,7 +54,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -69,7 +69,7 @@ class HomeController extends Controller
         $category = Category::get();
         $dish = Dish::get();
         $address = Address::where('userid', Auth::user()->id)->get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -83,7 +83,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -104,7 +104,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -142,7 +142,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -158,7 +158,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -173,7 +173,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $address = Address::where('userid', Auth::user()->id)->get();
         $total = 0;
@@ -340,6 +340,10 @@ class HomeController extends Controller
         $order->status = "pending";
         $order->payment_method =  $request->method;
         $order->save();
+        $cart = Cart::where('id' , $request->cart)->first();
+        $cart->active = 0;
+        $cart->update(); 
+
     }
     public function addCart($id)
     {

@@ -18,6 +18,7 @@ class CreateCartsTable extends Migration
             $table->bigInteger('userid');
             $table->bigInteger('dishid');
             $table->bigInteger('countdish');
+            $table->bigInteger('active')->default(1);
             $table->timestamps();
         });
     }
