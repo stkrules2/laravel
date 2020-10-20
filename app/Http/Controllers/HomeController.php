@@ -188,7 +188,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -203,7 +203,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $news = Newsletter::where('email', Auth::user()->email)->get();
         $total = 0;
@@ -299,7 +299,7 @@ class HomeController extends Controller
         $request->validate([
             'fullname' => 'required | regex:/^[a-zA-Z][a-zA-Z\s]*$/ | min:3 | max: 30',
             'address' => 'required | min:5 ',
-            'number' => 'required | numeric | min:10',
+            'number' => 'required | regex:/^(?:(?:\+)\d{3})[1-9](?:\d{7})$/u',
             'postcode' => 'required | max:7 '
         ]);
 
@@ -358,7 +358,7 @@ class HomeController extends Controller
     public function quickCart(Request $request)
     {
         $cart = new Cart();
-        $count = Cart::where('dishid', $request->input('id'))->where('userid', Auth::User()->id)->first();
+        $count = Cart::where('dishid', $request->input('id'))->where('active', 1)->where('userid', Auth::User()->id)->first();
         if (isset($count)) {
 
             $count->countdish = $request->input('count');
@@ -374,7 +374,7 @@ class HomeController extends Controller
     public function addCart($id)
     {
         $cart = new Cart();
-        $count = Cart::where('dishid', $id)->where('userid', Auth::User()->id)->first();
+        $count = Cart::where('dishid', $id)->where('active', 1)->where('userid', Auth::User()->id)->first();
 
         if (isset($count)) {
 
@@ -387,7 +387,7 @@ class HomeController extends Controller
             $cart->countdish = 1;
             $cart->save();
         }
-        $cartCount = Cart::where('userid', Auth::user()->id)->get();
+        $cartCount = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $dish = Dish::get();
         $total = 0;
         foreach ($cartCount as $userid) {
@@ -400,7 +400,7 @@ class HomeController extends Controller
     public function removeCart($id)
     {
         Cart::where('id', $id)->delete();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $dish = Dish::get();
         $total = 0;
         foreach ($cart as $userid) {
