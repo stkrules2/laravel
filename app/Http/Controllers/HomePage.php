@@ -36,10 +36,34 @@ class HomePage extends Controller
         }
         return view('home', ['banner' => $banner, 'category' => $category, 'dish' => $dish, 'special' => $special, 'promotion' => $promotion]);
     }
+    public function contact()
+    {
+        $category = Category::get();
+        $dish = Dish::get();
+        if (Auth::user()) {
+            $cart = Cart::where('userid', Auth::user()->id)->get();
+            $wish = Wishlist::where('userid', Auth::user()->id)->get();
+
+            $total = 0;
+            foreach ($cart as $userid) {
+
+                $temp = $dish->where('id', $userid['dishid'])->pluck('price');
+                $total = $total + ($temp[0] * $userid['countdish']);
+            }
+            return view('contact', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish]);
+        }
+        return view('contact', ['category' => $category, 'dish' => $dish]);
+    }
     public function showDishes(Request $request)
     {
         $id = $request->categoryid;
         $dish = Dish::where('category_id', $id)->get();
         return $dish;
+    }
+    public function getDishes(Request $request)
+    {
+        $dish = Dish::where('id', $request->input('id'))->first();
+        $cat = Category::where('id', $dish->category_id)->first();
+        return [$dish, $cat];
     }
 }

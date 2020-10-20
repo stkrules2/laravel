@@ -152,7 +152,7 @@ class HomeController extends Controller
 
         return view('order', ['category' => $category, 'dish' => $dish, 'cart' => $cart, 'total' => $total, 'wish' => $wish]);
     }
-    
+
     public function mycart()
     {
         $category = Category::get();
@@ -316,6 +316,7 @@ class HomeController extends Controller
     }
     public function payment(Request $request)
     {
+<<<<<<< HEAD
         \Stripe\Stripe::setApiKey ( 'sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX' );
         try {
             \Stripe\Charge::create ( array (
@@ -330,6 +331,36 @@ class HomeController extends Controller
             return "Payment Unsuccessfull";
             
         }
+=======
+        \Stripe\Stripe::setApiKey('sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX');
+        try {
+            \Stripe\Charge::create(array(
+                "amount" => $request->price,
+                "currency" => "usd",
+                "source" => $request->token,
+                "description" => "Test payment."
+            ));
+            return "Payment Successfull";
+        } catch (\Exception $e) {
+            return "Payment Unsuccessfull";
+        }
+    }
+    public function quickCart(Request $request)
+    {
+        $cart = new Cart();
+        $count = Cart::where('dishid', $request->input('id'))->where('userid', Auth::User()->id)->first();
+        if (isset($count)) {
+
+            $count->countdish = $request->input('count');
+            $count->save();
+        } else {
+            $cart->userid = Auth::User()->id;
+            $cart->dishid = $request->input('id');
+            $cart->countdish = $request->input('count');
+            $cart->save();
+        }
+        return true;
+>>>>>>> d38c29bd3b73d6d093ae1a6c1e2bbfc80c7fbbe6
     }
     public function addCart($id)
     {
@@ -375,12 +406,12 @@ class HomeController extends Controller
         Cart::where('id', $id)->delete();
         return redirect('/mycart');
     }
-    public function refreshCount($id, $count)
+    public function refreshCount(Request $request)
     {
-        $cart = Cart::where('id', $id)->first();
-        $cart->countdish = $count;
+        $cart = Cart::where('id', (int)$request->input('id'))->first();
+        $cart->countdish = (int)$request->input('count');
         $cart->save();
-        return 'done';
+        return true;
     }
 
     public function emailNewsletter(Request $request)
