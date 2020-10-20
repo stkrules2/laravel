@@ -32,10 +32,10 @@ $(document).ready(function () {
                     url: "/user/add/address",
                     type: "post",
                     data: {
-                        fullname: $('#optional-fullname').val(),
-                        address: $('#optional-custom-address').val(),
-                        number: $('#optional-number').val(),
-                        postcode: $('#optional-code').val(),
+                        fullname: $("#optional-fullname").val(),
+                        address: $("#optional-custom-address").val(),
+                        number: $("#optional-number").val(),
+                        postcode: $("#optional-code").val(),
                     },
                     success: function (response) {
                         address = response;
@@ -58,10 +58,10 @@ $(document).ready(function () {
                 url: "/user/add/address",
                 type: "post",
                 data: {
-                    fullname: $('#fullname').val(),
-                    address: $('#custom-address').val(),
-                    number: $('#number').val(),
-                    postcode: $('#code').val(),
+                    fullname: $("#fullname").val(),
+                    address: $("#custom-address").val(),
+                    number: $("#number").val(),
+                    postcode: $("#code").val(),
                 },
                 success: function (response) {
                     address = response;
@@ -1072,7 +1072,7 @@ $(document).ready(function () {
         alert("remind me to make this functional");
     });
 
-    $(".card-img-btn").on("click", function (e) {
+    $(document).on("click", ".card-img-btn", function (e) {
         $(".loader-container").show();
         $.ajax({
             headers: {
@@ -1098,7 +1098,7 @@ $(document).ready(function () {
                 ).text("Product" + response[0].id);
                 $(
                     "#dishModal .modal-dialog .modal-content .modal-body .row .product-details .product-price li h2"
-                ).text("BD " + response[0].price.toFixed(3));
+                ).text("BD " + parseFloat(response[0].price).toFixed(3));
                 $(
                     "#dishModal .modal-dialog .modal-content .modal-body .row .product-details .product-options .product-quantity .btn.btn-primary.btn-lg.btn-block"
                 ).attr("id", response[0].id);

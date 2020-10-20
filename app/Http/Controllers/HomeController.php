@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Http\Controllers\Session;
-use App\Banner;
 use App\Category;
 use App\Dish;
 use App\User;
@@ -193,7 +191,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $total = 0;
         foreach ($cart as $userid) {
@@ -208,7 +206,7 @@ class HomeController extends Controller
     {
         $category = Category::get();
         $dish = Dish::get();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $wish = Wishlist::where('userid', Auth::user()->id)->get();
         $news = Newsletter::where('email', Auth::user()->email)->get();
         $total = 0;
@@ -304,14 +302,14 @@ class HomeController extends Controller
         $request->validate([
             'fullname' => 'required | regex:/^[a-zA-Z][a-zA-Z\s]*$/ | min:3 | max: 30',
             'address' => 'required | min:5 ',
-            'number' => 'required | numeric | min:10',
+            'number' => 'required | regex:/^(?:(?:\+)\d{3})[1-9](?:\d{7})$/u',
             'postcode' => 'required | max:7 '
         ]);
 
 
         $address->fullname = $request->input('fullname');
         $address->company = $request->input('company-name');
-        $address->address = $request->input('address'); 
+        $address->address = $request->input('address');
         $address->number = $request->input('number');
         $address->postcode = $request->input('postcode');
         $address->userid = Auth::User()->id;
@@ -320,38 +318,66 @@ class HomeController extends Controller
     }
     public function payment(Request $request)
     {
+        \Stripe\Stripe::setApiKey('sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX');
         /*
         \Stripe\Stripe::setApiKey ( 'sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX' );
         try {
-            \Stripe\Charge::create ( array (
-                    "amount" => $request->price,
-                    "currency" => "usd",
-                    "source" => $request->token, 
-                    "description" => "Test payment." 
-            ) );
+            \Stripe\Charge::create(array(
+                "amount" => $request->price,
+                "currency" => "usd",
+                "source" => $request->token,
+                "description" => "Test payment."
+            ));
             return "Payment Successfull";
-            
-        } catch ( \Exception $e ) {
+        } catch (\Exception $e) {
             return "Payment Unsuccessfull";
-            
-        }*/
+        }
+        \Stripe\Stripe::setApiKey('sk_test_51HdgxrCXalV7Z0KRdLm1SatWiLLSzcHAtJlMUvA21qqQ1lG3KcqxzZ9dLRNe5ZnIVXeoHiLwzKGuqgulaeXWGFJF00Ma8JwMVX');
+        try {
+            \Stripe\Charge::create(array(
+                "amount" => $request->price,
+                "currency" => "usd",
+                "source" => $request->token,
+                "description" => "Test payment."
+            ));
+            return "Payment Successfull";
+        } catch (\Exception $e) {
+            return "Payment Unsuccessfull";
+        }
+    } */
+
         $order = new Order();
-        $order->total_price = $request->price; 
+        $order->total_price = $request->price;
         $order->addressid = $request->address;
         $order->cartid = $request->cart;
         $order->userid = Auth::user()->id;
         $order->status = "pending";
         $order->payment_method =  $request->method;
         $order->save();
-        $cart = Cart::where('id' , $request->cart)->first();
+        $cart = Cart::where('id', $request->cart)->first();
         $cart->active = 0;
-        $cart->update(); 
+        $cart->update();
+    }
+    public function quickCart(Request $request)
+    {
+        $cart = new Cart();
+        $count = Cart::where('dishid', $request->input('id'))->where('active', 1)->where('userid', Auth::User()->id)->first();
+        if (isset($count)) {
 
+            $count->countdish = $request->input('count');
+            $count->save();
+        } else {
+            $cart->userid = Auth::User()->id;
+            $cart->dishid = $request->input('id');
+            $cart->countdish = $request->input('count');
+            $cart->save();
+        }
+        return true;
     }
     public function addCart($id)
     {
         $cart = new Cart();
-        $count = Cart::where('dishid', $id)->where('userid', Auth::User()->id)->where('active', 1)->first();
+        $count = Cart::where('dishid', $id)->where('active', 1)->where('userid', Auth::User()->id)->first();
 
         if (isset($count)) {
 
@@ -377,7 +403,7 @@ class HomeController extends Controller
     public function removeCart($id)
     {
         Cart::where('id', $id)->delete();
-        $cart = Cart::where('userid', Auth::user()->id)->get();
+        $cart = Cart::where('userid', Auth::user()->id)->where('active', 1)->get();
         $dish = Dish::get();
         $total = 0;
         foreach ($cart as $userid) {
