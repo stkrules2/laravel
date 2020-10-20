@@ -1,6 +1,22 @@
 @extends('layout.app')
 
 @section('content')
+ <style>
+     
+    #orders-table_wrapper{
+        font-size:13px !important;
+        
+    }
+    #orders-table{
+        margin-bottom: 30px  !important;
+    }
+
+    .feedback-btn{
+        font-size:12px !important;  
+        margin-top:-5px;
+    }
+
+ </style>
 
 <div class="order-container">
 
@@ -15,31 +31,41 @@
             </span>
         </ol>
     </nav>
-    <div class="container">
+    <div class="">
         <table id="orders-table" class="table table-hover">
             <thead>
                 <tr>
-                    <th>Sr#</th>
+                    <th>Delivered To</th>
                     <th>Dishes</th>
                     <th>Total Price</th>
                     <th>Status</th>
-                    <th>Payment Type</th>
+                    <th>Payment Method</th>
                     <th>Data & Time</th>
+                  
                     <th>Report/Feedback</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach($orders as $order)
                 <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                    <td style="text-align: center;"><button class="btn btn-primary" data-toggle="modal"
+                     
+                    <td>{{$address->where('id', $order->addressid)->first()->fullname}}, {{$address->where('id', $order->addressid)->first()->address}}</td>
+                    <td><?php $ordercart = $ordercart->where('id', $order->cartid)->first() ?>
+                        @foreach($dish->where('id' , $ordercart->dishid) as $dishes)
+                        {{ $dishes->name }}
+                       
+                        <?php if($dishes->count() > 1){ echo "," ;} ?>
+                        @endforeach
+                    </td>
+                    <td>{{$order->total_price}} BD</td>
+                    <td>{{$order->status}}</td>
+                    <td>{{$order->payment_method}}</td>
+                    <td>{{date("d-m-Y h:i a" , strtotime($order->created_at)) }} </td>
+                    <input type="hidden" value={{ $order->id }}>
+                    <td style="text-align: center;"><button class="btn feedback-btn btn-primary" data-toggle="modal"
                             data-target="#feedback">Feedback</button></td>
                 </tr>
-
+                @endforeach
             </tbody>
 
         </table>
